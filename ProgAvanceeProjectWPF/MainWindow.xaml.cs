@@ -24,17 +24,17 @@ namespace ProjetWPFAout
         {
             InitializeComponent();
 
-            /*AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+            AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
             DAO<Bike> bikeDAO = adf.GetBikeDAO();
-            List<Bike> bikes = bikeDAO.FindAll();*/
+            List<Bike> bikes = bikeDAO.FindAll();
+            
 
+            //BikeDAO bikeDAO = new BikeDAO();
+            //Member m = new Member(1, "Martens", "Rémi", 0492821292, "remi", "1234", 0);
 
-            BikeDAO bikeDAO = new BikeDAO();
-            Member m = new Member(Guid.Parse("771d12f2-7c93-4320-80cd-3180a8747143"), "Martens", "Rémi", "0492821292", "remi", "1234", 0);
+            //List<Bike> bikes = bikeDAO.FindAll(m);
 
-            List<Bike> bikes = bikeDAO.FindAllByMember(m);
-
-            System.Diagnostics.Debug.WriteLine(bikes[0].IdBike);
+            //System.Diagnostics.Debug.WriteLine(bikes[0].IdBike);
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-
-class Responsible : Person
+﻿class Responsible : Person
 {
     private Category category;
 
-    public Responsible(Guid id, string name, string firstname, string tel, string login, string password, Category category) : base(id, name, firstname, tel, login, password)
+    public Responsible(int id, string name, string firstname, int tel, string login, string password, Category category) : base(id, name, firstname, tel, login, password)
     {
         this.category = category;
     }

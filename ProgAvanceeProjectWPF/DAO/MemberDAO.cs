@@ -53,7 +53,7 @@ internal class MemberDAO : DAO<Member>
     }
     public override bool Delete(Member m)
     {
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
@@ -74,7 +74,7 @@ internal class MemberDAO : DAO<Member>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }*/
+        }
         return false;
     }
     public override Member Find(int id)
@@ -127,7 +127,7 @@ internal class MemberDAO : DAO<Member>
         {
             throw new Exception("Une erreur sql s'est produite!");
         }*/
-        Member member = new Member(Guid.Parse("771d12f2-7c93-4320-80cd-3180a8747143"), "Martens", "Rémi", "0492821292", "Member", "Password", 0);
+        Member member = new Member(1, "Martens", "Rémi", 0492821292, "Member", "Password", 0);
         return member;
     }
 

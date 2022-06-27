@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 class Bike
 {
-    private Guid idBike;
-    private float weight; 
+    private int idBike;
+    private double weight; 
     private string type;
-    private float length;
+    private double length;
     private Member member;
-    private Vehicle vehicle;
     private List<Inscription> inscriptions = new List<Inscription>();
 
-    public Guid IdBike
+    public int IdBike
     {
         get { return idBike; }
         set { idBike = value; }
     }
 
-    public float Weight
+    public double Weight
     {
         get { return weight; } 
         set { weight = value; } 
@@ -29,7 +27,7 @@ class Bike
         set { type = value; }
     }
 
-    public float Length
+    public double Length
     {
         get { return length; }
         set { length = value; }
@@ -39,12 +37,6 @@ class Bike
     {
         get { return member; }
         set { member = value; }
-    }
-
-    public Vehicle Vehicle
-    {
-        get { return vehicle; }
-        set { vehicle = value; }
     }
 
     public List<Inscription> Inscriptions

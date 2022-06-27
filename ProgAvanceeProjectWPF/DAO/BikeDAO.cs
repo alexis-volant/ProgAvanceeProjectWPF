@@ -38,10 +38,10 @@ internal class BikeDAO : DAO<Bike>
                     {
                         Bike bike = new Bike
                         {
-                            IdBike = reader.GetGuid("idBike"),
-                            Weight = reader.GetFloat("weight"),
+                            IdBike = reader.GetInt32("idBike"),
+                            Weight = reader.GetDouble("weight"),
                             Type = reader.GetString("type"),
-                            Length = reader.GetFloat("length"),
+                            Length = reader.GetDouble("length"),
                         };
                         bikes.Add(bike);
                     }
@@ -55,7 +55,7 @@ internal class BikeDAO : DAO<Bike>
         return bikes;
     }
 
-    public List<Bike> FindAll()
+    public static List<Bike> FindAll()
     {
         List<Bike> bikes = new List<Bike>();
         try
@@ -70,10 +70,10 @@ internal class BikeDAO : DAO<Bike>
                     {
                         Bike bike = new Bike
                         {
-                            IdBike = reader.GetGuid("idBike"),
-                            Weight = reader.GetFloat("weight"),
+                            IdBike = reader.GetInt32("idBike"),
+                            Weight = reader.GetDouble("weight"),
                             Type = reader.GetString("type"),
-                            Length = reader.GetFloat("length"),
+                            Length = reader.GetDouble("length"),
                         };
                         bikes.Add(bike);
                     }
