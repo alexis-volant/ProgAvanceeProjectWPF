@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 class Vehicle
 {
-    private int idVehicle;
+    private Guid idVehicle;
     private int nbrPlacesMembers;
     private int nbrPlacesBikes;
     private Member driver;
@@ -10,7 +11,7 @@ class Vehicle
     private List<Bike> bikes;
     private List<Ride> rides;
 
-    public Vehicle(int idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member driver, List<Member> passengers, List<Bike> bikes, List<Ride> rides)
+    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member driver, List<Member> passengers, List<Bike> bikes, List<Ride> rides)
     {
         this.idVehicle = idVehicle;
         this.nbrPlacesMembers = nbrPlacesMembers;
@@ -21,7 +22,7 @@ class Vehicle
         this.rides = rides;
     }
 
-    public int IdVehicle
+    public Guid IdVehicle
     {
         get { return idVehicle; }
         set { idVehicle = value; }

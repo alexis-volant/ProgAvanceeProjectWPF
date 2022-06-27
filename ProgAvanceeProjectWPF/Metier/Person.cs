@@ -1,13 +1,15 @@
-﻿abstract class Person
+﻿using System;
+
+abstract class Person
 {
-    private int id;
+    private Guid id;
     private string name;
     private string firstName;
-    private int tel;
+    private string tel;
     private string login;
     private string passWord;
 
-    public Person(int id, string name, string firstName, int tel, string login, string passWord)
+    public Person(Guid id, string name, string firstName, string tel, string login, string passWord)
     {
         this.id = id;
         this.name = name;
@@ -17,7 +19,7 @@
         this.passWord = passWord;
     }
 
-    public int Id
+    public Guid Id
     {
         get { return id; }
         set { id = value; }
@@ -35,7 +37,7 @@
         set { firstName = value; }
     }
 
-    public int Tel
+    public string Tel
     {
         get { return tel; }
         set { tel = value; }

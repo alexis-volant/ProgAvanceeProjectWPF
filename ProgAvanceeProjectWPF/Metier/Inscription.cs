@@ -1,12 +1,15 @@
-﻿class Inscription
-{
-    private int idInscription;
-    private Member member;
-    private Ride ride; 
-    private bool passenger; 
-    private bool bike; 
+﻿using System;
 
-    public int IdInscription
+class Inscription
+{
+    private Guid idInscription;
+    private Member member;
+    private Ride ride;
+    private Bike bike;
+    private bool isPassenger; 
+    private bool hasBike; 
+
+    public Guid IdInscription
     {
         get { return idInscription; }
         set { idInscription = value; }
@@ -24,16 +27,22 @@
         set { ride = value; }
     }
 
-    public bool Passenger
-    {
-        get { return passenger; }
-        set { passenger = value; }
-    }
-
-    public bool Bike
+    public Bike Bike
     {
         get { return bike; }
         set { bike = value; }
+    }
+
+    public bool IsPassenger
+    {
+        get { return isPassenger; }
+        set { isPassenger = value; }
+    }
+
+    public bool HasBike
+    {
+        get { return hasBike; }
+        set { hasBike = value; }
     }
 
 }

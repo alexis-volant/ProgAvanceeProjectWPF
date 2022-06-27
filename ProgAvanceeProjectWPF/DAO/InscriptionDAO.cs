@@ -26,7 +26,7 @@ internal class InscriptionDAO : DAO<Inscription>
     public List<Inscription> FindAll(Member member)
     {
         List<Inscription> inscriptions = new List<Inscription>();
-        try
+        /*try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
@@ -51,7 +51,7 @@ internal class InscriptionDAO : DAO<Inscription>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }
+        }*/
         return inscriptions;
     }
 }
