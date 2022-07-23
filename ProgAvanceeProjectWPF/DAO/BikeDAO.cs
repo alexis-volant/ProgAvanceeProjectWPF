@@ -55,7 +55,7 @@ internal class BikeDAO : DAO<Bike>
         return bikes;
     }
 
-    public static List<Bike> FindAll()
+    public List<Bike> FindAll()
     {
         List<Bike> bikes = new List<Bike>();
         try
@@ -86,8 +86,4 @@ internal class BikeDAO : DAO<Bike>
         }
         return bikes;
     }
-
- 
-
-
 }
