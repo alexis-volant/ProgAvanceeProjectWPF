@@ -25,7 +25,7 @@ internal class CategoryDAO : DAO<Category>
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category WHERE num = @num", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category WHERE numCategory = @num", connection);
                 cmd.Parameters.AddWithValue("num", num);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -40,9 +40,9 @@ internal class CategoryDAO : DAO<Category>
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
         return category;
     }

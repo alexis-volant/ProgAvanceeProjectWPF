@@ -20,4 +20,11 @@ class Treasurer : Person
     {
 
     }
+
+    public Treasurer loginCheck(string login, string password)
+    {
+        TreasurerDAO dao = new TreasurerDAO();
+
+        return dao.loginCheck(login, password);
+    }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-internal class MemberDAO : DAO<Member>
+internal class TreasurerDAO : DAO<Treasurer>
 {
-    public MemberDAO() { }
-    public override bool Create(Member m)
+    public TreasurerDAO() { }
+    public override bool Create(Treasurer m)
     {
-        try
+        /*try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
@@ -25,10 +25,10 @@ internal class MemberDAO : DAO<Member>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }
+        }*/
         return false;
     }
-    public override bool Update(Member obj)
+    public override bool Update(Treasurer obj)
     {
         /*try
         {
@@ -51,7 +51,7 @@ internal class MemberDAO : DAO<Member>
         return false;*/
         return false;
     }
-    public override bool Delete(Member m)
+    public override bool Delete(Treasurer t)
     {
         /*try
         {
@@ -77,7 +77,7 @@ internal class MemberDAO : DAO<Member>
         }*/
         return false;
     }
-    public override Member Find(int id)
+    public override Treasurer Find(int id)
     {
         /*Member member = null;
         try
@@ -128,17 +128,17 @@ internal class MemberDAO : DAO<Member>
             throw new Exception("Une erreur sql s'est produite!");
         }
         Member member = new Member(GUID, "Martens", "Rémi", "0492821292", "Member", "Password", 0);*/
-        Member member = null;
-        return member;
+        Treasurer treasurer = null;
+        return treasurer;
     }
-    public Member loginCheck(string login, string password)
+    public Treasurer loginCheck(string login, string password)
     {
-        Member member = null;
+        Treasurer treasurer = null;
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member WHERE login = @login and password = @password", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Treasurer WHERE login = @login and password = @password", connection);
                 cmd.Parameters.AddWithValue("login", login);
                 cmd.Parameters.AddWithValue("password", password);
                 connection.Open();
@@ -146,14 +146,13 @@ internal class MemberDAO : DAO<Member>
                 {
                     if (reader.Read())
                     {
-                        member = new Member(
-                            reader.GetGuid("idMember"),
+                        treasurer = new Treasurer(
+                            reader.GetGuid("idTreasurer"),
                             reader.GetString("name"),
                             reader.GetString("firstName"),
                             reader.GetString("telephone"),
                             reader.GetString("login"),
-                            reader.GetString("password"),
-                            reader.GetFloat("balance")
+                            reader.GetString("password")
                             );
                     }
                 }
@@ -163,7 +162,7 @@ internal class MemberDAO : DAO<Member>
         {
             throw new Exception(e.Message);
         }
-        return member;
+        return treasurer;
     }
 
     /*public List<Member> FindAll()

@@ -38,6 +38,7 @@ namespace ProjetWPFAout
                     
                     if (member != null)
                     {
+                        System.Diagnostics.Debug.WriteLine($"Member : {member.Id} Name : {member.Name} ");
                         /*Aller vers page*/
                     }
                     else
@@ -51,25 +52,26 @@ namespace ProjetWPFAout
                     if (resp != null)
                     {
                         System.Diagnostics.Debug.WriteLine($"Resp : {resp.Id} Name : {resp.Name} ");
-                        /**//*Aller vers page*//**/
+                        /*Aller vers page*/
                     }
                     else
                     {
                         System.Diagnostics.Debug.WriteLine("null");
-                        /**//*Error*//**/
+                        /*Error*/
                     }
                     break;
                 case "Tresorier":
-                    /*Treasurer t = new Treasurer(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password);
+                    Treasurer t = new Treasurer(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password);
                     Treasurer tres = t.loginCheck(login, password);
                     if (tres != null)
                     {
-                        *//*Aller vers page*//*
+                        System.Diagnostics.Debug.WriteLine($"Tres : {tres.Id} Name : {tres.Name} ");
+                        /*Aller vers page*/
                     }
                     else
                     {
-                        *//*Error*//*
-                    }*/
+                        /*Error*/
+                    }
                     break;
             }
 

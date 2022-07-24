@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
     <Grid Background="#2b2a33">
-        <StackPanel Margin="348,96,348,242">
+        <StackPanel Margin="348,96,348,202">
             <Label Content="Login" FontFamily="Arial" FontSize="24" Foreground="White" RenderTransformOrigin="0.525,-0.121" Height="38" Width="72"/>
             <TextBox x:Name="Login" Background="#42414d" FontSize="24" Foreground="White" Width="188" Height="34"/>
             <Label Content="Mot de passe" FontFamily="Arial" FontSize="24" Foreground="White" Width="156" Height="40"/>
@@ -20,5 +20,4 @@
         </ComboBox>
         <Button Click="Button" Background="#42414d" Content="Connexion" Foreground="White" FontSize="24" FontFamily="Arial" Height="40" Width="136" Margin="490,287,274,157"/>
     </Grid>
-
 </Window>
