@@ -6,6 +6,12 @@ class Category
     private string nameCategory = "";
     private List<Member> members = new List<Member>();
 
+    public Category(int num, string nameCategory)
+    {
+        this.num = num;
+        this.nameCategory = nameCategory;
+    }
+
     public int Num
     {
         get { return num; }

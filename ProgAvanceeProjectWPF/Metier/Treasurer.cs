@@ -1,6 +1,8 @@
-﻿class Treasurer : Person
+﻿using System;
+
+class Treasurer : Person
 {
-    public Treasurer(int id, string name, string firstName, int tel, string login, string passWord) : base(id, name, firstName, tel, login, passWord)
+    public Treasurer(Guid id, string name, string firstName, string tel, string login, string passWord) : base(id, name, firstName, tel, login, passWord)
     {
     }
 

@@ -53,7 +53,7 @@ internal class MemberDAO : DAO<Member>
     }
     public override bool Delete(Member m)
     {
-        try
+        /*try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
@@ -74,7 +74,7 @@ internal class MemberDAO : DAO<Member>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }
+        }*/
         return false;
     }
     public override Member Find(int id)
@@ -126,8 +126,44 @@ internal class MemberDAO : DAO<Member>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }*/
-        Member member = new Member(1, "Martens", "Rémi", 0492821292, "Member", "Password", 0);
+        }
+        Member member = new Member(GUID, "Martens", "Rémi", "0492821292", "Member", "Password", 0);*/
+        Member member = null;
+        return member;
+    }
+
+    public Member loginCheck(string login, string password)
+    {
+        Member member = null;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member WHERE login = @login and password = @password", connection);
+                cmd.Parameters.AddWithValue("login", login);
+                cmd.Parameters.AddWithValue("password", password);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
         return member;
     }
 

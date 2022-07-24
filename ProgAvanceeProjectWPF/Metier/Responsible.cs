@@ -1,8 +1,10 @@
-﻿class Responsible : Person
-{
-    private Category category;
+﻿using System;
 
-    public Responsible(int id, string name, string firstname, int tel, string login, string password, Category category) : base(id, name, firstname, tel, login, password)
+class Responsible : Person
+{
+    private Category? category;
+
+    public Responsible(Guid id, string name, string firstname, string tel, string login, string password, Category category) : base(id, name, firstname, tel, login, password)
     {
         this.category = category;
     }
@@ -12,4 +14,12 @@
         get { return category; }
         set { category = value; }
     }
+
+    public Responsible loginCheck(string login, string password)
+    {
+        ResponsibleDAO dao = new ResponsibleDAO();
+           
+        return dao.loginCheck(login, password);
+    }
 }
+   

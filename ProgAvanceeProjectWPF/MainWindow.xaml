@@ -7,18 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="900">
     <Grid Background="#2b2a33">
-        <Grid Margin="311,82,311,178">
-            <Label Margin="0,10,0,0" Content="Login" FontFamily="Arial" FontSize="24" Foreground="White" HorizontalAlignment="Center" Width="72" Height="38" VerticalAlignment="Top" RenderTransformOrigin="0.525,-0.121"></Label>
-            <TextBox Margin="0,53,0,0" Background="#42414d" Height="34" VerticalAlignment="Top" HorizontalAlignment="Center" Width="188" FontSize="24" Foreground="White"></TextBox>
-            <Label Margin="0,107,0,0" Content="Mot de passe" FontFamily="Arial" FontSize="24" Foreground="White" HorizontalAlignment="Center" Width="156" Height="40" VerticalAlignment="Top"></Label>
-            <PasswordBox Margin="0,152,0,0" Background="#42414d" Height="34" VerticalAlignment="Top" HorizontalAlignment="Center" Width="188" FontSize="24" Foreground="White"></PasswordBox>
-        </Grid>
-        <ComboBox Margin="0,311,460,0" Height="40" Width="167" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged" FontSize="24" HorizontalAlignment="Right" Foreground="Black" FontFamily="Arial" BorderBrush="Black" Background="Black">
-            <ComboBoxItem IsSelected="True">Membre</ComboBoxItem>
-            <ComboBoxItem>Responsable</ComboBoxItem>
-            <ComboBoxItem>Tresorier</ComboBoxItem>
+        <StackPanel Margin="348,96,348,242">
+            <Label Content="Login" FontFamily="Arial" FontSize="24" Foreground="White" RenderTransformOrigin="0.525,-0.121" Height="38" Width="72"/>
+            <TextBox x:Name="Login" Background="#42414d" FontSize="24" Foreground="White" Width="188" Height="34"/>
+            <Label Content="Mot de passe" FontFamily="Arial" FontSize="24" Foreground="White" Width="156" Height="40"/>
+            <PasswordBox x:Name="Password" Background="#42414d" FontSize="24" Foreground="White" Width="188" Height="34"/>
+        </StackPanel>
+        <ComboBox Name="Choice" FontSize="24" FontFamily="Arial" Width="170" Height="40" Margin="271,287,459,157">
+            <ComboBoxItem IsSelected="True" Content="Membre"/>
+            <ComboBoxItem Content="Responsable"/>
+            <ComboBoxItem Content="Tresorier"/>
         </ComboBox>
-        <Button Margin="485,311,0,0" Background="#42414d" Content="Connexion" Foreground="White" FontSize="24" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontFamily="Arial"/>
-
+        <Button Click="Button" Background="#42414d" Content="Connexion" Foreground="White" FontSize="24" FontFamily="Arial" Height="40" Width="136" Margin="490,287,274,157"/>
     </Grid>
+
 </Window>

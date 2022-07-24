@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 class Member : Person
 {
@@ -7,7 +8,7 @@ class Member : Person
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
 
-    public Member(int id, string name, string firstName, int tel, string login, string passWord, double balance) : base(id, name, firstName, tel, login, passWord)
+    public Member(Guid id, string name, string firstName, string tel, string login, string passWord, double balance) : base(id, name, firstName, tel, login, passWord)
     {
         this.balance = balance;
     }
@@ -46,5 +47,11 @@ class Member : Person
 
     }
 
+    public Member loginCheck(string login, string password)
+    {
+        MemberDAO dao = new MemberDAO();
+
+        return dao.loginCheck(login, password);
+    }
 
 }

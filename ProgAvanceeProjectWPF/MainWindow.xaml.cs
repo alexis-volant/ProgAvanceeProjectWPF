@@ -25,8 +25,53 @@ namespace ProjetWPFAout
             InitializeComponent();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button(object sender, RoutedEventArgs e)
         {
+            String login = Login.Text;
+            String password = Password.Password.ToString();
+            
+            switch (Choice.Text)
+            {
+                case "Membre":
+                    Member m = new Member(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password, 0);
+                    Member member = m.loginCheck(login, password);
+                    
+                    if (member != null)
+                    {
+                        /*Aller vers page*/
+                    }
+                    else
+                    {
+                        /*Error*/
+                    }
+                    break;
+                case "Responsable":
+                    Responsible r = new Responsible(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password,null);
+                    Responsible resp = r.loginCheck(login, password);
+                    if (resp != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Resp : {resp.Id} Name : {resp.Name} ");
+                        /**//*Aller vers page*//**/
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("null");
+                        /**//*Error*//**/
+                    }
+                    break;
+                case "Tresorier":
+                    /*Treasurer t = new Treasurer(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password);
+                    Treasurer tres = t.loginCheck(login, password);
+                    if (tres != null)
+                    {
+                        *//*Aller vers page*//*
+                    }
+                    else
+                    {
+                        *//*Error*//*
+                    }*/
+                    break;
+            }
 
         }
     }

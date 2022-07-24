@@ -18,14 +18,38 @@ internal class CategoryDAO : DAO<Category>
     {
         return false;
     }
-    public override Category Find(int id)
+    public override Category Find(int num)
     {
-        return null;
+        Category category = null;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category WHERE num = @num", connection);
+                cmd.Parameters.AddWithValue("num", num);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        category = new Category(
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                            );
+                    }
+                }
+            }
+        }
+        catch (SqlException)
+        {
+            throw new Exception("Une erreur sql s'est produite!");
+        }
+        return category;
     }
     public List<Category> FindAll(Member member)
     {
         List<Category> categories = new List<Category>();
-        try
+        /*try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
@@ -38,7 +62,7 @@ internal class CategoryDAO : DAO<Category>
                     {
                         Category cat = new Category
                         {
-                            Num = reader.GetInt32("num"),
+                            Num = reader.GetInt32("numCategory"),
                             NameCategory = reader.GetString("nameCategory")
                         };
                         categories.Add(cat);
@@ -49,7 +73,7 @@ internal class CategoryDAO : DAO<Category>
         catch (SqlException)
         {
             throw new Exception("Une erreur sql s'est produite!");
-        }
+        }*/
         return categories;
     }
 }
