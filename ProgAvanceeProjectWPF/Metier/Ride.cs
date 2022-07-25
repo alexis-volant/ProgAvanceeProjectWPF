@@ -1,4 +1,4 @@
-﻿class Ride
+﻿public class Ride
 {
     private int num;
     private string placeDeparture;

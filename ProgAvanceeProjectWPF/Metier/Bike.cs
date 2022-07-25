@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Bike
+public class Bike
 {
     private int idBike;
     private double weight; 

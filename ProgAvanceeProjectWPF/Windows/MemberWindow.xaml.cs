@@ -1,19 +1,20 @@
 ﻿using ProjetWPFAout;
+using System;
 using System.Windows;
 
 namespace ProgAvanceeProjectWPF.Windows
 {
     /// <summary>
-    /// Interaction logic for ResponsibleWindow.xaml
+    /// Interaction logic for MemberWindow.xaml
     /// </summary>
-    public partial class ResponsibleWindow : Window
+    public partial class MemberWindow : Window
     {
-        Responsible r = null;
-        public ResponsibleWindow(Responsible r)
+        Member m = null;
+
+        public MemberWindow(Member m)
         {
-            this.r = r;
+            this.m = m;
             InitializeComponent();
-            System.Diagnostics.Debug.WriteLine($"Resp : {r.Name}");
         }
 
         private void DisconnectButton(object sender, RoutedEventArgs e)

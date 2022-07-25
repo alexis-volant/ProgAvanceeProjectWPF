@@ -1,4 +1,4 @@
-﻿class Inscription
+﻿public class Inscription
 {
     private int idInscription;
     private Member member;

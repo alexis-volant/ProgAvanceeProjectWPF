@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Calender
+public class Calender
 {
     private Category category;
     private List<Ride> rides = new List<Ride>();

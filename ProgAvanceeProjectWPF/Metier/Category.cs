@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Category
+public class Category
 {
     private int num = 0;
     private string nameCategory = "";

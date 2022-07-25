@@ -1,6 +1,6 @@
 ﻿using System;
 
-abstract class Person
+public abstract class Person
 {
     private Guid id;
     private string name;

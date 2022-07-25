@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Responsible : Person
+public class Responsible : Person
 {
     private Category? category;
 

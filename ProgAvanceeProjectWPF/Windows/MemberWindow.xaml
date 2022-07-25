@@ -1,13 +1,13 @@
-﻿<Window x:Class="ProgAvanceeProjectWPF.Windows.ResponsibleWindow"
+﻿<Window x:Class="ProgAvanceeProjectWPF.Windows.MemberWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Windows"
         mc:Ignorable="d"
-        Title="ResponsibleWindow" Height="600" Width="1000">
+        Title="MemberWindow" Height="600" Width="1000">
     <Grid Background="#2b2a33">
-        <Label Content="Responsible Window" Margin="383,32,0,0" FontSize="24" Foreground="White" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="234"></Label>
+        <Label Content="Member Window" Margin="402,43,0,0" FontSize="24" Foreground="White" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="198"></Label>
         <Button Click="DisconnectButton" Content="Déconnexion" Foreground="White" FontSize="24" Background="#42414d"  Margin="810,22,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="166"></Button>
     </Grid>
 </Window>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-class Vehicle
+public class Vehicle
 {
     private int idVehicle;
     private int nbrPlacesMembers;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Message
+public class Message
 {
     private Guid idMessage;
     private string obj;
