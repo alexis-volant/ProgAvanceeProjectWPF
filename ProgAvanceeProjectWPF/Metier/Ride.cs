@@ -1,12 +1,20 @@
-﻿public class Ride
+﻿using System;
+using System.Collections.Generic;
+
+public class Ride
 {
     private int num;
     private string placeDeparture;
-    private string dateDeparture;
+    private DateTime dateDeparture;
     private double packageFee;
     private Category category;
 
-    public Ride(int num, string placeDeparture, string dateDeparture, double packageFee, Category category)
+    public Ride()
+    {
+
+    }
+
+    public Ride(int num, string placeDeparture, DateTime dateDeparture, double packageFee, Category category)
     {
         this.num = num;
         this.placeDeparture = placeDeparture;
@@ -27,7 +35,7 @@
         set { placeDeparture = value; }
     }
 
-    public string DateDeparture
+    public DateTime DateDeparture
     {
         get { return dateDeparture; }
         set { dateDeparture = value; }
@@ -83,5 +91,14 @@
     public void addVehicle()
     {
 
+    }
+
+    public List<Ride> GetRides(int numCategory)
+    {
+        RideDAO dao = new RideDAO();
+
+        List<Ride> rides = dao.FindByCategory(numCategory);
+
+        return rides;
     }
 }

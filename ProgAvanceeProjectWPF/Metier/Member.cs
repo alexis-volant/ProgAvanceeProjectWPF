@@ -52,14 +52,14 @@ public class Member : Person
 
     }
 
-    public void createMember(Member m)
+    /*public void createMember(Member m)
     {
         //Générique
         AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
         DAO<Member> memberDAO = adf.GetMemberDAO();
 
         memberDAO.Create(m);
-    }
+    }*/
 
     public Member loginCheck(string login, string password)
     {

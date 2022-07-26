@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1000">
     <Grid Background="#2b2a33">
-        <StackPanel Margin="348,96,348,202">
+        <StackPanel Margin="348,96,0,0" HorizontalAlignment="Left" Width="304" Height="286" VerticalAlignment="Top">
             <Label Content="Login" FontFamily="Arial" FontSize="24" Foreground="White" RenderTransformOrigin="0.525,-0.121" Height="38" Width="72"/>
             <TextBox x:Name="Login" Background="#42414d" FontSize="24" Foreground="White" Width="188" Height="34"/>
             <Label Content="Mot de passe" FontFamily="Arial" FontSize="24" Foreground="White" Width="156" Height="40"/>
             <PasswordBox x:Name="Password" Background="#42414d" FontSize="24" Foreground="White" Width="188" Height="34"/>
         </StackPanel>
-        <ComboBox Name="Choice" FontSize="24" FontFamily="Arial" Margin="0,287,509,0" Height="38" VerticalAlignment="Top" HorizontalAlignment="Right" Width="170">
+        <ComboBox Name="Choice" FontSize="24" FontFamily="Arial" Margin="321,287,0,0" Height="38" VerticalAlignment="Top" HorizontalAlignment="Left" Width="170">
             <ComboBoxItem IsSelected="True" Content="Membre"/>
             <ComboBoxItem Content="Responsable"/>
             <ComboBoxItem Content="Tresorier"/>
         </ComboBox>
-        <Button Click="Button" Background="#42414d" Content="Connexion" Foreground="White" FontSize="24" FontFamily="Arial" Margin="525,287,323,0" Height="38" VerticalAlignment="Top"/>
+        <Button Click="Button" Background="#42414d" Content="Connexion" Foreground="White" FontSize="24" FontFamily="Arial" Margin="525,287,0,0" Height="38" VerticalAlignment="Top" HorizontalAlignment="Left" Width="152"/>
     </Grid>
 </Window>
