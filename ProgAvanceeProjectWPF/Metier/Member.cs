@@ -8,7 +8,7 @@ public class Member : Person
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
 
-    public Member(Guid id, string name, string firstName, string tel, string login, string passWord) : base(id, name, firstName, tel, login, passWord)
+    public Member()
     {
 
     }
@@ -52,8 +52,18 @@ public class Member : Person
 
     }
 
+    public void createMember(Member m)
+    {
+        //Générique
+        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        memberDAO.Create(m);
+    }
+
     public Member loginCheck(string login, string password)
     {
+        //NON Générique
         MemberDAO dao = new MemberDAO();
         return dao.loginCheck(login, password);
     }

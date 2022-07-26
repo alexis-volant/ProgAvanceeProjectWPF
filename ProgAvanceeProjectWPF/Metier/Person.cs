@@ -9,6 +9,11 @@ public abstract class Person
     private string login;
     private string passWord;
 
+    public Person()
+    {
+
+    }
+
     public Person(Guid id, string name, string firstName, string tel, string login, string passWord)
     {
         this.id = id;

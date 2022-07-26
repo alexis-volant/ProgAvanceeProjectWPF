@@ -22,7 +22,7 @@ namespace ProjetWPFAout
             switch (Choice.Text)
             {
                 case "Membre":
-                    Member m = new Member(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password);
+                    Member m = new Member();
                     Member member = m.loginCheck(login, password);
                     if (member != null)
                     {
@@ -38,7 +38,7 @@ namespace ProjetWPFAout
                     Password.Password = String.Empty;
                     break;
                 case "Responsable":
-                    Responsible r = new Responsible(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password,null);
+                    Responsible r = new Responsible();
                     Responsible resp = r.loginCheck(login, password);
                     if (resp != null)
                     {
@@ -54,7 +54,7 @@ namespace ProjetWPFAout
                     Password.Password = String.Empty;
                     break;
                 case "Tresorier":
-                    Treasurer t = new Treasurer(Guid.Parse("9306ba3b-bc85-4551-883d-83dce369232d"), "", "", "", login, password);
+                    Treasurer t = new Treasurer();
                     Treasurer tres = t.loginCheck(login, password);
                     if (tres != null)
                     {
