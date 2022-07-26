@@ -9,7 +9,7 @@
     <Grid Background="#2b2a33">
         <Frame x:Name="Main" NavigationUIVisibility="Hidden" Margin="0,59,0,0"/>
         <Label x:Name="Name" Content="{Binding Name}" FontSize="24" Foreground="White" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" Margin="63,10,0,0"/>
-        <Label Content="responsable de la catégorie " FontSize="24" Foreground="White" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="306" Margin="194,10,0,0"/>
+        <Label Content="responsable de la catégorie" FontSize="24" Foreground="White" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="306" Margin="194,10,0,0"/>
         <Label x:Name="NumCategory" Content="{Binding NumCategory}" FontSize="24" Foreground="White" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="47" Margin="500,10,0,0"/>
         <Button Click="DisconnectButton" Content="Déconnexion" Foreground="White" FontSize="24" Background="#42414d"  Margin="807,6,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="166"></Button>
     </Grid>

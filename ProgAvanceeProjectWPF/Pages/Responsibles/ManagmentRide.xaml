@@ -9,6 +9,6 @@
       Title="ManagmentRide">
 
     <Grid>
-        <Label Content="Gestion" Margin="315,204,400,208"></Label>
+        <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d"  Margin="680,397,0,0" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>

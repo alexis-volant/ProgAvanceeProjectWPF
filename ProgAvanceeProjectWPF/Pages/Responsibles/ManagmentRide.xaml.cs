@@ -18,9 +18,17 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
     /// </summary>
     public partial class ManagmentRide : Page
     {
-        public ManagmentRide()
+        Responsible r = new Responsible();
+        public ManagmentRide(Responsible r)
         {
             InitializeComponent();
+            this.r = r;
+        }
+
+        private void BackButton(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.GoBack();
         }
     }
 }
