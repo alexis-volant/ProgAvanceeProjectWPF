@@ -1,21 +1,43 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Bike
 {
-    private int idBike;
-    private double weight; 
+    private Guid idBike;
+    private float weight; 
     private string type;
-    private double length;
+    private float length;
     private Member member;
     private List<Inscription> inscriptions = new List<Inscription>();
 
-    public int IdBike
+    public Bike() { }
+    public Bike(Guid idBike, float weight, string type, float length, Member member)
+    {
+        this.idBike = idBike;
+        this.weight = weight;
+        this.type = type;
+        this.length = length;
+        this.member = member;
+      
+    }  
+    
+    public Bike(Guid idBike, float weight, string type, float length)
+    {
+        this.idBike = idBike;
+        this.weight = weight;
+        this.type = type;
+        this.length = length;
+
+    }
+   
+
+    public Guid IdBike
     {
         get { return idBike; }
         set { idBike = value; }
     }
 
-    public double Weight
+    public float Weight
     {
         get { return weight; } 
         set { weight = value; } 
@@ -27,7 +49,7 @@ public class Bike
         set { type = value; }
     }
 
-    public double Length
+    public float Length
     {
         get { return length; }
         set { length = value; }
@@ -45,11 +67,11 @@ public class Bike
         set { inscriptions = value; }
     }
 
-    public List<Bike> GetAllBikes()
+    public List<Bike> GetBikesByMember(Member member)
     {
         BikeDAO dao = new BikeDAO();
 
-        List<Bike> bikes = dao.FindAll();
+        List<Bike> bikes = dao.FindBikesByMember(member);
 
         return bikes;
     }

@@ -11,16 +11,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Member
+namespace ProgAvanceeProjectWPF.Pages.Members
 {
     /// <summary>
     /// Logique d'interaction pour MemberBike.xaml
     /// </summary>
     public partial class MemberBike : Page
     {
-        public MemberBike()
+        Bike bike = new Bike ();
+        public MemberBike(Member m)
         {
             InitializeComponent();
+
+            List<Bike> bikes = bike.GetBikesByMember(m);
+            BikesGrid.ItemsSource = bikes;
+
+            //System.Diagnostics.Debug.WriteLine($"Resp : {m.Name}");
+        }
+
+        private void ReturnBtn(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.GoBack();
         }
     }
 }

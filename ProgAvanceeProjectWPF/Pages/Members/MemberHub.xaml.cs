@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Member
+namespace ProgAvanceeProjectWPF.Pages.Members
 {
     /// <summary>
     /// Logique d'interaction pour Page1.xaml
@@ -20,15 +20,19 @@ namespace ProgAvanceeProjectWPF.Pages.Member
  
     public partial class MemberHub : Page
     {
-        public MemberHub()
+        Member m = new Member();
+        public MemberHub(Member m)
         {
             InitializeComponent();
+            this.m = m;
         }
                 
         private void GoToBikeBtn(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new Uri("../Pages/Member/MemberBike.xaml", UriKind.Relative));
+            NavigationService.Navigate(new MemberBike(m));
         }
+
+        
     }
 }

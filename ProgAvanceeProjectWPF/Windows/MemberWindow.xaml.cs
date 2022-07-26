@@ -1,5 +1,5 @@
 ﻿using ProgAvanceeProjectWPF.Pages;
-using ProgAvanceeProjectWPF.Pages.Member;
+using ProgAvanceeProjectWPF.Pages.Members;
 using ProjetWPFAout;
 using System;
 using System.Windows;
@@ -18,7 +18,7 @@ namespace ProgAvanceeProjectWPF.Windows
             this.m = m;
             InitializeComponent();
             Main.Content = null;
-            Main.Content = new MemberHub();
+            Main.Content = new MemberHub(m);
         }
 
         private void DisconnectButton(object sender, RoutedEventArgs e)

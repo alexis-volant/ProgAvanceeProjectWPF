@@ -22,7 +22,7 @@ internal class BikeDAO : DAO<Bike>
     {
         return null;
     }
-    public List<Bike> FindAllByMember(Member member)
+    public List<Bike> FindBikesByMember(Member member)
     {
         List<Bike> bikes = new List<Bike>();
         try
@@ -37,12 +37,13 @@ internal class BikeDAO : DAO<Bike>
                     while (reader.Read())
                     {
                         Bike bike = new Bike
-                        {
-                            IdBike = reader.GetInt32("idBike"),
-                            Weight = reader.GetDouble("weight"),
-                            Type = reader.GetString("type"),
-                            Length = reader.GetDouble("length"),
-                        };
+                        (
+                            reader.GetGuid("idBike"),
+                            reader.GetFloat("weight"),
+                            reader.GetString("type"),
+                            reader.GetFloat("length"),
+                            member
+                        );
                         bikes.Add(bike);
                     }
                 }
@@ -69,12 +70,13 @@ internal class BikeDAO : DAO<Bike>
                     while (reader.Read())
                     {
                         Bike bike = new Bike
-                        {
-                            IdBike = reader.GetInt32("idBike"),
-                            Weight = reader.GetDouble("weight"),
-                            Type = reader.GetString("type"),
-                            Length = reader.GetDouble("length"),
-                        };
+                        (
+                            reader.GetGuid("idBike"),
+                            reader.GetFloat("weight"),
+                            reader.GetString("type"),
+                            reader.GetFloat("length")
+                            
+                        );
                         bikes.Add(bike);
                     }
                 }
