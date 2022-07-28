@@ -1,22 +1,21 @@
 ﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Responsibles.ResponsibleHub"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="526" d:DesignWidth="1000"
       Title="ResponsibleHub">
 
     <Grid>
-        <Label Content="Récapitulatif des balades" Margin="63,124,0,0" Foreground="White" FontSize="24" Height="49" VerticalAlignment="Top" HorizontalAlignment="Left" Width="281"></Label>
-        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="63,178,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="405">
+        <Label Content="Récapitulatif des balades pour cette catégorie" Margin="78,67,0,0" Foreground="White" FontSize="24" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"></Label>
+        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="RidesGrid" AutoGenerateColumns="false" Margin="80,114,0,0" Height="217" VerticalAlignment="Top" HorizontalAlignment="Left" Width="492">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Départ" Binding="{Binding PlaceDeparture}"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture}"/>
+                <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat=d}"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding PackageFee}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Click="RideManagmentButton" Content="Gestion des balades" Foreground="White" FontSize="24" Background="#42414d"  Margin="530,226,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226"></Button>
+        <Button Click="RideManagmentButton" Content="Gestion des balades" Foreground="White" FontSize="24" Background="#42414d"  Margin="694,180,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226"></Button>
     </Grid>
 </Page>
