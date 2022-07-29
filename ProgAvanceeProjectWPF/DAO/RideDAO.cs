@@ -9,15 +9,80 @@ internal class RideDAO : DAO<Ride>
 
     public override bool Create(Ride r)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Ride (placeDeparture, dateDeparture, packageFee, numCategory) " +
+                    "values(@PlaceDeparture, @DateDeparture, @PackageFee, @numCategory)", connection);
+                cmd.Parameters.AddWithValue("PlaceDeparture", r.PlaceDeparture);
+                cmd.Parameters.AddWithValue("DateDeparture", r.DateDeparture);
+                cmd.Parameters.AddWithValue("PackageFee", r.PackageFee);
+                cmd.Parameters.AddWithValue("numCategory", r.Category.Num);
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
-    public override bool Update(Ride obj)
+    public override bool Update(Ride r)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Ride set placeDeparture = @PlaceDeparture, dateDeparture = @DateDeparture, packageFee = @PackageFee WHERE numRide = @numRide",
+                    connection);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.Parameters.AddWithValue("PlaceDeparture", r.PlaceDeparture);
+                cmd.Parameters.AddWithValue("DateDeparture", r.DateDeparture);
+                cmd.Parameters.AddWithValue("PackageFee", r.PackageFee);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
     public override bool Delete(Ride r)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.Ride WHERE numRide = @numRide ", connection);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                if (r.Num == 0)
+                {
+                    throw new Exception("No ride deleted");
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        
+        return true;
     }
     public override Ride Find(int id)
     {

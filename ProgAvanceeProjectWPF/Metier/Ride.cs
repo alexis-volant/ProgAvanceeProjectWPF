@@ -9,6 +9,8 @@ public class Ride
     private double packageFee;
     private Category category;
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+
     public Ride()
     {
 
@@ -91,6 +93,32 @@ public class Ride
     public void addVehicle()
     {
 
+    }
+
+    public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Category cat)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+        Ride ride = new Ride(0, UpdatePlace, UpdateDate, UpdateFee, cat);
+
+        return rideDAO.Create(ride);
+    }
+
+    public bool UpdateRide(Ride r, string UpdatePlace, DateTime UpdateDate, double UpdateFee)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+
+        r.PlaceDeparture = UpdatePlace;
+        r.DateDeparture = UpdateDate;
+        r.PackageFee = UpdateFee;
+
+        return rideDAO.Update(r);
+    }
+
+    public bool DeleteRide(Ride r)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+
+        return rideDAO.Delete(r);
     }
 
     public List<Ride> GetRides(int numCategory)

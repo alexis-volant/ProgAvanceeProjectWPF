@@ -21,6 +21,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         Responsible r = new Responsible();
         Ride ride = new Ride();
         List<Ride> rides = new List<Ride>();
+
         public ResponsibleHub(Responsible r)
         {
             InitializeComponent();
