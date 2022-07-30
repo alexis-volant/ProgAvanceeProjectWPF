@@ -47,45 +47,46 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         {
             string AddPlace;
             DateTime AddDate;
-            if(AddPlaceDeparture.Text.Length > 0)
+            double AddFee;
+            if (AddPlaceDeparture.Text.Length == 0)
             {
-                AddPlace = AddPlaceDeparture.Text;
-                if (AddDateDeparture.Text.Length > 0)
-                {
-                    AddDate = Convert.ToDateTime(AddDateDeparture.Text);
+                MessageBox.Show("Le lieu de départ ne peut-être vide.");
+                return;
+            }
+            if (AddDateDeparture.Text.Length == 0)
+            {
+                MessageBox.Show("1) La date de départ ne peut-être vide.\n" +
+                    "2) La date s'écrit sous format jj/mm/aaaa.");
+                return;
+            }
 
-                    double AddFee = AddPackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(AddPackageFee.Text);
+            AddPlace = AddPlaceDeparture.Text;
+            AddDate = Convert.ToDateTime(AddDateDeparture.Text);
+            AddFee = AddPackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(AddPackageFee.Text);
 
-                    bool addStatus = selectedRide.AddRide(AddPlace, AddDate, AddFee, r.Category);
+            bool addStatus = selectedRide.AddRide(AddPlace, AddDate, AddFee, r.Category);
 
-                    if (addStatus)
-                    {
-                        rides = selectedRide.GetRides(r.Category.Num);
-                        ManagmentRideGrid.ItemsSource = rides;
-                        AddGrid.Visibility = Visibility.Hidden;
-                        AddPlaceDeparture.Text = String.Empty;
-                        AddDateDeparture.Text = String.Empty;
-                        AddPackageFee.Text = String.Empty;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur dans l'ajout de la balade.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("1) La date de départ ne peut-être vide.\n" +
-                        "2) La date s'écrit sous format jj/mm/aaaa.");
-                }
+            if (addStatus)
+            {
+                rides = selectedRide.GetRides(r.Category.Num);
+                ManagmentRideGrid.ItemsSource = rides;
+                AddGrid.Visibility = Visibility.Hidden;
+                AddPlaceDeparture.Text = String.Empty;
+                AddDateDeparture.Text = String.Empty;
+                AddPackageFee.Text = String.Empty;
             }
             else
             {
-                MessageBox.Show("Le lieu de départ ne peut-être vide.");
+                MessageBox.Show("Erreur dans l'ajout de la balade.");
             }
+            
         }
 
         private void AddDiscard(object sender, RoutedEventArgs e)
         {
+            AddPlaceDeparture.Text = String.Empty;
+            AddDateDeparture.Text = String.Empty;
+            AddPackageFee.Text = String.Empty;
             AddGrid.Visibility = Visibility.Hidden;
         }
 
@@ -95,7 +96,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
 
             UpdatePlaceDeparture.Text = selectedRide.PlaceDeparture;
             UpdateDateDeparture.Text = selectedRide.DateDeparture.ToString("dd/MM/yyyy");
-            UpdatePackageFee.Text = selectedRide.PackageFee.ToString();
+            UpdatePackageFee.Text = String.Format("{0:0.00}", Convert.ToDouble(selectedRide.PackageFee.ToString()));
 
             AddGrid.Visibility = Visibility.Hidden;
             UpdateGrid.Visibility = Visibility.Visible;
@@ -106,7 +107,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         {
             string UpdatePlace = UpdatePlaceDeparture.Text;
             DateTime UpdateDate = Convert.ToDateTime(UpdateDateDeparture.Text);
-            double UpdateFee = Convert.ToDouble(UpdatePackageFee.Text);
+            double UpdateFee = UpdatePackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(UpdatePackageFee.Text);
 
             bool updateStatus = selectedRide.UpdateRide(selectedRide, UpdatePlace, UpdateDate, UpdateFee);
 
@@ -115,6 +116,9 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
                 rides = selectedRide.GetRides(selectedRide.Category.Num);
                 ManagmentRideGrid.ItemsSource = rides;
                 UpdateGrid.Visibility = Visibility.Hidden;
+                UpdatePlaceDeparture.Text = String.Empty;
+                UpdateDateDeparture.Text = String.Empty;
+                UpdatePackageFee.Text = String.Empty;
             }
             else
             {
