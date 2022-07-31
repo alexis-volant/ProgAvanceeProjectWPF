@@ -39,17 +39,14 @@ internal class RideDAO : DAO<Ride>
                 {
                     while (reader.Read())
                     {
+                      
                         Ride ride = new Ride
-                        (
-                            reader.GetInt32("num"),
-                        Ride ride = new Ride(
+                            (
                             reader.GetInt32("numRide"),
                             reader.GetString("placeDeparture"),
                             reader.GetString("dateDeparture"),
                             reader.GetDateTime("dateDeparture"),
                             reader.GetFloat("packageFee"),
-                            reader.Get
-                        );
                             categoryDAO.Find(numCategory)
                             );
                         rides.Add(ride);
