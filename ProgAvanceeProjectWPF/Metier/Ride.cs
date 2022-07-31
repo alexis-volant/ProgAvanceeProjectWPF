@@ -1,4 +1,6 @@
-﻿public class Ride
+﻿using System.Collections.Generic;
+
+public class Ride
 {
     private int num;
     private string placeDeparture;
@@ -84,4 +86,14 @@
     {
 
     }
+
+    public void GetRidesByMember(Member member)
+    {
+        RideDAO dao = new RideDAO();
+
+        List<Ride> rides = dao.FindRidesByMember(member);
+
+        return rides;
+    }
+
 }

@@ -21,10 +21,14 @@ namespace ProgAvanceeProjectWPF.Pages.Members
     public partial class MemberHub : Page
     {
         Member m = new Member();
+
+        Ride ride = new Ride();
         public MemberHub(Member m)
         {
             InitializeComponent();
             this.m = m;
+            List<Ride> rides = ride.GetRidesByMember(m);
+            RidesGrid.ItemsSource = rides;
         }
                 
         private void GoToBikeBtn(object sender, RoutedEventArgs e)

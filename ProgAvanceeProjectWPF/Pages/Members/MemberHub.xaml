@@ -11,7 +11,13 @@
     <Grid>
         <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="54" Margin="559,139,0,0" VerticalAlignment="Top" Width="167" Click="GoToBikeBtn"/>
         <Button Content="Gestion des categories" HorizontalAlignment="Left" Height="54" Margin="558,232,0,0" VerticalAlignment="Top" Width="167"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="66,156,0,162" HorizontalAlignment="Left" Width="414"/>
+        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="60,149,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="405">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Jour" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Weight}"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
         <Label Content="Balades reservées" HorizontalAlignment="Left" Margin="210,113,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
     </Grid>
 </Page>
