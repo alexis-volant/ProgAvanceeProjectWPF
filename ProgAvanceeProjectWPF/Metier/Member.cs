@@ -61,6 +61,12 @@ public class Member : Person
         memberDAO.Create(m);
     }*/
 
+    public List<Member> GetAllMembers()
+    {
+        MemberDAO dao = new MemberDAO();
+        return dao.GetAllMembers();
+    }
+
     public Member loginCheck(string login, string password)
     {
         //NON Générique

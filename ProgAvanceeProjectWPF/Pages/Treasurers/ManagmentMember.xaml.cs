@@ -19,10 +19,26 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     public partial class ManagmentMember : Page
     {
         Treasurer t = new Treasurer();
+        Member member = new Member();
+        List<Member> members = new List<Member>();
         public ManagmentMember(Treasurer t)
         {
             InitializeComponent();
             this.t = t;
+            members = member.GetAllMembers();
+            ManagmentMemberGrid.ItemsSource = members;
+            /*members = member.GetAllMembers();
+            RidesGrid.ItemsSource = rides;*/
+        }
+
+        private void UpdateMember(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void DeleteMember(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void BackButton(object sender, RoutedEventArgs e)

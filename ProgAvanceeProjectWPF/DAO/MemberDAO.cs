@@ -166,6 +166,43 @@ internal class MemberDAO : DAO<Member>
         return member;
     }
 
+    public List<Member> GetAllMembers()
+    {
+        List<Member> members = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    CategoryDAO categoryDAO = new CategoryDAO();
+                    BikeDAO bikeDAO = new BikeDAO();
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetFloat("balance")
+                            );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        members.Add(member);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return members;
+    }
     /*public List<Member> FindAll()
     {
         List<Member> listMember = new List<Member>();
@@ -202,6 +239,7 @@ internal class MemberDAO : DAO<Member>
         }
         return listMember;
     }
+
     public bool Add(int idMember, int idCategory)
     {
         try

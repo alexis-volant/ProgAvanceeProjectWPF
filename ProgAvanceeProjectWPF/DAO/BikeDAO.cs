@@ -37,24 +37,23 @@ internal class BikeDAO : DAO<Bike>
                     while (reader.Read())
                     {
                         Bike bike = new Bike
-                        {
-                            IdBike = reader.GetInt32("idBike"),
-                            Weight = reader.GetDouble("weight"),
-                            Type = reader.GetString("type"),
-                            Length = reader.GetDouble("length"),
-                        };
+                        (   
+                            reader.GetGuid("idBike"),
+                            reader.GetFloat("weight"),
+                            reader.GetString("type"),
+                            reader.GetFloat("length")
+                        );
                         bikes.Add(bike);
                     }
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
         return bikes;
     }
-
     public List<Bike> FindAll()
     {
         List<Bike> bikes = new List<Bike>();
@@ -69,12 +68,12 @@ internal class BikeDAO : DAO<Bike>
                     while (reader.Read())
                     {
                         Bike bike = new Bike
-                        {
-                            IdBike = reader.GetInt32("idBike"),
-                            Weight = reader.GetDouble("weight"),
-                            Type = reader.GetString("type"),
-                            Length = reader.GetDouble("length"),
-                        };
+                        (
+                            reader.GetGuid("idBike"),
+                            reader.GetFloat("weight"),
+                            reader.GetString("type"),
+                            reader.GetFloat("length")
+                        );
                         bikes.Add(bike);
                     }
                 }
