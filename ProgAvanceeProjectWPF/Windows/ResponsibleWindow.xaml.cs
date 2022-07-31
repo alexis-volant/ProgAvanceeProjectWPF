@@ -18,7 +18,7 @@ namespace ProgAvanceeProjectWPF.Windows
             InitializeComponent();
             Main.Content = null;
             Main.Content = new ResponsibleHub(r);
-            Name.Content = r.FirstName;
+            FirstName.Content = r.FirstName;
             NumCategory.Content = r.Category.Num;
         }
 
