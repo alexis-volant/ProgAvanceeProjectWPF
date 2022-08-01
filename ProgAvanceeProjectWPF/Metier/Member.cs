@@ -8,6 +8,8 @@ public class Member : Person
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+
     public Member()
     {
 
@@ -65,6 +67,20 @@ public class Member : Person
     {
         MemberDAO dao = new MemberDAO();
         return dao.GetAllMembers();
+    }
+
+    public bool UpdateMember(Member m, string UpdateName, string UpdateFirstName, string UpdateTelephone, string UpdateLogin, string UpdatePassWord, float UpdateBalance)
+    {
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        m.Name = UpdateName;
+        m.FirstName = UpdateFirstName;
+        m.Tel = UpdateTelephone;
+        m.Login = UpdateLogin;
+        m.PassWord = UpdatePassWord;
+        m.Balance = UpdateBalance;
+
+        return memberDAO.Update(m);
     }
 
     public Member loginCheck(string login, string password)

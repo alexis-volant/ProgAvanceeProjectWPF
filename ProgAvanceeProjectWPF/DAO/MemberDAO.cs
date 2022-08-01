@@ -28,28 +28,32 @@ internal class MemberDAO : DAO<Member>
         }
         return false;
     }
-    public override bool Update(Member obj)
+    public override bool Update(Member m)
     {
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("update dbo.Vehicle set nbrPlacesmembers = @nbrMember, nbrPlacesBikes = @nbrBike WHERE idVehicle = @id",
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, login = @Login, passWord = @PassWord, balance = @Balance WHERE idMember = @idMember",
                     connection);
-                cmd.Parameters.AddWithValue("id", obj.IdVehicle);
-                cmd.Parameters.AddWithValue("nbrMember", obj.NbrPlacesMembers);
-                cmd.Parameters.AddWithValue("nbrBike", obj.NbrPlacesBikes);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("Name", m.Name);
+                cmd.Parameters.AddWithValue("FirstName", m.FirstName);
+                cmd.Parameters.AddWithValue("Tel", m.Tel);
+                cmd.Parameters.AddWithValue("Login", m.Login);
+                cmd.Parameters.AddWithValue("PassWord", m.PassWord);
+                cmd.Parameters.AddWithValue("Balance", m.Balance);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
-        return false;*/
-        return false;
+        return true;
     }
     public override bool Delete(Member m)
     {
