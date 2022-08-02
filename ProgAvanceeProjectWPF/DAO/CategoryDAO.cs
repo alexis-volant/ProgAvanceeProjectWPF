@@ -46,7 +46,7 @@ internal class CategoryDAO : DAO<Category>
         }
         return category;
     }
-    public List<Category> FindAll(Member member)
+    public List<Category> FindCatByMember(Member member)
     {
         List<Category> categories = new List<Category>();
         /*try
@@ -75,5 +75,37 @@ internal class CategoryDAO : DAO<Category>
             throw new Exception("Une erreur sql s'est produite!");
         }*/
         return categories;
+    }
+
+    public List<Category> FindAll()
+    {
+        List<Category> categories = new List<Category>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category", connection);
+                
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Category cat = new Category
+                        {
+                            Num = reader.GetInt32("numCategory"),
+                            NameCategory = reader.GetString("nameCategory") 
+                        };
+                        categories.Add(cat);
+                    }
+                }
+            }
+        }
+        catch (SqlException)
+        {
+            throw new Exception("Une erreur sql s'est produite!");
+        }
+        return categories;
+
     }
 }

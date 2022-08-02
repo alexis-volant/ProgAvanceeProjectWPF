@@ -24,7 +24,7 @@
         <Grid x:Name="AddGrid" Margin="10,230,183,40">
             <Label Content="Ajout" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Type" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <ComboBox x:Name="AddType" ItemsSource="{Binding TypeList}" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <ComboBox x:Name="AddType"  Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Poids" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <TextBox x:Name="AddWeigth" Background="#42414d" FontSize="20" Margin="209,108,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" />
             <Label Content="Longueur" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>

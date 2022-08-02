@@ -6,6 +6,10 @@ public class Category
     private string nameCategory = "";
     private List<Member> members = new List<Member>();
 
+    public Category()
+    {
+    }
+
     public Category(int num, string nameCategory)
     {
         this.num = num;
@@ -30,12 +34,16 @@ public class Category
         set { members = value; }
     }
 
-    public List<Bike> GetBikesByMember(Member member)
+
+    public List<Category> GetAllCategories()
     {
-        BikeDAO dao = new BikeDAO();
 
-        List<Bike> bikes = dao.FindBikesByMember(member);
+        CategoryDAO dao = new CategoryDAO();
 
-        return bikes;
+        List<Category> categories = dao.FindAll();
+
+        return categories;
     }
+
+
 }

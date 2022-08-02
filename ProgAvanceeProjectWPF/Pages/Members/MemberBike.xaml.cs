@@ -22,7 +22,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
         Member member = new Member();
 
-        
+        Category category = new Category();
 
 
 
@@ -34,7 +34,16 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             List<Bike> bikes = bike.GetBikesByMember(m);
             BikesGrid.ItemsSource = bikes;
+            List<string> CatNamelist = new List<string>();
+            List<Category> categories = category.GetAllCategories();
 
+            foreach (Category c in categories)
+            {
+                CatNamelist.Add(c.NameCategory);
+            }
+
+            
+            AddType.ItemsSource = CatNamelist;
 
             AddGrid.Visibility = Visibility.Hidden;
             UpdateGrid.Visibility = Visibility.Hidden;
