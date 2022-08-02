@@ -4,14 +4,15 @@ using System.Collections.Generic;
 public class Bike
 {
     private Guid idBike;
-    private float weight; 
+    private double weight; 
     private string type;
-    private float length;
+    private double length;
     private Member member;
     private List<Inscription> inscriptions = new List<Inscription>();
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
     public Bike() { }
-    public Bike(Guid idBike, float weight, string type, float length, Member member)
+    public Bike(Guid idBike, double weight, string type, double length, Member member)
     {
         this.idBike = idBike;
         this.weight = weight;
@@ -21,7 +22,7 @@ public class Bike
       
     }  
     
-    public Bike(Guid idBike, float weight, string type, float length)
+    public Bike(Guid idBike, double weight, string type, double length)
     {
         this.idBike = idBike;
         this.weight = weight;
@@ -37,7 +38,7 @@ public class Bike
         set { idBike = value; }
     }
 
-    public float Weight
+    public double Weight
     {
         get { return weight; } 
         set { weight = value; } 
@@ -49,7 +50,7 @@ public class Bike
         set { type = value; }
     }
 
-    public float Length
+    public double Length
     {
         get { return length; }
         set { length = value; }
@@ -66,6 +67,25 @@ public class Bike
         get { return inscriptions; }
         set { inscriptions = value; }
     }
+
+    public bool AddBike(string cat, double weigth, double length, Member member)
+    {
+        DAO<Bike> bikeDAO = adf.GetBikeDAO();
+        Bike bike = new Bike(Guid.Empty, weigth, cat, length, member);
+
+        return bikeDAO.Create(bike);
+    }
+
+    //public bool UpdateRide(Ride r, string UpdatePlace, DateTime UpdateDate, double UpdateFee)
+    //{
+    //    DAO<Ride> rideDAO = adf.GetRideDAO();
+
+    //    r.PlaceDeparture = UpdatePlace;
+    //    r.DateDeparture = UpdateDate;
+    //    r.PackageFee = UpdateFee;
+
+    //    return rideDAO.Update(r);
+    //}
 
     public List<Bike> GetBikesByMember(Member member)
     {

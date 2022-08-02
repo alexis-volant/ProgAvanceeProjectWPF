@@ -29,4 +29,13 @@ public class Category
         get { return members; }
         set { members = value; }
     }
+
+    public List<Bike> GetBikesByMember(Member member)
+    {
+        BikeDAO dao = new BikeDAO();
+
+        List<Bike> bikes = dao.FindBikesByMember(member);
+
+        return bikes;
+    }
 }

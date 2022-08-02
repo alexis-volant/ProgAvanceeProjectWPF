@@ -6,9 +6,30 @@ using System.Data.SqlClient;
 internal class BikeDAO : DAO<Bike>
 {
     public BikeDAO() { }
-    public override bool Create(Bike obj)
+    public override bool Create(Bike b)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Bike (weigth, length, type, idMember) " +
+                    "values(@weigth, @length, @type, @idMember)", connection);
+                cmd.Parameters.AddWithValue("weigth", b.Weight);
+                cmd.Parameters.AddWithValue("length", b.Length);
+                cmd.Parameters.AddWithValue("type", b.Type);
+                cmd.Parameters.AddWithValue("idMember", b.Member.Id);
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
     public override bool Update(Bike obj)
     {
@@ -38,6 +59,8 @@ internal class BikeDAO : DAO<Bike>
                     {
                         Bike bike = new Bike
                         (
+                            //A CHANGER en DOUBLE
+
                             reader.GetGuid("idBike"),
                             reader.GetFloat("weight"),
                             reader.GetString("type"),
@@ -72,9 +95,9 @@ internal class BikeDAO : DAO<Bike>
                         Bike bike = new Bike
                         (
                             reader.GetGuid("idBike"),
-                            reader.GetFloat("weight"),
+                            reader.GetDouble("weight"),
                             reader.GetString("type"),
-                            reader.GetFloat("length")
+                            reader.GetDouble("length")
                             
                         );
                         bikes.Add(bike);
