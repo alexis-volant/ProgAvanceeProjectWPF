@@ -1,0 +1,21 @@
+﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Responsibles.ResponsibleHub"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d" 
+      d:DesignHeight="526" d:DesignWidth="1000"
+      Title="ResponsibleHub">
+
+    <Grid>
+        <Label Content="Récapitulatif des balades pour cette catégorie" Margin="78,67,0,0" Foreground="White" FontSize="24" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"></Label>
+        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="RidesGrid" AutoGenerateColumns="false" Margin="80,114,0,0" Height="217" VerticalAlignment="Top" HorizontalAlignment="Left" Width="492">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding PackageFee, StringFormat={}{0:n2}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="RideManagmentButton" Content="Gestion des balades" Foreground="White" FontSize="24" Background="#42414d"  Margin="694,180,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226"></Button>
+    </Grid>
+</Page>

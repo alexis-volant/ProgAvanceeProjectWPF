@@ -1,14 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Ride
 {
     private int num;
     private string placeDeparture;
-    private string dateDeparture;
+    private DateTime dateDeparture;
     private double packageFee;
     private Category category;
 
-    public Ride(int num, string placeDeparture, string dateDeparture, double packageFee, Category category)
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+
+    public Ride()
+    {
+
+    }
+
+    public Ride(int num, string placeDeparture, DateTime dateDeparture, double packageFee, Category category)
     {
         this.num = num;
         this.placeDeparture = placeDeparture;
@@ -29,7 +37,7 @@ public class Ride
         set { placeDeparture = value; }
     }
 
-    public string DateDeparture
+    public DateTime DateDeparture
     {
         get { return dateDeparture; }
         set { dateDeparture = value; }
@@ -87,13 +95,38 @@ public class Ride
 
     }
 
-    public void GetRidesByMember(Member member)
+    public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Category cat)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+        Ride ride = new Ride(0, UpdatePlace, UpdateDate, UpdateFee, cat);
+
+        return rideDAO.Create(ride);
+    }
+
+    public bool UpdateRide(Ride r, string UpdatePlace, DateTime UpdateDate, double UpdateFee)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+
+        r.PlaceDeparture = UpdatePlace;
+        r.DateDeparture = UpdateDate;
+        r.PackageFee = UpdateFee;
+
+        return rideDAO.Update(r);
+    }
+
+    public bool DeleteRide(Ride r)
+    {
+        DAO<Ride> rideDAO = adf.GetRideDAO();
+
+        return rideDAO.Delete(r);
+    }
+
+    public List<Ride> GetRides(int numCategory)
     {
         RideDAO dao = new RideDAO();
 
-        List<Ride> rides = dao.FindRidesByMember(member);
+        List<Ride> rides = dao.FindByCategory(numCategory);
 
         return rides;
     }
-
 }
