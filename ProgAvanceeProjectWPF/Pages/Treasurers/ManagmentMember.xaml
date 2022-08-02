@@ -55,7 +55,11 @@
             <Button Click="UpdateValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
             <Button Click="UpdateDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
         </Grid>
-
+        <Grid x:Name="DeleteGrid" Margin="65,318,0,0" Height="233" VerticalAlignment="Top" HorizontalAlignment="Left" Width="582">
+            <Label Content="Êtes-vous sûr de vouloir supprimer ce membre ?" Foreground="White" FontSize="24" Margin="33,50,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="536"></Label>
+            <Button Click="DeleteValidation" Content="Oui" Foreground="White" FontSize="24" Background="#42414d"  Margin="113,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="DeleteDiscard" Content="Non" Foreground="White" FontSize="24" Background="#42414d"  Margin="301,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
         <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d" Margin="877,491,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>

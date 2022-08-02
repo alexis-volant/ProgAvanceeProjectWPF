@@ -57,29 +57,24 @@ internal class MemberDAO : DAO<Member>
     }
     public override bool Delete(Member m)
     {
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @id ", connection);
-                cmd.Parameters.AddWithValue("id", m.Id);
-                if (m.Id == 0)
-                {
-                    throw new Exception("No member deleted");
-                }
-                else
-                {
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                }
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
-        }*/
-        return false;
+            return false;
+            throw new Exception(e.Message);
+        }
+
+        return true;
     }
     public override Member Find(int id)
     {

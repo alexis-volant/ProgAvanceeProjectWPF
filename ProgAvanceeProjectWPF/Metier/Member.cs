@@ -83,6 +83,13 @@ public class Member : Person
         return memberDAO.Update(m);
     }
 
+    public bool DeleteMember(Member m)
+    {
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        return memberDAO.Delete(m);
+    }
+
     public Member loginCheck(string login, string password)
     {
         //NON Générique

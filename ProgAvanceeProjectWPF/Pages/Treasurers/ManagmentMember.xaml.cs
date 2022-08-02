@@ -32,7 +32,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
 
             /*AddGrid.Visibility = Visibility.Hidden;*/
             UpdateGrid.Visibility = Visibility.Hidden;
-            /*DeleteGrid.Visibility = Visibility.Hidden;*/
+            DeleteGrid.Visibility = Visibility.Hidden;
         }
 
         private void UpdateMember(object sender, RoutedEventArgs e)
@@ -48,7 +48,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
 
             /*AddGrid.Visibility = Visibility.Hidden;*/
             UpdateGrid.Visibility = Visibility.Visible;
-            /*DeleteGrid.Visibility = Visibility.Hidden;*/
+            DeleteGrid.Visibility = Visibility.Hidden;
         }
 
         private void UpdateValidation(object sender, RoutedEventArgs e)
@@ -84,10 +84,34 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         {
             UpdateGrid.Visibility = Visibility.Hidden;
         }
-
         private void DeleteMember(object sender, RoutedEventArgs e)
         {
+            selectedMember = (sender as FrameworkElement).DataContext as Member;
 
+            /*AddGrid.Visibility = Visibility.Hidden;*/
+            UpdateGrid.Visibility = Visibility.Hidden;
+            DeleteGrid.Visibility = Visibility.Visible;
+        }
+
+        private void DeleteValidation(object sender, RoutedEventArgs e)
+        {
+            bool deleteStatus = selectedMember.DeleteMember(selectedMember);
+
+            if (deleteStatus)
+            {
+                members = selectedMember.GetAllMembers();
+                ManagmentMemberGrid.ItemsSource = members;
+                DeleteGrid.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MessageBox.Show("Erreur dans la suppression de la balade.");
+            }
+        }
+
+        private void DeleteDiscard(object sender, RoutedEventArgs e)
+        {
+            DeleteGrid.Visibility = Visibility.Hidden;
         }
 
         private void BackButton(object sender, RoutedEventArgs e)
