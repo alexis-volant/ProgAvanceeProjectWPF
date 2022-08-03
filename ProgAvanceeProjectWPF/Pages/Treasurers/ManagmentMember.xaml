@@ -38,6 +38,24 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+		<Grid x:Name="AddGrid" Margin="10,327,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
+			<Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+			<Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+			<TextBox x:Name="AddName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+			<TextBox x:Name="AddFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+			<TextBox x:Name="AddTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+			<TextBox x:Name="AddLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+			<TextBox x:Name="AddPassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Solde" Foreground="White" FontSize="20" Margin="356,164,0,0" HorizontalAlignment="Left" Width="131" Height="40" VerticalAlignment="Top"></Label>
+			<TextBox x:Name="AddBalance" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+			<Label Content="Utilisez la virgule." Foreground="White" FontSize="10" Margin="492,184,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Label>
+            <Button Click="AddValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
         <Grid x:Name="UpdateGrid" Margin="10,327,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>

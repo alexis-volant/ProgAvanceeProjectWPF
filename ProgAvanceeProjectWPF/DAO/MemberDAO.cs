@@ -13,20 +13,25 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member " +
-                    "(idMember,name,firstName,tel,passWord,balance,login) " +
-                    "values('" + m.Id + "' , '" + m.Name + "' , '" + m.FirstName + "'" +
-                    " , '" + m.Tel + "' , '" + m.PassWord + "' , '" + m.Balance + "' , '" + m.Login + "')",
-                    connection);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance) " +
+                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance)",connection);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("Name", m.Name);
+                cmd.Parameters.AddWithValue("FirstName", m.FirstName);
+                cmd.Parameters.AddWithValue("Tel", m.Tel);
+                cmd.Parameters.AddWithValue("Login", m.Login);
+                cmd.Parameters.AddWithValue("PassWord", m.PassWord);
+                cmd.Parameters.AddWithValue("Balance", m.Balance);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
-        return false;
+        return true;
     }
     public override bool Update(Member m)
     {
@@ -164,7 +169,6 @@ internal class MemberDAO : DAO<Member>
         }
         return member;
     }
-
     public List<Member> GetAllMembers()
     {
         List<Member> members = new List<Member>();

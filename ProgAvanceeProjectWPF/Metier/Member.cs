@@ -54,19 +54,19 @@ public class Member : Person
 
     }
 
-    /*public void createMember(Member m)
-    {
-        //Générique
-        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-        DAO<Member> memberDAO = adf.GetMemberDAO();
-
-        memberDAO.Create(m);
-    }*/
-
     public List<Member> GetAllMembers()
     {
         MemberDAO dao = new MemberDAO();
         return dao.GetAllMembers();
+    }
+
+    public bool AddMember(string AddName, string AddFirstName, string AddTelephone, string AddLogin, string AddPassWord, double AddBalance)
+    {
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        Member m = new Member(Guid.NewGuid(), AddName, AddFirstName, AddTelephone, AddLogin, AddPassWord, AddBalance);
+
+        return memberDAO.Create(m);
     }
 
     public bool UpdateMember(Member m, string UpdateName, string UpdateFirstName, string UpdateTelephone, string UpdateLogin, string UpdatePassWord, double UpdateBalance)
@@ -92,7 +92,6 @@ public class Member : Person
 
     public Member loginCheck(string login, string password)
     {
-        //NON Générique
         MemberDAO dao = new MemberDAO();
         return dao.loginCheck(login, password);
     }
