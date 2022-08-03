@@ -4,13 +4,13 @@ using System.Collections.Generic;
 public class Bike
 {
     private Guid idBike;
-    private float weight; 
+    private double weight; 
     private string type;
-    private float length;
+    private double length;
     private Member member;
     private List<Inscription> inscriptions = new List<Inscription>();
 
-    public Bike(Guid idBike, float weight, string type, float length)
+    public Bike(Guid idBike, double weight, string type, double length)
     {
         this.idBike = idBike;
         this.weight = weight;
@@ -24,7 +24,7 @@ public class Bike
         set { idBike = value; }
     }
 
-    public float Weight
+    public double Weight
     {
         get { return weight; } 
         set { weight = value; } 
@@ -36,7 +36,7 @@ public class Bike
         set { type = value; }
     }
 
-    public float Length
+    public double Length
     {
         get { return length; }
         set { length = value; }

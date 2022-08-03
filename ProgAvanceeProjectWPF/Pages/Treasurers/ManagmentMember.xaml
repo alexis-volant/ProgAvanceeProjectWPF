@@ -9,12 +9,12 @@
       Title="ManagmentMember">
 
     <Grid>
-        <Label Foreground="White" FontSize="24" Margin="0,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="244">
+        <Label Foreground="White" FontSize="24" Margin="378,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="244">
             <TextBlock TextDecorations="Underline">Gestion des membres</TextBlock>
         </Label>
         <Grid Margin="10,67,0,0" Height="271" VerticalAlignment="Top" HorizontalAlignment="Left" Width="724">
             <Label Content="Gestion des balades" Margin="10,10,0,0" Foreground="White" FontSize="24" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230"/>
-            <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="ManagmentMemberGrid" AutoGenerateColumns="false" Margin="10,64,0,0" Height="197" VerticalAlignment="Top" HorizontalAlignment="Left" Width="666">
+            <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="ManagmentMemberGrid" AutoGenerateColumns="false" Margin="0,64,0,0" Height="197" VerticalAlignment="Top" HorizontalAlignment="Center" Width="684">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
@@ -41,17 +41,18 @@
         <Grid x:Name="UpdateGrid" Margin="10,327,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <TextBox x:Name="UpdateName" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdateName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <TextBox x:Name="UpdateFirstName" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdateFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
-            <TextBox x:Name="UpdateTelephone" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdateTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
-            <TextBox x:Name="UpdateLogin" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdateLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
-            <TextBox x:Name="UpdatePassWord" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdatePassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Solde" Foreground="White" FontSize="20" Margin="356,164,0,0" HorizontalAlignment="Left" Width="131" Height="40" VerticalAlignment="Top"></Label>
-            <TextBox x:Name="UpdateBalance" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="492,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <TextBox x:Name="UpdateBalance" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Utilisez la virgule." Foreground="White" FontSize="10" Margin="492,184,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Label>
             <Button Click="UpdateValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
             <Button Click="UpdateDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
         </Grid>
@@ -60,6 +61,7 @@
             <Button Click="DeleteValidation" Content="Oui" Foreground="White" FontSize="24" Background="#42414d"  Margin="113,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
             <Button Click="DeleteDiscard" Content="Non" Foreground="White" FontSize="24" Background="#42414d"  Margin="301,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
         </Grid>
+        <Button Click="AddMemberButton" Content="Ajouter un membre" Foreground="White" FontSize="24" Background="#42414d"  Margin="762,202,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="209"></Button>
         <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d" Margin="877,491,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>

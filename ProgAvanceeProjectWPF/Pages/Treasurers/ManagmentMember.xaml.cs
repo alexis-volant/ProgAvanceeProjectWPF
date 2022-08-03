@@ -35,6 +35,13 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             DeleteGrid.Visibility = Visibility.Hidden;
         }
 
+        private void AddMemberButton(object sender, RoutedEventArgs e)
+        {
+            /*AddGrid.Visibility = Visibility.Visible;*/
+            UpdateGrid.Visibility = Visibility.Hidden;
+            DeleteGrid.Visibility = Visibility.Hidden;
+        }
+
         private void UpdateMember(object sender, RoutedEventArgs e)
         {
             selectedMember = (sender as FrameworkElement).DataContext as Member;
@@ -50,7 +57,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             UpdateGrid.Visibility = Visibility.Visible;
             DeleteGrid.Visibility = Visibility.Hidden;
         }
-
         private void UpdateValidation(object sender, RoutedEventArgs e)
         {
             string UpdateN = UpdateName.Text;
@@ -58,7 +64,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             string UpdateT = UpdateTelephone.Text;
             string UpdateL = UpdateLogin.Text;
             string UpdateP = UpdatePassWord.Text;
-            float UpdateB = UpdateBalance.Text.Length == 0 ? 0 : float.Parse(UpdateBalance.Text);
+            double UpdateB = UpdateBalance.Text.Length == 0 ? 0 : Convert.ToDouble(UpdateBalance.Text);
 
             bool updateStatus = selectedMember.UpdateMember(selectedMember, UpdateN, UpdateF, UpdateT, UpdateL, UpdateP, UpdateB);
 
@@ -79,11 +85,11 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
                 MessageBox.Show("Erreur dans l'encodage du membre.");
             }
         }
-
         private void UpdateDiscard(object sender, RoutedEventArgs e)
         {
             UpdateGrid.Visibility = Visibility.Hidden;
         }
+
         private void DeleteMember(object sender, RoutedEventArgs e)
         {
             selectedMember = (sender as FrameworkElement).DataContext as Member;
@@ -92,7 +98,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             UpdateGrid.Visibility = Visibility.Hidden;
             DeleteGrid.Visibility = Visibility.Visible;
         }
-
         private void DeleteValidation(object sender, RoutedEventArgs e)
         {
             bool deleteStatus = selectedMember.DeleteMember(selectedMember);
@@ -108,7 +113,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
                 MessageBox.Show("Erreur dans la suppression de la balade.");
             }
         }
-
         private void DeleteDiscard(object sender, RoutedEventArgs e)
         {
             DeleteGrid.Visibility = Visibility.Hidden;
