@@ -130,12 +130,45 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         }
         private void UpdateValidation(object sender, RoutedEventArgs e)
         {
-            string UpdateN = UpdateName.Text;
-            string UpdateF = UpdateFirstName.Text;
-            string UpdateT = UpdateTelephone.Text;
-            string UpdateL = UpdateLogin.Text;
-            string UpdateP = UpdatePassWord.Text;
-            double UpdateB = UpdateBalance.Text.Length == 0 ? 0 : Convert.ToDouble(UpdateBalance.Text);
+            string UpdateN;
+            string UpdateF;
+            string UpdateT;
+            string UpdateL;
+            string UpdateP;
+            double UpdateB;
+
+            if (UpdateName.Text.Length == 0)
+            {
+                MessageBox.Show("Le nom du membre ne peut-être vide.");
+                return;
+            }
+            if (UpdateFirstName.Text.Length == 0)
+            {
+                MessageBox.Show("Le prénom du membre ne peut-être vide.");
+                return;
+            }
+            if (UpdateTelephone.Text.Length == 0)
+            {
+                MessageBox.Show("Le téléphone du membre ne peut-être vide.");
+                return;
+            }
+            if (UpdateLogin.Text.Length == 0)
+            {
+                MessageBox.Show("Le login du membre ne peut-être vide.");
+                return;
+            }
+            if (UpdatePassWord.Text.Length == 0)
+            {
+                MessageBox.Show("Le mot de passe du membre ne peut-être vide.");
+                return;
+            }
+
+            UpdateN = UpdateName.Text;
+            UpdateF = UpdateFirstName.Text;
+            UpdateT = UpdateTelephone.Text;
+            UpdateL = UpdateLogin.Text;
+            UpdateP = UpdatePassWord.Text;
+            UpdateB = UpdateBalance.Text.Length == 0 ? 0 : Convert.ToDouble(UpdateBalance.Text);
 
             bool updateStatus = selectedMember.UpdateMember(selectedMember, UpdateN, UpdateF, UpdateT, UpdateL, UpdateP, UpdateB);
 

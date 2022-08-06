@@ -12,6 +12,80 @@
         <Label Foreground="White" FontSize="24" Margin="0,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
             <TextBlock TextDecorations="Underline">Gestion des responsables</TextBlock>
         </Label>
+        <Grid Margin="10,67,0,0" Height="271" VerticalAlignment="Top" HorizontalAlignment="Left" Width="734">
+            <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="ManagmentResponsibleGrid" AutoGenerateColumns="false" Height="251" VerticalAlignment="Center" HorizontalAlignment="Center" Width="714">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="N° téléphone" Binding="{Binding Tel}"/>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Catégorie" Binding="{Binding Category.NameCategory}"/>
+                    <DataGridTemplateColumn Header="Modifier">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="UpdateMember" Content="Modifier"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Supprimer">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="DeleteMember" Content="Supprimer"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid x:Name="AddGrid" Margin="10,327,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
+            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="AddName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="AddFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="AddTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="AddLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="AddPassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Catégorie" Foreground="White" FontSize="20" Margin="356,164,0,0" HorizontalAlignment="Left" Width="131" Height="40" VerticalAlignment="Top"></Label>
+            <ComboBox Name="AddCategory" Margin="492,164,127,20">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding NameCategory}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Click="AddValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+        <Grid x:Name="UpdateGrid" Margin="10,327,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
+            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdateName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdateFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="UpdateTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="UpdateLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="UpdatePassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Button Click="UpdateValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="UpdateDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+        <Grid x:Name="DeleteGrid" Margin="65,318,0,0" Height="233" VerticalAlignment="Top" HorizontalAlignment="Left" Width="582">
+            <Label Content="Êtes-vous sûr de vouloir supprimer ce responsable ?" Foreground="White" FontSize="24" Margin="10,50,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="559"></Label>
+            <Button Click="DeleteValidation" Content="Oui" Foreground="White" FontSize="24" Background="#42414d"  Margin="127,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="DeleteDiscard" Content="Non" Foreground="White" FontSize="24" Background="#42414d"  Margin="358,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+        <Button Click="AddResponsibleButton" Foreground="White" FontSize="24" Background="#42414d"  Margin="782,162,0,0" Height="80" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172">
+            <TextBlock TextAlignment="Center">Ajouter un <LineBreak></LineBreak>
+                Responsable</TextBlock>
+        </Button>
         <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d"  Margin="875,510,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>

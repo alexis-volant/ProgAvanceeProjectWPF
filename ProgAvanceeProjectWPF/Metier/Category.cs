@@ -6,6 +6,8 @@ public class Category
     private string nameCategory = "";
     private List<Member> members = new List<Member>();
 
+    public Category() { }
+
     public Category(int num, string nameCategory)
     {
         this.num = num;
@@ -28,5 +30,26 @@ public class Category
     {
         get { return members; }
         set { members = value; }
+    }
+
+    public Category GetCategory(int numCategory)
+    {
+        CategoryDAO dao = new CategoryDAO();
+
+        return dao.Find(numCategory);
+    }
+
+    public Category GetCategoryByName(string nameCategory)
+    {
+        CategoryDAO dao = new CategoryDAO();
+
+        return dao.FindByName(nameCategory);
+    }
+
+    public List<Category> GetAllWOResponsible()
+    {
+        CategoryDAO dao = new CategoryDAO();
+
+        return dao.FindWOResponsible();
     }
 }

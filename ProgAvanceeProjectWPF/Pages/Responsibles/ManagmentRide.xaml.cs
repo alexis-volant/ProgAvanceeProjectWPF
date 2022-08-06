@@ -42,7 +42,6 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
             UpdateGrid.Visibility = Visibility.Hidden;
             DeleteGrid.Visibility = Visibility.Hidden;
         }
-
         private void AddValidation(object sender, RoutedEventArgs e)
         {
             string AddPlace;
@@ -81,7 +80,6 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
             }
             
         }
-
         private void AddDiscard(object sender, RoutedEventArgs e)
         {
             AddPlaceDeparture.Text = String.Empty;
@@ -102,12 +100,27 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
             UpdateGrid.Visibility = Visibility.Visible;
             DeleteGrid.Visibility = Visibility.Hidden;
         }
-
         private void UpdateValidation(object sender, RoutedEventArgs e)
         {
-            string UpdatePlace = UpdatePlaceDeparture.Text;
-            DateTime UpdateDate = Convert.ToDateTime(UpdateDateDeparture.Text);
-            double UpdateFee = UpdatePackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(UpdatePackageFee.Text);
+            string UpdatePlace;
+            DateTime UpdateDate;
+            double UpdateFee;
+
+            if (UpdatePlaceDeparture.Text.Length == 0)
+            {
+                MessageBox.Show("Le lieu de départ ne peut-être vide.");
+                return;
+            }
+            if (UpdateDateDeparture.Text.Length == 0)
+            {
+                MessageBox.Show("1) La date de départ ne peut-être vide.\n" +
+                    "2) La date s'écrit sous format jj/mm/aaaa.");
+                return;
+            }
+
+            UpdatePlace = UpdatePlaceDeparture.Text;
+            UpdateDate = Convert.ToDateTime(UpdateDateDeparture.Text);
+            UpdateFee = UpdatePackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(UpdatePackageFee.Text);
 
             bool updateStatus = selectedRide.UpdateRide(selectedRide, UpdatePlace, UpdateDate, UpdateFee);
 
@@ -125,7 +138,6 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
                 MessageBox.Show("Erreur dans l'encodage de la date, ou du prix.");
             }
         }
-
         private void UpdateDiscard(object sender, RoutedEventArgs e)
         {
             UpdateGrid.Visibility = Visibility.Hidden;
@@ -139,7 +151,6 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
             UpdateGrid.Visibility = Visibility.Hidden;
             DeleteGrid.Visibility = Visibility.Visible;
         }
-
         private void DeleteValidation(object sender, RoutedEventArgs e)
         {
             bool deleteStatus = selectedRide.DeleteRide(selectedRide);
@@ -155,12 +166,10 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
                 MessageBox.Show("Erreur dans la suppression de la balade.");
             }
         }
-
         private void DeleteDiscard(object sender, RoutedEventArgs e)
         {
             DeleteGrid.Visibility = Visibility.Hidden;
         }
-
 
         private void BackButton(object sender, RoutedEventArgs e)
         {
