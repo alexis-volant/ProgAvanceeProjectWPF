@@ -71,7 +71,7 @@ public class Bike
     public bool AddBike(string cat, double weigth, double length, Member member)
     {
         DAO<Bike> bikeDAO = adf.GetBikeDAO();
-        Bike bike = new Bike(Guid.Empty, weigth, cat, length, member);
+        Bike bike = new Bike(Guid.NewGuid(), weigth, cat, length, member);
 
         return bikeDAO.Create(bike);
     }

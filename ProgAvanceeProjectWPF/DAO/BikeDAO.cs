@@ -13,9 +13,11 @@ internal class BikeDAO : DAO<Bike>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Bike (weigth, length, type, idMember) " +
-                    "values(@weigth, @length, @type, @idMember)", connection);
-                cmd.Parameters.AddWithValue("weigth", b.Weight);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Bike (idBike, weight, length, type, idMember) " +
+                    "values(@idBike, @weight, @length, @type, @idMember)", connection);
+
+                cmd.Parameters.AddWithValue("idBike", b.IdBike);
+                cmd.Parameters.AddWithValue("weight", b.Weight);
                 cmd.Parameters.AddWithValue("length", b.Length);
                 cmd.Parameters.AddWithValue("type", b.Type);
                 cmd.Parameters.AddWithValue("idMember", b.Member.Id);
@@ -59,12 +61,10 @@ internal class BikeDAO : DAO<Bike>
                     {
                         Bike bike = new Bike
                         (
-                            //A CHANGER en DOUBLE
-
                             reader.GetGuid("idBike"),
-                            reader.GetFloat("weight"),
+                            reader.GetDouble("weight"),
                             reader.GetString("type"),
-                            reader.GetFloat("length"),
+                            reader.GetDouble("length"),
                             member
                         );
                         bikes.Add(bike);
@@ -72,9 +72,9 @@ internal class BikeDAO : DAO<Bike>
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
         return bikes;
     }

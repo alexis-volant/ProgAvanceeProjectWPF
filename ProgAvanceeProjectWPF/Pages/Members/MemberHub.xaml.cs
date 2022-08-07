@@ -31,12 +31,16 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             RidesGrid.ItemsSource = rides;
         }
                 
-        private void GoToBikeBtn(object sender, RoutedEventArgs e)
+        private void GoToMemberBikePage(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
             NavigationService.Navigate(new MemberBike(m));
         }
-
-        
+        private void GoToMemberRidePage(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.Navigate(new MemberRide(m));
+        }
+   
     }
 }

@@ -18,7 +18,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
     /// </summary>
     public partial class MemberBike : Page
     {
-        Bike bike = new Bike ();
+        Bike bike = new Bike();
 
         Member member = new Member();
 
@@ -42,7 +42,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 CatNamelist.Add(c.NameCategory);
             }
 
-            
+
             AddType.ItemsSource = CatNamelist;
 
             AddGrid.Visibility = Visibility.Hidden;
@@ -51,13 +51,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             //System.Diagnostics.Debug.WriteLine($"Resp : {m.Name}");
         }
 
-       
+
         private void AddBikeBtn(object sender, RoutedEventArgs e)
         {
-            
+
             AddGrid.Visibility = Visibility.Visible;
             UpdateGrid.Visibility = Visibility.Hidden;
-                
+
         }
 
         private void AddBikeValidation(object sender, RoutedEventArgs e)
@@ -71,10 +71,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 MessageBox.Show("Le type ne peut-être vide.");
                 return;
             }
-            
+
 
             AddBikeType = AddType.Text;
-            
+
             AddBikeWeigth = AddWeigth.Text.Length == 0 ? 0 : Convert.ToDouble(AddWeigth.Text);
 
             AddBikeLength = AddLength.Text.Length == 0 ? 0 : Convert.ToDouble(AddLength.Text);
@@ -98,16 +98,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
         }
 
-        //private void confirm
-        //{
-        //     string msgtext = "Do you want to save Anything In this Document?";
-        //        string txt = "My Title";
-        //        MessageBoxButton button = MessageBoxButton.YesNoCancel;
-        //        MessageBox.Show(msgtext, txt, button);
-        //        MessageBoxResult result = MessageBox.Show(msgtext, txt, button);
-        //}
+       
 
-        private void ReturnBtn(object sender, RoutedEventArgs e)
+    private void ReturnBtn(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
             NavigationService.GoBack();

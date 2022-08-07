@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Member : Person
 {
-    private float balance = 0;
+    private double balance = 0;
     private List<Category> categories = new List<Category>();
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
@@ -13,12 +13,12 @@ public class Member : Person
 
     }
 
-    public Member(Guid id, string name, string firstName, string tel, string login, string passWord, float balance) : base(id, name, firstName, tel, login, passWord)
+    public Member(Guid id, string name, string firstName, string tel, string login, string passWord, double balance) : base(id, name, firstName, tel, login, passWord)
     {
         this.balance = balance;
     }
 
-    public float Balance
+    public double Balance
     {
         get { return balance; }
         set { balance = value; }

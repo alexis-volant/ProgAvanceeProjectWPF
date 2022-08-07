@@ -46,14 +46,15 @@ internal class CategoryDAO : DAO<Category>
         }
         return category;
     }
-    public List<Category> FindCatByMember(Member member)
+    public List<Category> FindByMember(Member member)
     {
         List<Category> categories = new List<Category>();
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.infoCatMember WHERE idMember = @id", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category C join dbo.CategoryMember CATMEMBER "+
+                    "on C.numCategory = CATMEMBER.numCategory join dbo.Member M on CATMEMBER.idMember =  M.idMember WHERE M.idMember = @id", connection);
                 cmd.Parameters.AddWithValue("id", member.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -61,19 +62,20 @@ internal class CategoryDAO : DAO<Category>
                     while (reader.Read())
                     {
                         Category cat = new Category
-                        {
-                            Num = reader.GetInt32("numCategory"),
-                            NameCategory = reader.GetString("nameCategory")
-                        };
+                        (
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                        );
                         categories.Add(cat);
                     }
+
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
-        }*/
+            throw new Exception(e.Message);
+        }
         return categories;
     }
 

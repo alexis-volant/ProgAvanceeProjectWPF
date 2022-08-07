@@ -153,7 +153,7 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetFloat("balance")
+                            reader.GetDouble("balance")
                             );
                     }
                 }

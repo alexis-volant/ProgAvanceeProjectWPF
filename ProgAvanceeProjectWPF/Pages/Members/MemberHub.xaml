@@ -9,8 +9,9 @@
       Title="Page1">
 
     <Grid>
-        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="54" Margin="559,139,0,0" VerticalAlignment="Top" Width="167" Click="GoToBikeBtn"/>
-        <Button Content="Gestion des categories" HorizontalAlignment="Left" Height="54" Margin="558,232,0,0" VerticalAlignment="Top" Width="167"/>
+        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="54" Margin="559,140,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberBikePage"/>
+        <Button Content="Gestion des categories" HorizontalAlignment="Left" Height="54" Margin="559,220,0,0" VerticalAlignment="Top" Width="167"/>
+        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="54" Margin="559,300,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberRidePage"/>
         <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="60,149,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="405">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Jour" Binding="{Binding Type}"/>

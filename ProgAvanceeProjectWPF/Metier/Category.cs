@@ -44,6 +44,15 @@ public class Category
 
         return categories;
     }
+    public List<Category> GetCategoriesByMember(Member m)
+    {
+
+        CategoryDAO dao = new CategoryDAO();
+
+        List<Category> categories = dao.FindByMember(m);
+
+        return categories;
+    }
 
 
 }

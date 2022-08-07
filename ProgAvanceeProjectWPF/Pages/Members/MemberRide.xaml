@@ -1,0 +1,21 @@
+﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Members.MemberRide"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MemberRide">
+
+    <Grid>
+        <ComboBox x:Name="CatChoice"  FontSize="20" Foreground="Black" Width="188" Margin="53,32,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="MemberRideGrid" AutoGenerateColumns="false" Margin="52,79,0,0" Height="152" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding PackageFee, StringFormat={}{0:n2}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

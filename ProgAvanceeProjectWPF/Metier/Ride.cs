@@ -138,5 +138,16 @@ public class Ride
 
         return rides;
     }
+    
+    public List<Ride> GetRidesByCategory(int numCategory)
+    {
+        RideDAO dao = new RideDAO();
+
+        List<Ride> rides = dao.FindByCategory(numCategory);
+
+        return rides;
+    }
+
+    
 
 }
