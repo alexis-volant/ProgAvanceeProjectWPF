@@ -108,7 +108,7 @@ internal class RideDAO : DAO<Ride>
                             reader.GetInt32("numRide"),
                             reader.GetString("placeDeparture"),
                             reader.GetDateTime("dateDeparture"),
-                            reader.GetFloat("packageFee"),
+                            reader.GetDouble("packageFee"),
                             categoryDAO.Find(numCategory)
                             );
                         rides.Add(ride);

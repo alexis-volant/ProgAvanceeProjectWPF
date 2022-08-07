@@ -19,7 +19,7 @@ namespace ProgAvanceeProjectWPF.Windows
             Main.Content = null;
             Main.Content = new ResponsibleHub(r);
             FirstName.Content = r.FirstName;
-            NumCategory.Content = r.Category.Num;
+            NameCategory.Content = r.Category.NameCategory;
         }
 
         private void DisconnectButton(object sender, RoutedEventArgs e)
