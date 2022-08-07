@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles.Windows"
         mc:Ignorable="d"
-        Title="UpdateRide" Height="450" Width="800">
-    <Grid>
-        
+        Title="UpdateRide" Height="250" Width="600">
+    <Grid Background="#2b2a33" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        <Grid x:Name="UpdateGrid">
+            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,0,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Lieu de départ" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdatePlaceDeparture" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Date" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <DatePicker x:Name="UpdateDateDeparture" Background="#42414d" FontSize="20" Margin="209,108,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" />
+            <Label Content="Prix" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="UpdatePackageFee" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Utilisez la virgule." Foreground="White" FontSize="10" Margin="209,184,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188"></Label>
+            <Button Click="UpdateValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="UpdateDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
     </Grid>
 </Window>

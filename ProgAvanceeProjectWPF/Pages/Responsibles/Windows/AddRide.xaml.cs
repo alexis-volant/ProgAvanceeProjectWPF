@@ -20,6 +20,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
         Responsible r = new Responsible();
         List<Ride> rides = new List<Ride>();
         Ride ride = new Ride();
+
         public AddRide(Responsible r)
         {
             InitializeComponent();
@@ -51,21 +52,16 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
 
             if (addStatus)
             {
-                rides = ride.GetRides(r.Category.Num);
-                ManagmentRide managmentRide = new ManagmentRide();
-                managmentRide.RefreshRide(rides);
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Erreur dans l'ajout de la balade.");
-                this.Close();
             }
-
         }
+
         private void AddDiscard(object sender, RoutedEventArgs e)
         {
-            ManagmentRide addRide = new ManagmentRide();
             this.Close();
         }
     }
