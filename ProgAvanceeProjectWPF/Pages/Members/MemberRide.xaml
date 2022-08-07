@@ -9,12 +9,19 @@
       Title="MemberRide">
 
     <Grid>
-        <ComboBox x:Name="CatChoice"  FontSize="20" Foreground="Black" Width="188" Margin="53,32,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
-        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="MemberRideGrid" AutoGenerateColumns="false" Margin="52,79,0,0" Height="152" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278">
+        <ComboBox x:Name="CatChoice"  FontSize="20" Foreground="Black" Width="188" Margin="53,32,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" SelectionChanged="CatChoice_SelectionChanged"/>
+        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="MemberRideGrid" AutoGenerateColumns="false" Margin="52,79,0,0" Height="152" VerticalAlignment="Top" HorizontalAlignment="Left" Width="446">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>
                 <DataGridTextColumn Header="Prix" Binding="{Binding PackageFee, StringFormat={}{0:n2}}"/>
+                <DataGridTemplateColumn Header="S'incrire">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="RideInscription" Content="Inscription"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

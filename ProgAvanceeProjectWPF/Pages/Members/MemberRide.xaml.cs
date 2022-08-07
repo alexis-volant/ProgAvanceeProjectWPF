@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,8 +36,37 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             }
             CatChoice.ItemsSource = CatNamelist;
 
-            //List<Ride> rides = ride.GetRidesByCategory(int);
-            //MemberRideGrid.ItemsSource = rides;
+
+
+            
+        }
+
+        private void CatChoice_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+           
+            int idCategory = CatChoice.SelectedIndex;
+            idCategory++;
+
+            //if (!String.IsNullOrEmpty(textBoxRide.Text))
+            //{
+            //    textBoxRide.Clear();
+            //}
+
+            List<Ride> rides = ride.GetRidesByCategory(idCategory);
+
+            if (rides.Any())
+            {
+                MemberRideGrid.ItemsSource = rides;
+            }
+            else
+            {
+                MessageBox.Show("Pas de balades pour cette catégorie");
+            }
+        }
+
+        private void RideInscription(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

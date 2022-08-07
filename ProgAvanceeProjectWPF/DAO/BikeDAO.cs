@@ -97,8 +97,7 @@ internal class BikeDAO : DAO<Bike>
                             reader.GetGuid("idBike"),
                             reader.GetDouble("weight"),
                             reader.GetString("type"),
-                            reader.GetDouble("length")
-                            
+                            reader.GetDouble("length")   
                         );
                         bikes.Add(bike);
                     }
