@@ -5,11 +5,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
       d:DesignHeight="526" d:DesignWidth="1000"
-      Title="ResponsibleHub">
+      Title="Gestion des balades">
 
     <Grid>
-        <Label Content="Récapitulatif des balades pour cette catégorie" Margin="78,67,0,0" Foreground="White" FontSize="24" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"></Label>
-        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="RidesGrid" AutoGenerateColumns="false" Margin="80,114,0,0" Height="217" VerticalAlignment="Top" HorizontalAlignment="Left" Width="492">
+        <Label Content="Récapitulatif des balades pour cette catégorie" Margin="78,48,0,0" Foreground="White" FontSize="24" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"></Label>
+        <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="RidesGrid" AutoGenerateColumns="false" Margin="80,0,0,0" Height="300" VerticalAlignment="Center" HorizontalAlignment="Left" Width="492">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>

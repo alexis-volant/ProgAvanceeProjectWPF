@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles"
       mc:Ignorable="d" 
       d:DesignHeight="526" d:DesignWidth="1000"
-      Title="ManagmentRide">
+      Title="Gestion des balades">
 
     <Grid>
         <Grid Margin="10,0,0,0" Height="462" VerticalAlignment="Center" HorizontalAlignment="Left" Width="629">

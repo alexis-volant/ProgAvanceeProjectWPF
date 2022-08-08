@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers"
       mc:Ignorable="d" 
       d:DesignHeight="526" d:DesignWidth="1000"
-      Title="TreasurerHub">
+      Title="Gestion du trésorier">
     <Grid>
         <Button Click="MemberManagmentButton" Content="Gestion des membres" Foreground="White" FontSize="24" Background="#42414d"  Margin="67,0,0,0" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248"></Button>
         <Button Click="ResponsibleManagmentButton" Content="Gestion des responsables" Foreground="White" FontSize="24" Background="#42414d" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Width="278"/>

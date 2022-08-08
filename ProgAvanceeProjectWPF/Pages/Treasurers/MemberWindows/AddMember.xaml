@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows"
         mc:Ignorable="d"
-        Title="AddMember" Height="249" Width="824">
+        Title="Ajout d'un membre" Height="249" Width="824">
     <Grid Background="#2b2a33">
         <Grid x:Name="AddGrid" Margin="-7,0,0,0" Height="213" VerticalAlignment="Center" HorizontalAlignment="Left" Width="807">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>

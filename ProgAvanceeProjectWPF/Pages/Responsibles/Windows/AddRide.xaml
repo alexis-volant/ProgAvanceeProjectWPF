@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles.Windows"
         mc:Ignorable="d"
-        Title="AddRide" Height="250" Width="600">
-    <Grid Background="#2b2a33" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
-        <Grid x:Name="AddGrid" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        Title="Ajout d'une balade" Height="255" Width="601">
+    <Grid Background="#2b2a33" Height="250" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        <Grid x:Name="AddGrid" Height="214" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
             <Label Content="Ajout" Foreground="White" FontSize="24" Margin="10,0,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Lieu de départ" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <TextBox x:Name="AddPlaceDeparture" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles.Windows"
         mc:Ignorable="d"
-        Title="UpdateRide" Height="250" Width="600">
-    <Grid Background="#2b2a33" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        Title="Mettre une balade à jour" Height="260" Width="600">
+    <Grid Background="#2b2a33" Height="258" VerticalAlignment="Top" HorizontalAlignment="Center" Width="600">
         <Grid x:Name="UpdateGrid">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,0,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Lieu de départ" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>

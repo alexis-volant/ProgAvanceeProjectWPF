@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1000"
-      Title="ManagmentResponsible">
+      Title="Gestion des responsables">
 
     <Grid>
         <Label Foreground="White" FontSize="24" Margin="0,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">

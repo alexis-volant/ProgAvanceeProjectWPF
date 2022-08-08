@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.ResponsibleWindows"
         mc:Ignorable="d"
-        Title="AddResponsible" Height="262" Width="828">
+        Title="Ajout d'un responsable" Height="262" Width="828">
     <Grid Background="#2b2a33">
         <Grid x:Name="AddGrid" Margin="10,10,0,0" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>

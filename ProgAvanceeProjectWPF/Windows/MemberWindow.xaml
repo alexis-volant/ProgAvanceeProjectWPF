@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Windows"
         mc:Ignorable="d"
-        Title="MemberWindow" Height="600" Width="1000">
+        Title="Partie Membre" Height="600" Width="1000">
     <Grid Background="#2b2a33">
         <Label Content="Member Window" Margin="402,43,0,0" FontSize="24" Foreground="White" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="198"></Label>
         <Button Click="DisconnectButton" Content="Déconnexion" Foreground="White" FontSize="24" Background="#42414d"  Margin="810,22,0,0" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="166"></Button>
