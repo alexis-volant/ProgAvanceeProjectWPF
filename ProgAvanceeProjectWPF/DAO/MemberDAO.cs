@@ -150,6 +150,9 @@ internal class MemberDAO : DAO<Member>
                 {
                     if (reader.Read())
                     {
+                        CategoryDAO categoryDAO = new CategoryDAO();
+                        BikeDAO bikeDAO = new BikeDAO();
+                        InscriptionDAO inscriptionDAO = new InscriptionDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
                             reader.GetString("name"),
@@ -159,6 +162,9 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("password"),
                             reader.GetDouble("balance")
                             );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
                     }
                 }
             }
@@ -195,6 +201,7 @@ internal class MemberDAO : DAO<Member>
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
+                        /*member.Inscriptions = InscriptionsDAO.FindAllByMember(member);*/
                         members.Add(member);
                     }
                 }
