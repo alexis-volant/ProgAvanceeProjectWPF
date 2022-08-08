@@ -78,7 +78,6 @@ internal class BikeDAO : DAO<Bike>
         }
         return bikes;
     }
-
     public List<Bike> FindAll()
     {
         List<Bike> bikes = new List<Bike>();

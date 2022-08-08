@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,6 +19,7 @@ internal class CategoryDAO : DAO<Category>
     {
         return false;
     }
+
     public override Category Find(int num)
     {
         Category category = null;
@@ -46,29 +48,42 @@ internal class CategoryDAO : DAO<Category>
         }
         return category;
     }
-    public List<Category> FindByMember(Member member)
+
+    public List<Category> FindWOResponsible()
     {
         List<Category> categories = new List<Category>();
+        List<Category> catWithResp = new List<Category>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category C join dbo.CategoryMember CATMEMBER "+
-                    "on C.numCategory = CATMEMBER.numCategory join dbo.Member M on CATMEMBER.idMember =  M.idMember WHERE M.idMember = @id", connection);
-                cmd.Parameters.AddWithValue("id", member.Id);
+                SqlCommand cmd = new SqlCommand("SELECT numCategory from dbo.Responsible", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Category cat = new Category
-                        (
+                        catWithResp.Add(Find(reader.GetInt32("numCategory")));
+                    }
+                }
+                
+                cmd = new SqlCommand("SELECT * from dbo.Category", connection);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Category cat = new Category(
                             reader.GetInt32("numCategory"),
                             reader.GetString("nameCategory")
-                        );
+                            );
                         categories.Add(cat);
                     }
-
+                }
+                connection.Close();
+                
+                foreach (Category cat in catWithResp)
+                {
+                    categories.RemoveAll(c => c.Num == cat.Num);
                 }
             }
         }
@@ -76,36 +91,33 @@ internal class CategoryDAO : DAO<Category>
         {
             throw new Exception(e.Message);
         }
+
         return categories;
     }
 
-    public List<Category> FindAll()
+    public List<Category> FindAllByMember(Member member)
     {
+        List<Int32> idCategories = new List<Int32>();
         List<Category> categories = new List<Category>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category", connection);
-                
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.CategoryMember WHERE idMember = @id", connection);
+                cmd.Parameters.AddWithValue("id", member.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Category cat = new Category
-                        {
-                            Num = reader.GetInt32("numCategory"),
-                            NameCategory = reader.GetString("nameCategory") 
-                        };
-                        categories.Add(cat);
+                        idCategories.Add(reader.GetInt32("numCategory"));
                     }
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
         return categories;
 

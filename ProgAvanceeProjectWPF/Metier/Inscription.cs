@@ -1,12 +1,23 @@
-﻿public class Inscription
+﻿using System;
+
+public class Inscription
 {
-    private int idInscription;
+    private Guid idInscription;
     private Member member;
     private Ride ride; 
     private bool passenger; 
     private bool bike; 
 
-    public int IdInscription
+    public Inscription(Guid idInscription, Member member, Ride ride, bool passenger, bool bike)
+    {
+        this.idInscription = idInscription;
+        this.member = member;   
+        this.ride = ride;
+        this.passenger = passenger;
+        this.bike = bike;
+    }
+
+    public Guid IdInscription
     {
         get { return idInscription; }
         set { idInscription = value; }

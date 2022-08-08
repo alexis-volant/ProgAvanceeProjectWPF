@@ -1,4 +1,5 @@
-﻿using ProjetWPFAout;
+﻿using ProgAvanceeProjectWPF.Pages.Treasurers;
+using ProjetWPFAout;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,12 +19,14 @@ namespace ProgAvanceeProjectWPF.Windows
     /// </summary>
     public partial class TreasurerWindow : Window
     {
-        Treasurer t = null;
+        Treasurer t = new Treasurer();
         public TreasurerWindow(Treasurer t)
         {
             this.t = t;
             InitializeComponent();
-            System.Diagnostics.Debug.WriteLine($"Tres : {t.Name} ");
+            Main.Content = null;
+            Main.Content = new TreasurerHub(t);
+            FirstName.Content = t.FirstName;
         }
 
         private void DisconnectButton(object sender, RoutedEventArgs e)

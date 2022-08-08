@@ -96,7 +96,8 @@ internal class RideDAO : DAO<Ride>
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Ride WHERE numCategory = @numCategory", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Ride R join dbo.Category C on R.numCategory = C.numCategory " +
+                    "WHERE C.numCategory = @numCategory", connection);
                 cmd.Parameters.AddWithValue("numCategory", numCategory);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -104,12 +105,16 @@ internal class RideDAO : DAO<Ride>
                     CategoryDAO categoryDAO = new CategoryDAO();
                     while (reader.Read())
                     {
+                        Category category = new Category(
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                            );
                         Ride ride = new Ride(
                             reader.GetInt32("numRide"),
                             reader.GetString("placeDeparture"),
                             reader.GetDateTime("dateDeparture"),
                             reader.GetDouble("packageFee"),
-                            categoryDAO.Find(numCategory)
+                            category
                             );
                         rides.Add(ride);
                     }

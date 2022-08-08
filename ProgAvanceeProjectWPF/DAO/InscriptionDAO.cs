@@ -11,11 +11,11 @@ internal class InscriptionDAO : DAO<Inscription>
     {
         return false;
     }
-    public override bool Update(Inscription obj)
+    public override bool Update(Inscription i)
     {
         return false;
     }
-    public override bool Delete(Inscription obj)
+    public override bool Delete(Inscription i)
     {
         return false;
     }
@@ -23,34 +23,51 @@ internal class InscriptionDAO : DAO<Inscription>
     {
         return null;
     }
-    public List<Inscription> FindAll(Member member)
+    public List<Inscription> FindAllByMember(Member member)
     {
         List<Inscription> inscriptions = new List<Inscription>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Inscription WHERE idMember = @id", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member M " +
+                    "join dbo.Inscription I on M.idMember = I.idMember " +
+                    "join dbo.Ride R on I.numRide = R.numRide " +
+                    "join dbo.Category C on R.numCategory = C.numCategory " +
+                    "WHERE M.idMember = @id", connection);
                 cmd.Parameters.AddWithValue("id", member.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+
                     while (reader.Read())
                     {
-                        Inscription inscription = new Inscription
-                        {
-                            IdInscription = reader.GetInt32("idInscription"),
-                            Passenger = reader.GetBoolean("passenger"),
-                            Bike = reader.GetBoolean("bike")
-                        };
+                        Category category = new Category(
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                            );
+                        Ride ride = new Ride(
+                            reader.GetInt32("numRide"),
+                            reader.GetString("placeDeparture"),
+                            reader.GetDateTime("dateDeparture"),
+                            reader.GetDouble("packageFee"),
+                            category
+                            ); 
+                        Inscription inscription = new Inscription(
+                            reader.GetGuid("idInscription"),
+                            member,
+                            ride,
+                            reader.GetBoolean("passenger"),
+                            reader.GetBoolean("bike")
+                            );
                         inscriptions.Add(inscription);
                     }
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
         return inscriptions;
     }

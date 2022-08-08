@@ -1,0 +1,44 @@
+﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.ManagmentMember"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="Gestion des membres">
+
+    <Grid>
+        <Label Foreground="White" FontSize="24" Margin="378,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="244">
+            <TextBlock TextDecorations="Underline">Gestion des membres</TextBlock>
+        </Label>
+        <Grid Margin="10,0,0,0" Height="444" VerticalAlignment="Center" HorizontalAlignment="Left" Width="724">
+            <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="ManagmentMemberGrid" AutoGenerateColumns="false" Height="331" VerticalAlignment="Center" HorizontalAlignment="Center" Width="684">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="N° téléphone" Binding="{Binding Tel}"/>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Solde" Binding="{Binding Balance}"/>
+                    <DataGridTemplateColumn Header="Modifier">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="UpdateMember" Content="Modifier"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Supprimer">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="DeleteMember" Content="Supprimer"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Button Click="AddMemberButton" Content="Ajouter un membre" Foreground="White" FontSize="24" Background="#42414d"  Margin="739,255,0,0" Height="71" VerticalAlignment="Top" HorizontalAlignment="Left" Width="232"></Button>
+        <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d" Margin="877,491,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+    </Grid>
+</Page>

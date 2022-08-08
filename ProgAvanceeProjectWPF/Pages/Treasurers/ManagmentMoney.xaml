@@ -1,0 +1,22 @@
+﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.ManagmentMoney"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="Gestion de la trésorerie">
+
+    <Grid>
+        <Label Foreground="White" FontSize="24" Margin="0,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="260">
+            <TextBlock TextDecorations="Underline">Gestion de la trésorerie</TextBlock>
+        </Label>
+        
+        
+        
+        
+        
+        <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d"  Margin="875,510,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+    </Grid>
+</Page>

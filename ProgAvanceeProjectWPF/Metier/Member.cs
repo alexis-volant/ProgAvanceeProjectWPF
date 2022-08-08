@@ -8,6 +8,8 @@ public class Member : Person
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+
     public Member()
     {
 
@@ -52,18 +54,44 @@ public class Member : Person
 
     }
 
-    /*public void createMember(Member m)
+    public List<Member> GetAllMembers()
     {
-        //Générique
-        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+        MemberDAO dao = new MemberDAO();
+        return dao.GetAllMembers();
+    }
+
+    public bool AddMember(string AddName, string AddFirstName, string AddTelephone, string AddLogin, string AddPassWord, double AddBalance)
+    {
         DAO<Member> memberDAO = adf.GetMemberDAO();
 
-        memberDAO.Create(m);
-    }*/
+        Member m = new Member(Guid.NewGuid(), AddName, AddFirstName, AddTelephone, AddLogin, AddPassWord, AddBalance);
+
+        return memberDAO.Create(m);
+    }
+
+    public bool UpdateMember(Member m, string UpdateName, string UpdateFirstName, string UpdateTelephone, string UpdateLogin, string UpdatePassWord, double UpdateBalance)
+    {
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        m.Name = UpdateName;
+        m.FirstName = UpdateFirstName;
+        m.Tel = UpdateTelephone;
+        m.Login = UpdateLogin;
+        m.PassWord = UpdatePassWord;
+        m.Balance = UpdateBalance;
+
+        return memberDAO.Update(m);
+    }
+
+    public bool DeleteMember(Member m)
+    {
+        DAO<Member> memberDAO = adf.GetMemberDAO();
+
+        return memberDAO.Delete(m);
+    }
 
     public Member loginCheck(string login, string password)
     {
-        //NON Générique
         MemberDAO dao = new MemberDAO();
         return dao.loginCheck(login, password);
     }

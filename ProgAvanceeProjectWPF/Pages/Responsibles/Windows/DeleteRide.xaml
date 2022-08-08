@@ -1,0 +1,16 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Responsibles.Windows.DeleteRide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles.Windows"
+        mc:Ignorable="d"
+        Title="Supprimer une balade" Height="250" Width="600">
+    <Grid Background="#2b2a33" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        <Grid x:Name="DeleteGrid" Margin="10,2,10,2">
+            <Label Content="Êtes-vous sûr de vouloir supprimer cette balade ?" Foreground="White" FontSize="24" Margin="33,50,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="536"></Label>
+            <Button Click="DeleteValidation" Content="Oui" Foreground="White" FontSize="24" Background="#42414d"  Margin="137,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="DeleteDiscard" Content="Non" Foreground="White" FontSize="24" Background="#42414d"  Margin="353,134,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Responsibles.Windows.AddRide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Responsibles.Windows"
+        mc:Ignorable="d"
+        Title="Ajout d'une balade" Height="255" Width="601">
+    <Grid Background="#2b2a33" Height="250" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+        <Grid x:Name="AddGrid" Height="214" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">
+            <Label Content="Ajout" Foreground="White" FontSize="24" Margin="10,0,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Lieu de départ" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="AddPlaceDeparture" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Date" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <DatePicker x:Name="AddDateDeparture" Background="#42414d" FontSize="20" Margin="209,108,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" />
+            <Label Content="Prix" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="AddPackageFee" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Utilisez la virgule." Foreground="White" FontSize="10" Margin="209,184,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188"></Label>
+            <Button Click="AddValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+    </Grid>
+</Window>

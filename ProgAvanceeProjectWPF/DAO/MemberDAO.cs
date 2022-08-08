@@ -13,69 +13,73 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member " +
-                    "(idMember,name,firstName,tel,passWord,balance,login) " +
-                    "values('" + m.Id + "' , '" + m.Name + "' , '" + m.FirstName + "'" +
-                    " , '" + m.Tel + "' , '" + m.PassWord + "' , '" + m.Balance + "' , '" + m.Login + "')",
-                    connection);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance) " +
+                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance)",connection);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("Name", m.Name);
+                cmd.Parameters.AddWithValue("FirstName", m.FirstName);
+                cmd.Parameters.AddWithValue("Tel", m.Tel);
+                cmd.Parameters.AddWithValue("Login", m.Login);
+                cmd.Parameters.AddWithValue("PassWord", m.PassWord);
+                cmd.Parameters.AddWithValue("Balance", m.Balance);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
-        return false;
+        return true;
     }
-    public override bool Update(Member obj)
+    public override bool Update(Member m)
     {
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("update dbo.Vehicle set nbrPlacesmembers = @nbrMember, nbrPlacesBikes = @nbrBike WHERE idVehicle = @id",
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, login = @Login, passWord = @PassWord, balance = @Balance WHERE idMember = @idMember",
                     connection);
-                cmd.Parameters.AddWithValue("id", obj.IdVehicle);
-                cmd.Parameters.AddWithValue("nbrMember", obj.NbrPlacesMembers);
-                cmd.Parameters.AddWithValue("nbrBike", obj.NbrPlacesBikes);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("Name", m.Name);
+                cmd.Parameters.AddWithValue("FirstName", m.FirstName);
+                cmd.Parameters.AddWithValue("Tel", m.Tel);
+                cmd.Parameters.AddWithValue("Login", m.Login);
+                cmd.Parameters.AddWithValue("PassWord", m.PassWord);
+                cmd.Parameters.AddWithValue("Balance", m.Balance);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
-        return false;*/
-        return false;
+        return true;
     }
     public override bool Delete(Member m)
     {
-        /*try
+        try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @id ", connection);
-                cmd.Parameters.AddWithValue("id", m.Id);
-                if (m.Id == 0)
-                {
-                    throw new Exception("No member deleted");
-                }
-                else
-                {
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                }
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
-        }*/
-        return false;
+            return false;
+            throw new Exception(e.Message);
+        }
+
+        return true;
     }
     public override Member Find(int id)
     {
@@ -146,6 +150,9 @@ internal class MemberDAO : DAO<Member>
                 {
                     if (reader.Read())
                     {
+                        CategoryDAO categoryDAO = new CategoryDAO();
+                        BikeDAO bikeDAO = new BikeDAO();
+                        InscriptionDAO inscriptionDAO = new InscriptionDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
                             reader.GetString("name"),
@@ -155,6 +162,9 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("password"),
                             reader.GetDouble("balance")
                             );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
                     }
                 }
             }
@@ -165,10 +175,9 @@ internal class MemberDAO : DAO<Member>
         }
         return member;
     }
-
-    /*public List<Member> FindAll()
+    public List<Member> GetAllMembers()
     {
-        List<Member> listMember = new List<Member>();
+        List<Member> members = new List<Member>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
@@ -177,89 +186,31 @@ internal class MemberDAO : DAO<Member>
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    CategoryDAO categoryDAO = new CategoryDAO();
+                    BikeDAO bikeDAO = new BikeDAO();
                     while (reader.Read())
                     {
-                        Member mem = new Member
-                        {
-                            Id = reader.GetInt32("idMember"),
-                            Name = reader.GetString("name"),
-                            FirstName = reader.GetString("firstName"),
-                            Tel = reader.GetInt32("tel"),
-                            Login = reader.GetString("login"),
-                            PassWord = reader.GetString("passWord"),
-                            Balance = reader.GetDouble("balance"),
-                            Categories = new List<Category>(),
-                            Bikes = new List<Bike>()
-                        };
-                        listMember.Add(mem);
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        /*member.Inscriptions = InscriptionsDAO.FindAllByMember(member);*/
+                        members.Add(member);
                     }
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
-        return listMember;
+        return members;
     }
-    public bool Add(int idMember, int idCategory)
-    {
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.infoCatMember " +
-                    "(idMember,idCategory) " +
-                    "values('" + idMember + "' , '" + idCategory + "' )",
-                    connection);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-        catch (SqlException)
-        {
-            throw new Exception("Une erreur sql s'est produite!");
-        }
-        return false;
-    }
-    public Member LoginCheck(string login, string password)
-    {
-        Member member = null;
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-
-                SqlCommand cmd = new SqlCommand("Select *  from dbo.Member where passWord = @pw and login = @login",
-                    connection);
-                cmd.Parameters.AddWithValue("pw", password);
-                cmd.Parameters.AddWithValue("login", login);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        member = new Member
-                        {
-                            Id = reader.GetInt32("idMember"),
-                            Name = reader.GetString("name"),
-                            FirstName = reader.GetString("firstName"),
-                            Tel = reader.GetInt32("tel"),
-                            Login = reader.GetString("login"),
-                            PassWord = reader.GetString("passWord"),
-                            Balance = reader.GetDouble("balance"),
-                            Categories = new List<Category>(),
-                            Bikes = new List<Bike>()
-                        };
-                    }
-                }
-            }
-        }
-        catch (SqlException)
-        {
-            throw new Exception("Une erreur sql s'est produite!");
-        }
-        return member;
-    }*/
 }
