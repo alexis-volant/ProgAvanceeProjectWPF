@@ -53,6 +53,18 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             addBike.Show();
         }
+        private void UpdateBikeBtn(object sender, RoutedEventArgs e)
+        {
+            UpdateBike updateBike = new UpdateBike(member, (sender as FrameworkElement).DataContext as Bike);
+
+            updateBike.Closed += (ss, ee) =>
+            {
+                List<Bike> bikes = bike.GetBikesByMember(member);
+                BikesGrid.ItemsSource = bikes;
+            };
+
+            updateBike.Show();
+        }
 
         
 

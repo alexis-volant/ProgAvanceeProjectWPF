@@ -42,7 +42,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
         private void AddBikeValidation(object sender, RoutedEventArgs e)
         {
             string AddBikeType;
-            double AddBikeWeigth;
+            double AddBikeWeight;
             double AddBikeLength;
 
             if (AddType.Equals(""))
@@ -54,11 +54,11 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
 
             AddBikeType = AddType.Text;
 
-            AddBikeWeigth = AddWeigth.Text.Length == 0 ? 0 : Convert.ToDouble(AddWeigth.Text);
+            AddBikeWeight = AddWeight.Text.Length == 0 ? 0 : Convert.ToDouble(AddWeight.Text);
 
             AddBikeLength = AddLength.Text.Length == 0 ? 0 : Convert.ToDouble(AddLength.Text);
 
-            bool addStatus = bike.AddBike(AddBikeType, AddBikeWeigth, AddBikeLength, member);
+            bool addStatus = bike.AddBike(AddBikeType, AddBikeWeight, AddBikeLength, member);
 
             if (addStatus)
             {

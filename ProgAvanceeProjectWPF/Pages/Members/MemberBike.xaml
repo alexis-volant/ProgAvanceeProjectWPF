@@ -19,18 +19,18 @@
                 <DataGridTemplateColumn Header="Modifier">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="Update" Content="Modifier"/>
+                            <Button Click="UpdateBikeBtn" Content="Modifier"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                  </DataGridTemplateColumn>
                 
-                <DataGridTemplateColumn Header="Supprimer">
+                <!--<DataGridTemplateColumn Header="Supprimer">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="Delete" Content="Supprimer"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
 
