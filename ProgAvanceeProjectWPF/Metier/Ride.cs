@@ -130,14 +130,14 @@ public class Ride
         return rides;
     }
 
-    public List<Ride> GetRidesByMember(Member member)
-    {
-        RideDAO dao = new RideDAO();
+    //public List<Ride> GetRidesByMember(Member member)
+    //{
+    //    RideDAO dao = new RideDAO();
 
-        List<Ride> rides = dao.FindByMember(member);
+    //    List<Ride> rides = dao.FindByMember(member);
 
-        return rides;
-    }
+    //    return rides;
+    //}
     
     public List<Ride> GetRidesByCategory(int numCategory)
     {

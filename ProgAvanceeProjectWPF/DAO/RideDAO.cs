@@ -123,42 +123,42 @@ internal class RideDAO : DAO<Ride>
         return rides;
     }
 
-    public List<Ride> FindByMember(Member member)
-    {
-        List<Ride> rides = new List<Ride>();
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * from dbo.Ride R join dbo.Inscription I " +
-                    "on R.numRide = I.numRide join dbo.Member M on I.idMember = M.idMember where M.idMember = @id", connection);
-                cmd.Parameters.AddWithValue("id", member.Id);
+    //public List<Ride> FindByMember(Member member)
+    //{
+    //    List<Ride> rides = new List<Ride>();
+    //    try
+    //    {
+    //        using (SqlConnection connection = new SqlConnection(this.connectionString))
+    //        {
+    //            SqlCommand cmd = new SqlCommand("SELECT * from dbo.Ride R join dbo.Inscription I " +
+    //                "on R.numRide = I.numRide join dbo.Member M on I.idMember = M.idMember where M.idMember = @id", connection);
+    //            cmd.Parameters.AddWithValue("id", member.Id);
                 
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    CategoryDAO categoryDAO = new CategoryDAO();
-                    while (reader.Read())
-                    {
-                        Ride ride = new Ride
-                        (
-                            reader.GetInt32("num"),
-                            reader.GetString("placeDeparture"),
-                            reader.GetDateTime("dateDeparture"),
-                            reader.GetDouble("packageFee"),
-                            categoryDAO.Find(reader.GetInt32("numCategory"))
+    //            connection.Open();
+    //            using (SqlDataReader reader = cmd.ExecuteReader())
+    //            {
+    //                CategoryDAO categoryDAO = new CategoryDAO();
+    //                while (reader.Read())
+    //                {
+    //                    Ride ride = new Ride
+    //                    (
+    //                        reader.GetInt32("num"),
+    //                        reader.GetString("placeDeparture"),
+    //                        reader.GetDateTime("dateDeparture"),
+    //                        reader.GetDouble("packageFee"),
+    //                        categoryDAO.Find(reader.GetInt32("numCategory"))
                             
-                        );
-                        rides.Add(ride);
-                    }
-                }
-            }
-        }
-        catch (SqlException e)
-        {
-            throw new Exception(e.Message);
+    //                    );
+    //                    rides.Add(ride);
+    //                }
+    //            }
+    //        }
+    //    }
+    //    catch (SqlException e)
+    //    {
+    //        throw new Exception(e.Message);
 
-        }
-        return rides;
-    }
+    //    }
+    //    return rides;
+    //}
 }

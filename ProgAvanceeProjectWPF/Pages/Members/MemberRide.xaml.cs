@@ -28,17 +28,12 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             InitializeComponent();
             this.member = m;
 
-            List<string> CatNamelist = new List<string>();
-            List<Category> categories = category.GetCategoriesByMember(m);
-            foreach (Category c in categories)
+            List<string> CatNamelist = new List<string>(); 
+            foreach (Category c in m.Categories)
             {
                 CatNamelist.Add(c.NameCategory);
             }
             CatChoice.ItemsSource = CatNamelist;
-
-
-
-            
         }
 
         private void CatChoice_SelectionChanged(object sender, RoutedEventArgs e)
