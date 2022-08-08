@@ -49,40 +49,10 @@ internal class CategoryDAO : DAO<Category>
         return category;
     }
 
-    public Category FindByName(string name)
-    {
-        Category category = null;
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category WHERE nameCategory = @nameCategory", connection);
-                cmd.Parameters.AddWithValue("nameCategory", name);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        category = new Category(
-                            reader.GetInt32("numCategory"),
-                            reader.GetString("nameCategory")
-                            );
-                    }
-                }
-            }
-        }
-        catch (SqlException e)
-        {
-            throw new Exception(e.Message);
-        }
-        return category;
-    }
-
     public List<Category> FindWOResponsible()
     {
         List<Category> categories = new List<Category>();
-        List<Category> numCategory = new List<Category>();
-        List<Category> results = new List<Category>();
+        List<Category> catWithResp = new List<Category>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
@@ -93,7 +63,7 @@ internal class CategoryDAO : DAO<Category>
                 {
                     while (reader.Read())
                     {
-                        numCategory.Add(Find(reader.GetInt32("numCategory")));
+                        catWithResp.Add(Find(reader.GetInt32("numCategory")));
                     }
                 }
                 
@@ -110,15 +80,10 @@ internal class CategoryDAO : DAO<Category>
                     }
                 }
                 connection.Close();
-
-                results = categories;
-
-                foreach(Category numCat in numCategory)
+                
+                foreach (Category cat in catWithResp)
                 {
-                    if (categories.Contains(numCat))
-                    {
-                        results.Remove(numCat);
-                    }
+                    categories.RemoveAll(c => c.Num == cat.Num);
                 }
             }
         }
@@ -148,23 +113,6 @@ internal class CategoryDAO : DAO<Category>
                         idCategories.Add(reader.GetInt32("numCategory"));
                     }
                 }
-
-                /*cmd = new SqlCommand("SELECT * FROM dbo.Category WHERE numCategory = @numCategory", connection);
-                cmd.Parameters.AddWithValue("id", member.Id);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Category cat = new Category
-                        (
-                            reader.GetInt32("numCategory"),
-                            reader.GetString("nameCategory")
-                        );
-                        categories.Add(cat);
-                    }
-                }*/
-
             }
         }
         catch (SqlException e)

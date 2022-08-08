@@ -1,0 +1,26 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.ResponsibleWindows.UpdateResponsible"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.ResponsibleWindows"
+        mc:Ignorable="d"
+        Title="UpdateResponsible" Height="250" Width="821">
+    <Grid Background="#2b2a33">
+        <Grid x:Name="UpdateGrid" Height="224" VerticalAlignment="Top" HorizontalAlignment="Left" Width="807">
+            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdateName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdateFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="UpdateTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="UpdateLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
+            <TextBox x:Name="UpdatePassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Button Click="UpdateValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="UpdateDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        </Grid>
+    </Grid>
+</Window>

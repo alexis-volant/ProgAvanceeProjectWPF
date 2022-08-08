@@ -28,40 +28,29 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         private void AddRideButton(object sender, RoutedEventArgs e)
         {
             AddRide addRide = new AddRide(r);
-            addRide.Closed += (ss, ee) =>
-            {
-                rides = selectedRide.GetRides(r.Category.Num);
-                ManagmentRideGrid.ItemsSource = rides;
-            };
-            addRide.Show();
+            RefreshGrid(addRide);
         }
-
         private void UpdateRide(object sender, RoutedEventArgs e)
         {
             selectedRide = (sender as FrameworkElement).DataContext as Ride;
-
             UpdateRide updateRide = new UpdateRide(selectedRide);
-            updateRide.Closed += (ss, ee) =>
-            {
-                rides = selectedRide.GetRides(r.Category.Num);
-                ManagmentRideGrid.ItemsSource = rides;
-            };
-            updateRide.Show();
+            RefreshGrid(updateRide);
         }
-
         private void DeleteRide(object sender, RoutedEventArgs e)
         {
             selectedRide = (sender as FrameworkElement).DataContext as Ride;
-
             DeleteRide deleteRide = new DeleteRide(selectedRide);
-            deleteRide.Closed += (ss, ee) =>
+            RefreshGrid(deleteRide);
+        }
+        public void RefreshGrid(Window win)
+        {
+            win.Closed += (ss, ee) =>
             {
                 rides = selectedRide.GetRides(r.Category.Num);
                 ManagmentRideGrid.ItemsSource = rides;
             };
-            deleteRide.Show();
+            win.Show();
         }
-        
 
         private void BackButton(object sender, RoutedEventArgs e)
         {

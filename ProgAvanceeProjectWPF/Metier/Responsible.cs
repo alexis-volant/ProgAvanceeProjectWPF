@@ -5,6 +5,7 @@ public class Responsible : Person
 {
     private Category? category;
 
+    ResponsibleDAO dao = new ResponsibleDAO();
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
 
     public Responsible()
@@ -23,18 +24,20 @@ public class Responsible : Person
         set { category = value; }
     }
 
+    public int CountResponsibles()
+    {
+        return dao.CountResponsibles();
+    }
+
     public List<Responsible> GetAllResponsibles()
     {
-        ResponsibleDAO dao = new ResponsibleDAO();
         return dao.GetAllResponsibles();
     }
 
     public bool AddResponsible(string AddName, string AddFirstName, string AddTelephone, string AddLogin, string AddPassWord, Category AddCategory)
     {
         DAO<Responsible> responsibleDAO = adf.GetResponsibleDAO();
-
         Responsible r = new Responsible(Guid.NewGuid(), AddName, AddFirstName, AddTelephone, AddLogin, AddPassWord, AddCategory);
-
         return responsibleDAO.Create(r);
     }
     
@@ -54,14 +57,11 @@ public class Responsible : Person
     public bool DeleteResponsible(Responsible r)
     {
         DAO<Responsible> responsibleDAO = adf.GetResponsibleDAO();
-
         return responsibleDAO.Delete(r);
     }
 
     public Responsible loginCheck(string login, string password)
     {
-        ResponsibleDAO dao = new ResponsibleDAO();
-           
         return dao.loginCheck(login, password);
     }
 }

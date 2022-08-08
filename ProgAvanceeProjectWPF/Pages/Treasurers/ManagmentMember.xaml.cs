@@ -22,7 +22,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         Treasurer t = new Treasurer();
         Member member = new Member();
         List<Member> members = new List<Member>();
-        Member selectedMember = new Member();
 
         public ManagmentMember(Treasurer t)
         {
@@ -35,38 +34,28 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         private void AddMemberButton(object sender, RoutedEventArgs e)
         {
             AddMember addMember = new AddMember();
-            addMember.Closed += (ss, ee) =>
+            RefreshGrid(addMember);
+        }
+        private void UpdateMember(object sender, RoutedEventArgs e)
+        {
+            member = (sender as FrameworkElement).DataContext as Member;
+            UpdateMember updateMember = new UpdateMember(member);
+            RefreshGrid(updateMember);
+        }
+        private void DeleteMember(object sender, RoutedEventArgs e)
+        {
+            member = (sender as FrameworkElement).DataContext as Member;
+            DeleteMember deleteMember = new DeleteMember(member);
+            RefreshGrid(deleteMember);
+        }
+        public void RefreshGrid(Window win)
+        {
+            win.Closed += (ss, ee) =>
             {
                 members = member.GetAllMembers();
                 ManagmentMemberGrid.ItemsSource = members;
             };
-            addMember.Show();
-        }
-
-        private void UpdateMember(object sender, RoutedEventArgs e)
-        {
-            selectedMember = (sender as FrameworkElement).DataContext as Member;
-
-            UpdateMember updateMember = new UpdateMember(selectedMember);
-            updateMember.Closed += (ss, ee) =>
-            {
-                members = selectedMember.GetAllMembers();
-                ManagmentMemberGrid.ItemsSource = members;
-            };
-            updateMember.Show();
-        }
-        
-        private void DeleteMember(object sender, RoutedEventArgs e)
-        {
-            selectedMember = (sender as FrameworkElement).DataContext as Member;
-
-            DeleteMember deleteMember = new DeleteMember(selectedMember);
-            deleteMember.Closed += (ss, ee) =>
-            {
-                members = selectedMember.GetAllMembers();
-                ManagmentMemberGrid.ItemsSource = members;
-            };
-            deleteMember.Show();
+            win.Show();
         }
 
         private void BackButton(object sender, RoutedEventArgs e)

@@ -39,13 +39,6 @@ public class Category
         return dao.Find(numCategory);
     }
 
-    public Category GetCategoryByName(string nameCategory)
-    {
-        CategoryDAO dao = new CategoryDAO();
-
-        return dao.FindByName(nameCategory);
-    }
-
     public List<Category> GetAllWOResponsible()
     {
         CategoryDAO dao = new CategoryDAO();
