@@ -66,20 +66,8 @@ internal class CategoryDAO : DAO<Category>
                         catWithResp.Add(Find(reader.GetInt32("numCategory")));
                     }
                 }
-                
-                cmd = new SqlCommand("SELECT * from dbo.Category", connection);
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Category cat = new Category(
-                            reader.GetInt32("numCategory"),
-                            reader.GetString("nameCategory")
-                            );
-                        categories.Add(cat);
-                    }
-                }
-                connection.Close();
+
+                categories = GetAllCategory();
                 
                 foreach (Category cat in catWithResp)
                 {
@@ -119,6 +107,40 @@ internal class CategoryDAO : DAO<Category>
         {
             throw new Exception(e.Message);
         }
+        return categories;
+    }
+
+    public List<Category> GetAllCategory()
+    {
+        List<Category> categories = new List<Category>();
+        Category cat = new Category();
+        List<Member> members = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    MemberDAO memberDAO = new MemberDAO();
+                    while (reader.Read())
+                    {
+                        cat = new Category(
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                            );
+                        cat.Members = memberDAO.FindByCategory(reader.GetInt32("numCategory"));
+                        categories.Add(cat);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+
         return categories;
     }
 }

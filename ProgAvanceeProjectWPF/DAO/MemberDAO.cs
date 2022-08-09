@@ -188,6 +188,7 @@ internal class MemberDAO : DAO<Member>
                 {
                     CategoryDAO categoryDAO = new CategoryDAO();
                     BikeDAO bikeDAO = new BikeDAO();
+                    InscriptionDAO inscriptionDAO = new InscriptionDAO();
                     while (reader.Read())
                     {
                         Member member = new Member(
@@ -201,7 +202,49 @@ internal class MemberDAO : DAO<Member>
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
-                        /*member.Inscriptions = InscriptionsDAO.FindAllByMember(member);*/
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        members.Add(member);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return members;
+    }
+    public List<Member> FindByCategory(int numCategory)
+    {
+        List<Member> members = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member M " +
+                    "join dbo.CategoryMember CM on M.idMember = CM.idMember " +
+                    "WHERE CM.numCategory = @numCategory", connection);
+                cmd.Parameters.AddWithValue("numCategory", numCategory);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    CategoryDAO categoryDAO = new CategoryDAO();
+                    BikeDAO bikeDAO = new BikeDAO();
+                    InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
                         members.Add(member);
                     }
                 }

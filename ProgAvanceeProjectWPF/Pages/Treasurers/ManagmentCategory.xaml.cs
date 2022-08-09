@@ -18,9 +18,26 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     /// </summary>
     public partial class ManagmentCategory : Page
     {
+        Category cat = new Category();
+        List<Category> categories = new List<Category>();
+        List<string> CMBoxCat = new List<string>();
         public ManagmentCategory()
         {
             InitializeComponent();
+            categories = cat.GetAllCategory();
+            foreach(Category c in categories)
+            {
+                CMBoxCat.Add(c.NameCategory);
+            }
+            CMCategory.ItemsSource = CMBoxCat;
+        }
+
+
+
+        private void BackButton(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.GoBack();
         }
     }
 }

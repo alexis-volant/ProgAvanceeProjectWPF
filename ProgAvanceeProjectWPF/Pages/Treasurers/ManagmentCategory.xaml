@@ -9,7 +9,17 @@
       Title="ManagmentCategory">
 
     <Grid>
-        
+        <ComboBox x:Name="CMCategory" Margin="71,63,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="218"></ComboBox>
+        <Grid Margin="42,0,0,0" Height="364" VerticalAlignment="Center" HorizontalAlignment="Left" Width="581">
+            <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="CategoryMemberGrid" AutoGenerateColumns="false" Height="352" VerticalAlignment="Center" HorizontalAlignment="Center" Width="520">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="N° téléphone" Binding="{Binding Tel}"/>
+                    <DataGridTextColumn Header="Solde" Binding="{Binding Balance}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
         <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d" Margin="877,491,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>
