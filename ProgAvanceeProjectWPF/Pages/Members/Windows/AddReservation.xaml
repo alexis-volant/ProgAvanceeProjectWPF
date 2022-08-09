@@ -15,10 +15,17 @@
                     <DataGridTextColumn Header="Conducteur" Binding="{Binding Type}"/>
                     <DataGridTextColumn Header="Place passager resante" Binding="{Binding Weight}"/>
                     <DataGridTextColumn Header="Place velo resante" Binding="{Binding Length}"/>
+                    <DataGridTemplateColumn Header="Choissir">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="VehiculeChoice" Content="Choisir voiture"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!--<CheckBox Foreground="White" Checked="passengerChecked" Unchecked="passengerChecked" Name="checkBoxPassenger" Content="Je propose un covoiturage" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>-->
-            
+            <Button Click="AddCoVehicule" Content="Proposer un covoiturage" Foreground="White" FontSize="24" Background="#42414d"  Margin="10,250,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="279"></Button>
+
             <!--<Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>-->
         </Grid>
     </Grid>

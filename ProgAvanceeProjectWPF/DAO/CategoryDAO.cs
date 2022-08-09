@@ -110,10 +110,10 @@ internal class CategoryDAO : DAO<Category>
                     while (reader.Read())
                     {
                         Category cat = new Category
-                        {
-                            Num = reader.GetInt32("numCategory"),
-                            NameCategory = reader.GetString("nameCategory")
-                        };
+                        (
+                            reader.GetInt32("numCategory"),
+                            reader.GetString("nameCategory")
+                        );
                         categories.Add(cat);
                     }
                 }

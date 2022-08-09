@@ -21,8 +21,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
         public AddReservation(Member m, Ride r)
         {
             InitializeComponent();
-            this.ride = r; 
-            
+            this.ride = r;
+
+            VehiculeGrid.ItemsSource = ride.Vehicles;
+
         }
     }
 }
