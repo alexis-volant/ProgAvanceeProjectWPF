@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,7 +33,17 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             CMCategory.ItemsSource = CMBoxCat;
         }
 
+        private void CMCategory_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            List<Member> members = categories[CMCategory.SelectedIndex].Members;
 
+            CategoryMemberGrid.ItemsSource = members;
+        }
+
+        private void DeleteMember(object sender, RoutedEventArgs e)
+        {
+            Member member = (sender as FrameworkElement).DataContext as Member;
+        }
 
         private void BackButton(object sender, RoutedEventArgs e)
         {
