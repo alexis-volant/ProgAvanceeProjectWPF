@@ -256,4 +256,26 @@ internal class MemberDAO : DAO<Member>
         }
         return members;
     }
+
+    public bool AddMemberCategory(Category category,Member member)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.CategoryMember (numCategory,idMember) " +
+                    "values(@numCategory, @idMember)", connection);
+                cmd.Parameters.AddWithValue("idMember", member.Id);
+                cmd.Parameters.AddWithValue("numCategory", category.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException)
+        {
+            throw new Exception("Une erreur sql s'est produite!");
+        }
+        return true;
+    }
 }

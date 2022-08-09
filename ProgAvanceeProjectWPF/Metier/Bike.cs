@@ -10,6 +10,18 @@ public class Bike
     private Member member;
     private List<Inscription> inscriptions = new List<Inscription>();
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+    public Bike() { }
+    public Bike(Guid idBike, double weight, string type, double length, Member member)
+    {
+        this.idBike = idBike;
+        this.weight = weight;
+        this.type = type;
+        this.length = length;
+        this.member = member;
+      
+    }  
+    
     public Bike(Guid idBike, double weight, string type, double length)
     {
         this.idBike = idBike;
@@ -17,6 +29,7 @@ public class Bike
         this.type = type;
         this.length = length;
     }
+   
 
     public Guid IdBike
     {
@@ -54,13 +67,64 @@ public class Bike
         set { inscriptions = value; }
     }
 
-    public List<Bike> GetAllBikes()
+    public bool CreateBike(string cat, double weigth, double length, Member member)
     {
-        BikeDAO dao = new BikeDAO();
+        DAO<Bike> bikeDAO = adf.GetBikeDAO();
+        Bike bike = new Bike(Guid.NewGuid(), weigth, cat, length, member);
 
-        List<Bike> bikes = dao.FindAll();
-
-        return bikes;
+        if(bikeDAO.Create(bike))
+        {
+            member.AddBike(bike);
+            return true; 
+        }
+        else
+        {
+            return false;
+        }
     }
+
+    public bool UpdateBike(Bike b, string cat, double weigth, double length)
+    {
+        DAO<Bike> bikeDAO = adf.GetBikeDAO();
+
+        b.type = cat;
+        b.weight = weigth;
+        b.length = length;
+
+        if (bikeDAO.Update(b))
+        {
+            member.UpdateBike(b);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool DeleteBike(Bike b)
+    {
+        DAO<Bike> bikeDAO = adf.GetBikeDAO();
+
+        if (bikeDAO.Delete(b))
+        {
+            member.DeleteBike(b);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+       
+    }
+
+    //public List<Bike> GetBikesByMember(Member member)
+    //{
+    //    BikeDAO dao = new BikeDAO();
+
+    //    List<Bike> bikes = dao.FindBikesByMember(member);
+
+    //    return bikes;
+    //}
 
 }

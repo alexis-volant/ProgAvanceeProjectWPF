@@ -1,0 +1,42 @@
+﻿<Page x:Class="ProgAvanceeProjectWPF.Pages.Members.MemberBike"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MemberBike">
+
+    <Grid>
+        <Label Content="Gestion des velos" HorizontalAlignment="Left" Height="29" Margin="151,30,0,0" VerticalAlignment="Top" Width="128" Foreground="White"/>
+        <DataGrid Name="BikesGrid" AutoGenerateColumns="false"  Margin="54,69,0,0" Height="253" VerticalAlignment="Top" HorizontalAlignment="Left" Width="441">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Poids" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Longueur" Binding="{Binding Length}"/>
+                <DataGridTemplateColumn Header="Modifier">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="UpdateBikeBtn" Content="Modifier"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                 </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Supprimer">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DeleteBikeBtn" Content="Supprimer"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Ajouter un nouveau velo" HorizontalAlignment="Left" Height="65" Margin="523,120,0,0" VerticalAlignment="Top" Width="160" Click="AddBikeBtn"/>
+
+        <Button Content="retour" HorizontalAlignment="Left" Margin="745,388,0,0" VerticalAlignment="Top" Click="ReturnBtn"/>
+
+    </Grid>
+</Page>

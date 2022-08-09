@@ -9,6 +9,7 @@ public class Category
     CategoryDAO dao = new CategoryDAO();
 
     public Category() { }
+    
 
     public Category(int num, string nameCategory)
     {
@@ -44,8 +45,14 @@ public class Category
         return dao.FindWOResponsible();
     }
 
-    public List<Category> GetAllCategory()
+    public List<Category> GetAllCategories()
     {
-        return dao.GetAllCategory();
+
+        CategoryDAO dao = new CategoryDAO();
+
+        List<Category> categories = dao.FindAll();
+
+        return categories;
+        
     }
 }

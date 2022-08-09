@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Member : Person
 {
@@ -94,5 +95,27 @@ public class Member : Person
     {
         MemberDAO dao = new MemberDAO();
         return dao.loginCheck(login, password);
+    }
+
+    public void AddBike(Bike bike)
+    {
+        this.bikes.Add(bike);
+    }
+    public void UpdateBike(Bike bike)
+    {
+        var updatedBikeIndex = this.bikes.FindIndex(x => x.IdBike == bike.IdBike);
+        bikes[updatedBikeIndex]= bike;
+    }
+    public void DeleteBike(Bike bike)
+    {
+        this.bikes.Remove(bike);
+    }
+
+    public bool AddCategory(Category category, Member member)
+    {
+        MemberDAO dao = new MemberDAO();
+        dao.AddMemberCategory(category, member);
+        this.Categories.Add(category);
+        return true;
     }
 }

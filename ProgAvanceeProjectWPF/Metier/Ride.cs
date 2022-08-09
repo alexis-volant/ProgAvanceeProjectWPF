@@ -8,6 +8,7 @@ public class Ride
     private DateTime dateDeparture;
     private double packageFee;
     private Category category;
+    private List<Vehicle> vehicles;
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
 
@@ -53,6 +54,12 @@ public class Ride
     {
         get { return category; }
         set { category = value; }
+    }
+
+    public List<Vehicle> Vehicles
+    {
+        get { return vehicles; }
+        set { vehicles = value; }
     }
 
     public void addParticipant()
@@ -129,4 +136,25 @@ public class Ride
 
         return rides;
     }
+
+    //public List<Ride> GetRidesByMember(Member member)
+    //{
+    //    RideDAO dao = new RideDAO();
+
+    //    List<Ride> rides = dao.FindByMember(member);
+
+    //    return rides;
+    //}
+    
+    public List<Ride> GetRidesByCategory(int numCategory)
+    {
+        RideDAO dao = new RideDAO();
+
+        List<Ride> rides = dao.FindByCategory(numCategory);
+
+        return rides;
+    }
+
+    
+
 }

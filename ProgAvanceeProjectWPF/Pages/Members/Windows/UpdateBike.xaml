@@ -1,0 +1,22 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Members.Windows.UpdateBike"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows"
+        mc:Ignorable="d"
+        Title="UpdateBike" Height="300" Width="600">
+    <Grid Background="#2b2a33">
+        <Grid x:Name="AddBikeForm" Margin="9,11,0,4">
+            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Type" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <ComboBox x:Name="UpdateType" Background="#42414d" Foreground="Black" FontSize="20" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Poids" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <TextBox x:Name="UpdateWeight" Background="#42414d" FontSize="20" Margin="209,108,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" />
+            <Label Content="Longueur" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <TextBox x:Name="UpdateLength" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Button Click="UpdateBikeValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <!--<Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>-->
+        </Grid>
+    </Grid>
+</Window>
