@@ -19,14 +19,12 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     /// </summary>
     public partial class ManagmentResponsible : Page
     {
-        Treasurer t = new Treasurer();
         List<Responsible> responsibles = new List<Responsible>();
         Responsible responsible = new Responsible();
         
-        public ManagmentResponsible(Treasurer t)
+        public ManagmentResponsible()
         {
             InitializeComponent();
-            this.t = t;
             responsibles = responsible.GetAllResponsibles();
             ManagmentResponsibleGrid.ItemsSource = responsibles;
         }
