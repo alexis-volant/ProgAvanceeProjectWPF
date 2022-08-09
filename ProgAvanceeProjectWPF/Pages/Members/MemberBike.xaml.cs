@@ -25,16 +25,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
         Category category = new Category();
 
-
-
         public MemberBike(Member m)
         {
             InitializeComponent();
 
             this.member = m;
 
-            List<Bike> bikes = bike.GetBikesByMember(m);
-            BikesGrid.ItemsSource = bikes;
+            BikesGrid.ItemsSource = member.Bikes;
 
             
             //System.Diagnostics.Debug.WriteLine($"Resp : {m.Name}");
@@ -44,14 +41,12 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         private void AddBikeBtn(object sender, RoutedEventArgs e)
         {
             AddBike addBike = new AddBike(member);
+            addBike.Show();
 
             addBike.Closed += (ss, ee) =>
             {
-                List<Bike> bikes = bike.GetBikesByMember(member);
-                BikesGrid.ItemsSource = bikes;
+                BikesGrid.ItemsSource = member.Bikes;
             };
-
-            addBike.Show();
         }
         private void UpdateBikeBtn(object sender, RoutedEventArgs e)
         {
@@ -59,16 +54,22 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             updateBike.Closed += (ss, ee) =>
             {
-                List<Bike> bikes = bike.GetBikesByMember(member);
-                BikesGrid.ItemsSource = bikes;
+                BikesGrid.ItemsSource = member.Bikes;
             };
 
             updateBike.Show();
         }
+        private void DeleteBikeBtn(object sender, RoutedEventArgs e)
+        {
+            DeleteBike deleteBike = new DeleteBike((sender as FrameworkElement).DataContext as Bike);
 
-        
+            deleteBike.Closed += (ss, ee) =>
+            {
+                BikesGrid.ItemsSource = member.Bikes;
+            };
 
-       
+            deleteBike.Show();
+        }
 
     private void ReturnBtn(object sender, RoutedEventArgs e)
         {

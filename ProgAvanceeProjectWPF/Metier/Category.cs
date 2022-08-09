@@ -7,9 +7,7 @@ public class Category
     private List<Member> members = new List<Member>();
 
     public Category() { }
-    public Category()
-    {
-    }
+    
 
     public Category(int num, string nameCategory)
     {
@@ -57,15 +55,17 @@ public class Category
         List<Category> categories = dao.FindAll();
 
         return categories;
+        
     }
     public List<Category> GetCategoriesByMember(Member m)
     {
 
-        CategoryDAO dao = new CategoryDAO();
+        //CategoryDAO dao = new CategoryDAO();
 
-        List<Category> categories = dao.FindByMember(m);
+        //List<Category> categories = dao.FindByMember(m);
 
-        return categories;
+        //return categories;
+        return null;
     }
 
 

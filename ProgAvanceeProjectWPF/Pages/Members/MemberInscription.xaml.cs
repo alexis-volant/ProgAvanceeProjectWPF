@@ -17,19 +17,20 @@ namespace ProgAvanceeProjectWPF.Pages.Members
     /// <summary>
     /// Interaction logic for MemberRide.xaml
     /// </summary>
-    public partial class MemberRide : Page
+    public partial class MemberInscription : Page
     {
         List<Ride> rides = new List<Ride>();
         Ride ride = new Ride();
         Member member = new Member();
         Category category = new Category();
-        public MemberRide(Member m)
+        public MemberInscription(Member m)
         {
             InitializeComponent();
+
             this.member = m;
 
             List<string> CatNamelist = new List<string>(); 
-            foreach (Category c in m.Categories)
+            foreach (Category c in member.Categories)
             {
                 CatNamelist.Add(c.NameCategory);
             }
@@ -61,6 +62,42 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
         private void RideInscription(object sender, RoutedEventArgs e)
         {
+            Ride selectedRide = new Ride();
+        }
+
+        private void AddMemberCategory(object sender, RoutedEventArgs e)
+        {
+            Category newCategory = new Category();
+
+            if (CatChoice.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez choisir une catégorie");
+
+            }
+            else
+            {
+                newCategory = (Category)CatChoice.SelectedItem;
+                //Why
+                if (member.Categories.Contains(newCategory))
+                {
+                    MessageBox.Show("vous êtes déjà dans cette catégorie");
+                    this.Close();
+                }
+                else
+                {
+                    bool addStatus = member.AddCategory(newCategory, member);
+
+                    if (addStatus)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur dans l'ajout de la catégorie");
+                        this.Close();
+                    }
+                }
+            
 
         }
     }

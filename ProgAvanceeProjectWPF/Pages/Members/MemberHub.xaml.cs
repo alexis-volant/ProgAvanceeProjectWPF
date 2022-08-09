@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProgAvanceeProjectWPF.Pages.Members.Windows;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,26 +22,58 @@ namespace ProgAvanceeProjectWPF.Pages.Members
  
     public partial class MemberHub : Page
     {
-        Member m = new Member();
+        Member member = new Member();
 
         Ride ride = new Ride();
         public MemberHub(Member m)
         {
             InitializeComponent();
-            this.m = m;
-            List<Ride> rides = ride.GetRidesByMember(m);
+            this.member = m;
+            List<Ride> rides = new List<Ride>();
+            foreach (Inscription insc in member.Inscriptions)
+            {
+                rides.Add(insc.Ride);
+            }
             RidesGrid.ItemsSource = rides;
+
+            ListView listViewCat = new ListView();
+            if (member.Categories.Any())
+            {
+                foreach (Category cat in member.Categories)
+                {
+                    listViewCat.Items.Add(cat.NameCategory);
+                }
+
+                ListCat.Children.Add(listViewCat);
+            }
+            else
+            {
+                listViewCat.Items.Add("Pas de catégories");
+                ListCat.Children.Add(listViewCat);
+            }
+            
         }
-                
+
+        private void AddCategory(object sender, RoutedEventArgs e)
+        {
+            AddCategory addCategory = new AddCategory(member);
+            addCategory.Show();
+
+            addCategory.Closed += (ss, ee) =>
+            {
+                //BikesGrid.ItemsSource = member.Bikes;
+            };
+        }
+
         private void GoToMemberBikePage(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new MemberBike(m));
+            NavigationService.Navigate(new MemberBike(member));
         }
-        private void GoToMemberRidePage(object sender, RoutedEventArgs e)
+        private void GoToMemberInscriptionPage(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new MemberRide(m));
+            NavigationService.Navigate(new MemberInscription(member));
         }
    
     }

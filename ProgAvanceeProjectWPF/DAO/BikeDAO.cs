@@ -33,19 +33,70 @@ internal class BikeDAO : DAO<Bike>
         }
         return true;
     }
-    public override bool Update(Bike obj)
+    public override bool Update(Bike b)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Bike set weight = @Weight, length = @Length, type = @Type WHERE idBike = @idBike",
+                    connection);
+                cmd.Parameters.AddWithValue("idBike", b.IdBike);
+                cmd.Parameters.AddWithValue("weight", b.Weight);
+                cmd.Parameters.AddWithValue("length", b.Length);
+                cmd.Parameters.AddWithValue("type", b.Type);
+                if (b.IdBike.Equals(Guid.Empty) || b.IdBike.Equals(null))
+                {
+                    throw new Exception("Pas de velo trouvé");
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
-    public override bool Delete(Bike obj)
+    public override bool Delete(Bike b)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.Bike WHERE idBike = @idBike ", connection);
+                cmd.Parameters.AddWithValue("idBike", b.IdBike);
+                if (b.IdBike.Equals(Guid.Empty) || b.IdBike.Equals(null))
+                {
+                    throw new Exception("Pas de velo trouvé");
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+
+        return true;
     }
     public override Bike Find(int id)
     {
         return null;
     }
-    public List<Bike> FindBikesByMember(Member member)
+    public List<Bike> FindAllByMember(Member member)
     {
         List<Bike> bikes = new List<Bike>();
         try

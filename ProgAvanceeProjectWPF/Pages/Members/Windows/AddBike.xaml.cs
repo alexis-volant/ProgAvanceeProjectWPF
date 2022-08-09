@@ -58,7 +58,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
 
             AddBikeLength = AddLength.Text.Length == 0 ? 0 : Convert.ToDouble(AddLength.Text);
 
-            bool addStatus = bike.AddBike(AddBikeType, AddBikeWeight, AddBikeLength, member);
+            bool addStatus = bike.CreateBike(AddBikeType, AddBikeWeight, AddBikeLength, member);
 
             if (addStatus)
             {

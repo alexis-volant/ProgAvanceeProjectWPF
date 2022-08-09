@@ -10,15 +10,16 @@
 
     <Grid>
         <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="54" Margin="559,140,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberBikePage"/>
-        <Button Content="Gestion des categories" HorizontalAlignment="Left" Height="54" Margin="559,220,0,0" VerticalAlignment="Top" Width="167"/>
-        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="54" Margin="559,300,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberRidePage"/>
-        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="60,149,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="405">
+        <Button Content="Ajout de catégorie" HorizontalAlignment="Left" Height="54" Margin="415,216,0,0" VerticalAlignment="Top" Width="167" Click="AddCategory"/>
+        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="54" Margin="559,300,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberInscriptionPage"/>
+        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="60,149,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Jour" Binding="{Binding Type}"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Weight}"/>
-                
+
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel x:Name="ListCat" HorizontalAlignment="Left" Margin="262,200,0,0" VerticalAlignment="Top" Width="126" Height="118"/>
         <Label Content="Balades reservées" HorizontalAlignment="Left" Margin="210,113,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
     </Grid>
 </Page>
