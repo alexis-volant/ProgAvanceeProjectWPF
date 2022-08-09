@@ -36,6 +36,11 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             }
             RidesGrid.ItemsSource = rides;
 
+            AddListCatContent(); 
+        }
+
+        private void AddListCatContent()
+        {
             ListView listViewCat = new ListView();
             if (member.Categories.Any())
             {
@@ -51,7 +56,6 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 listViewCat.Items.Add("Pas de catégories");
                 ListCat.Children.Add(listViewCat);
             }
-            
         }
 
         private void AddCategory(object sender, RoutedEventArgs e)
@@ -61,7 +65,8 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             addCategory.Closed += (ss, ee) =>
             {
-                //BikesGrid.ItemsSource = member.Bikes;
+               ListCat.Children.Clear ();
+                AddListCatContent();
             };
         }
 

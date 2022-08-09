@@ -48,26 +48,31 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
             else
             {
                 newCategory = (Category)CatChoice.SelectedItem;
-                //Why
-                if (member.Categories.Contains(newCategory))
+                
+                foreach(Category cat in member.Categories)
                 {
-                    MessageBox.Show("vous êtes déjà dans cette catégorie");
+                    if (cat.Num == newCategory.Num)
+                    {
+                        MessageBox.Show("vous êtes déjà dans cette catégorie");
+                        
+                        this.Close();
+                        return;
+                    }
+
+                }
+                
+                bool addStatus = member.AddCategory(newCategory, member);
+
+                if (addStatus)
+                {
                     this.Close();
                 }
                 else
                 {
-                    bool addStatus = member.AddCategory(newCategory, member);
-
-                    if (addStatus)
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur dans l'ajout de la catégorie");
-                        this.Close();
-                    }
+                    MessageBox.Show("Erreur dans l'ajout de la catégorie");
+                    this.Close();
                 }
+                
             }
         }
     }

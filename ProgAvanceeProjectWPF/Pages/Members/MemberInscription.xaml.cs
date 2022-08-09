@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgAvanceeProjectWPF.Pages.Members.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,43 +63,27 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
         private void RideInscription(object sender, RoutedEventArgs e)
         {
-            Ride selectedRide = new Ride();
-        }
+            var selectedRide = (sender as FrameworkElement).DataContext as Ride;
 
-        private void AddMemberCategory(object sender, RoutedEventArgs e)
-        {
-            Category newCategory = new Category();
-
-            if (CatChoice.SelectedItem == null)
+            foreach(Inscription insc in member.Inscriptions)
             {
-                MessageBox.Show("Veuillez choisir une catégorie");
-
+                if (insc.Ride.Equals(selectedRide))
+                {
+                    MessageBox.Show("Vous ête déjà inscrit a cette balade");
+                    break;
+                }
             }
-            else
+           
+            AddReservation addReservation = new AddReservation(member, selectedRide);
+
+            addReservation.Closed += (ss, ee) =>
             {
-                newCategory = (Category)CatChoice.SelectedItem;
-                //Why
-                if (member.Categories.Contains(newCategory))
-                {
-                    MessageBox.Show("vous êtes déjà dans cette catégorie");
-                    this.Close();
-                }
-                else
-                {
-                    bool addStatus = member.AddCategory(newCategory, member);
+               //refresh
+            };
 
-                    if (addStatus)
-                    {
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur dans l'ajout de la catégorie");
-                        this.Close();
-                    }
-                }
-            
-
+            addReservation.Show();
         }
+
+        
     }
 }

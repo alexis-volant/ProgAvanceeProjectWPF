@@ -45,7 +45,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             addBike.Closed += (ss, ee) =>
             {
+                BikesGrid.ItemsSource = null;
                 BikesGrid.ItemsSource = member.Bikes;
+               
             };
         }
         private void UpdateBikeBtn(object sender, RoutedEventArgs e)
@@ -54,6 +56,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             updateBike.Closed += (ss, ee) =>
             {
+                BikesGrid.ItemsSource = null;
                 BikesGrid.ItemsSource = member.Bikes;
             };
 
@@ -65,6 +68,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             deleteBike.Closed += (ss, ee) =>
             {
+                BikesGrid.ItemsSource = null;
                 BikesGrid.ItemsSource = member.Bikes;
             };
 

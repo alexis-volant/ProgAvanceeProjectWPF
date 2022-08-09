@@ -103,7 +103,6 @@ public class Member : Person
     }
     public void UpdateBike(Bike bike)
     {
-        // A VERIF
         var updatedBikeIndex = this.bikes.FindIndex(x => x.IdBike == bike.IdBike);
         bikes[updatedBikeIndex]= bike;
     }
