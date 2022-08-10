@@ -78,7 +78,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members
     private void ReturnBtn(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.GoBack();
+
+            NavigationService.Navigate(new MemberHub(member));
+
         }
     }
 }

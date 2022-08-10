@@ -32,6 +32,10 @@ public class Vehicle
        
     }
 
+    public Vehicle()
+    {
+    }
+
     public Guid IdVehicle
     {
         get { return idVehicle; }
@@ -88,4 +92,6 @@ public class Vehicle
     {
         this.rides.Add(ride);
     }
+
+   
 }

@@ -29,12 +29,18 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             InitializeComponent();
             this.member = m;
+
+            LblFirstName.Content = string.Concat(member.Name," ",member.FirstName);
+            LblBalance.Content = member.Balance;
+
             List<Ride> rides = new List<Ride>();
             foreach (Inscription insc in member.Inscriptions)
             {
                 rides.Add(insc.Ride);
             }
             RidesGrid.ItemsSource = rides;
+
+            BikesGrid.ItemsSource = member.Bikes;
 
             AddListCatContent(); 
         }
@@ -74,11 +80,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             NavigationService.Content = null;
             NavigationService.Navigate(new MemberBike(member));
+            
         }
         private void GoToMemberInscriptionPage(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
             NavigationService.Navigate(new MemberInscription(member));
+            
         }
    
     }

@@ -15,21 +15,29 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
     /// <summary>
     /// Interaction logic for AddReservation.xaml
     /// </summary>
-    public partial class AddReservation : Window
+    public partial class AddInscription: Window
     {
         Ride ride = new Ride();
-        public AddReservation(Member m, Ride r)
+        Member member = new Member();
+        public AddInscription(Member m, Ride r)
         {
             InitializeComponent();
             this.ride = r;
+            this.member = m;    
 
-            VehiculeGrid.ItemsSource = ride.Vehicles;
+            VehicleGrid.ItemsSource = ride.Vehicles;
+        }
+
+        public void VehicleChoice(object sender, RoutedEventArgs e)
+        {
 
         }
 
-        public void VehiculeChoice(object sender, RoutedEventArgs e)
+        public void AddCoVehicle(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
+            MyVehicle myVehicle = new MyVehicle(member);
+            myVehicle.Show();
         }
     }
 }

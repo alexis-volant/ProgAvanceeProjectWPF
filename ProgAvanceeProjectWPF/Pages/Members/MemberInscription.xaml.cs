@@ -73,15 +73,15 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                     break;
                 }
             }
-           
-            AddReservation addReservation = new AddReservation(member, selectedRide);
 
-            addReservation.Closed += (ss, ee) =>
+            AddInscription addInscription = new AddInscription(member, selectedRide);
+
+            addInscription.Closed += (ss, ee) =>
             {
                //refresh
             };
 
-            addReservation.Show();
+            addInscription.Show();
         }
 
         

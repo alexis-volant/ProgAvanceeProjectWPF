@@ -9,17 +9,36 @@
       Title="Page1">
 
     <Grid>
-        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="54" Margin="559,140,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberBikePage"/>
-        <Button Content="Ajout de catégorie" HorizontalAlignment="Left" Height="54" Margin="415,216,0,0" VerticalAlignment="Top" Width="167" Click="AddCategory"/>
-        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="54" Margin="559,300,0,0" VerticalAlignment="Top" Width="167" Click="GoToMemberInscriptionPage"/>
-        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" Margin="60,149,0,0" Height="181" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162">
+        <Label Content="Bienvenue" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" Width="130" Foreground="White" FontSize="24"/>
+        <Label Content="{Binding FirstName}" x:Name="LblFirstName" HorizontalAlignment="Left" Margin="180,40,0,0" VerticalAlignment="Top" Width="200" Foreground="White" FontSize="24"/>
+
+        <Label Content="Votre solde:" HorizontalAlignment="Left" Margin="570,40,0,0" VerticalAlignment="Top" Width="110" Foreground="White" FontSize="18"/>
+        <Label Content="{Binding Balance}" x:Name="LblBalance" HorizontalAlignment="Left" Margin="680,40,0,0" VerticalAlignment="Top" Width="100" Foreground="White" FontSize="18"/>
+        
+        <Label Content="Vos balades reservées" HorizontalAlignment="Left" Margin="60,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="60,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Jour" Binding="{Binding Type}"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Weight}"/>
-
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel x:Name="ListCat" HorizontalAlignment="Left" Margin="262,200,0,0" VerticalAlignment="Top" Width="126" Height="118"/>
-        <Label Content="Balades reservées" HorizontalAlignment="Left" Margin="210,113,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="55" Margin="60,345,0,0" VerticalAlignment="Top" Width="165" Click="GoToMemberInscriptionPage"/>
+
+        <Label Content="Vos catégories" HorizontalAlignment="Left" Margin="300,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <StackPanel x:Name="ListCat" HorizontalAlignment="Left" Margin="300,150,0,0" VerticalAlignment="Top" Width="126" Height="118"/>
+        <Button Content="S'inscrire dans une catégorie" HorizontalAlignment="Left" Height="55" Margin="300,345,0,0" VerticalAlignment="Top" Width="200" Click="AddCategory"/>
+
+        <Label Content="Vos velos" HorizontalAlignment="Left" Margin="570,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <DataGrid Name="BikesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="570,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Poids" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Longueur" Binding="{Binding Length}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="55" Margin="570,345,0,0" VerticalAlignment="Top" Width="165" Click="GoToMemberBikePage"/>
+
+
     </Grid>
 </Page>
