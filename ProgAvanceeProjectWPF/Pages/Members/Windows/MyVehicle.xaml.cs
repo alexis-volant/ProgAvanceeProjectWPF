@@ -18,17 +18,25 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
     public partial class MyVehicle : Window
     {
         Member member = new Member();
-        Vehicle vehicle = new Vehicle();
-        List<Vehicle> vehicles = new List<Vehicle>();
+        
         public MyVehicle(Member m)
         {
             InitializeComponent();
             this.member = m;
-
-            //vehicles = vehicle.GetByDriver(member);
-            //MyVehicleGrid.ItemsSource = ;
+            MyVehicleGrid.ItemsSource = member.Vehicles;
         }
 
-        
+        public void AddCoVehicule(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void VehiculeChoice(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
     }
 }

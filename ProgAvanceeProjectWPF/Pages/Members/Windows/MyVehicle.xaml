@@ -18,15 +18,13 @@
                     <DataGridTemplateColumn Header="Choisir">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <!--<Button Click="VehiculeChoice" Content="Choisir voiture"/>-->
+                                <Button Click="VehiculeChoice" Content="Choisir voiture"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!--<Button Click="AddCoVehicule" Content="Proposer un covoiturage" Foreground="White" FontSize="24" Background="#42414d"  Margin="10,250,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="279"></Button>-->-->
-
-            <!--<Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>-->
+            <Button Click="AddCoVehicule" Content="Proposer un covoiturage" Foreground="White" FontSize="24" Background="#42414d"  Margin="10,250,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="279"/>
         </Grid>
     </Grid>
 </Window>

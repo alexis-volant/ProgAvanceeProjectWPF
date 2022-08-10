@@ -11,31 +11,16 @@ public class Vehicle
     private List<Bike> bikes;
     private List<Ride> rides;
 
-    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member driver, List<Member> passengers, List<Bike> bikes, List<Ride> rides)
-    {
-        this.idVehicle = idVehicle;
-        this.nbrPlacesMembers = nbrPlacesMembers;
-        this.nbrPlacesBikes = nbrPlacesBikes;
-        this.driver = driver;
-        this.passengers = passengers;
-        this.bikes = bikes;
-        this.rides = rides;
-    }
-    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member driver, List<Member> passengers, List<Bike> bikes)
-    {
-        this.idVehicle = idVehicle;
-        this.nbrPlacesMembers = nbrPlacesMembers;
-        this.nbrPlacesBikes = nbrPlacesBikes;
-        this.driver = driver;
-        this.passengers = passengers;
-        this.bikes = bikes;
-       
-    }
-
     public Vehicle()
     {
     }
-
+    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes)
+    {
+        this.idVehicle = idVehicle;
+        this.nbrPlacesMembers = nbrPlacesMembers;
+        this.nbrPlacesBikes = nbrPlacesBikes;
+    }
+    
     public Guid IdVehicle
     {
         get { return idVehicle; }
@@ -93,5 +78,20 @@ public class Vehicle
         this.rides.Add(ride);
     }
 
-   
+    public int CalculPassengersLeft(Vehicle vehicle)
+    {
+        var totalPlaces = vehicle.nbrPlacesMembers;
+        var usedPlaces = vehicle.Passengers.Count;
+
+        return totalPlaces - usedPlaces;
+    }
+
+    public int CalculBikeLeft(Vehicle vehicle)
+    {
+        var totalPlaces = vehicle.nbrPlacesBikes;
+        var usedPlaces = vehicle.Bikes.Count;
+
+        return totalPlaces - usedPlaces;
+    }
+
 }

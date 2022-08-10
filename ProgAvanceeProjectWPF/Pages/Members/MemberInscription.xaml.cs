@@ -74,16 +74,32 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 }
             }
 
-            AddInscription addInscription = new AddInscription(member, selectedRide);
+            //AddInscription addInscription = new AddInscription(member, selectedRide);
 
-            addInscription.Closed += (ss, ee) =>
+            //addInscription.Closed += (ss, ee) =>
+            //{
+            //   //refresh
+            //};
+
+            //addInscription.Show();
+
+            ChooseBikeForRide bikeChoose = new ChooseBikeForRide(member, selectedRide);
+
+            bikeChoose.Closed += (ss, ee) =>
             {
-               //refresh
+                //refresh
             };
 
-            addInscription.Show();
+            bikeChoose.Show();
         }
 
-        
+        private void ReturnBtn(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+
+            NavigationService.Navigate(new MemberHub(member));
+
+        }
     }
 }
+

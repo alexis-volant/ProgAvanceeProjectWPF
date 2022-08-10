@@ -153,6 +153,7 @@ internal class MemberDAO : DAO<Member>
                         CategoryDAO categoryDAO = new CategoryDAO();
                         BikeDAO bikeDAO = new BikeDAO();
                         InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                        VehicleDAO vehicleDAO = new VehicleDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
                             reader.GetString("name"),
@@ -165,6 +166,7 @@ internal class MemberDAO : DAO<Member>
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Vehicles = vehicleDAO.FindAllByMember(member);
                     }
                 }
             }

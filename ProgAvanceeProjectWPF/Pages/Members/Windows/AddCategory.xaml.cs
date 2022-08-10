@@ -24,15 +24,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
             InitializeComponent();
 
             this.member = m;
-
-            List<string> CatNamelist = new List<string>();
             List<Category> categories = category.GetAllCategories();
-
-            //foreach (Category c in categories)
-            //{
-            //    CatNamelist.Add(c.NameCategory);
-            //}
-
             CatChoice.ItemsSource = categories;
         }
 
@@ -40,10 +32,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
         {
             Category newCategory = new Category(); ;
 
-            if (CatChoice.SelectedItem == null)
+            if (CatChoice.SelectedItem == null || CatChoice.SelectedItem.GetType() != typeof(Category))
             {
                 MessageBox.Show("Veuillez choisir une catégorie");
-
+                return;
             }
             else
             {

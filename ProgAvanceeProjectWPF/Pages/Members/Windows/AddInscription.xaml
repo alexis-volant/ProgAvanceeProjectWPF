@@ -5,28 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows"
         mc:Ignorable="d"
-        Title="Inscription" Height="400" Width="600">
-    <Grid Background="#2b2a33">
-        <Grid x:Name="InscriptionForm" Margin="9,11,0,4">
-            <Label Content="Inscription" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"/>
-            <Label Content="Choisissez un covoiturage" Foreground="White" FontSize="18" Margin="10,45,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
-            <DataGrid Name="VehicleGrid" AutoGenerateColumns="false"  Margin="10,80,0,0" Height="150" VerticalAlignment="Top" HorizontalAlignment="Left" Width="441">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Conducteur" Binding="{Binding Driver.Name}"/>
-                    <DataGridTextColumn Header="Place passager restante" Binding="{Binding NbrPlacesMembers}"/>
-                    <DataGridTextColumn Header="Place velo restante" Binding="{Binding NbrPlacesBikes}"/>
-                    <DataGridTemplateColumn Header="Choisir">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Click="VehicleChoice" Content="Choisir voiture"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Click="AddCoVehicle" Content="Proposer un covoiturage" Foreground="White" FontSize="24" Background="#42414d"  Margin="10,250,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="279"></Button>
+        Title="Inscription" Height="460" Width="550">
 
-            <!--<Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>-->
-        </Grid>
+    <Grid x:Name="InscriptionForm"  Background="#2b2a33">
+
+        <Label Content="Inscription" Foreground="White" FontSize="24" Margin="20,20,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" />
+
+        <Label Content="Choisissez un covoiturage" Foreground="White" FontSize="18" Margin="40,70,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
+
+        <DataGrid Name="VehicleGrid" AutoGenerateColumns="false" IsReadOnly="True"  Margin="40,110,0,0" Height="160" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Conducteur" Binding="{Binding Driver.Name}"/>
+                <DataGridTextColumn Header="Place passager restante" Binding="{Binding NbrPlacesMembers}"/>
+                <DataGridTextColumn Header="Place velo restante" Binding="{Binding NbrPlacesBikes}"/>
+                <DataGridTemplateColumn Header="Choisir">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="VehicleChoice" Content="Choisir voiture"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Separator Margin="0,160,0,0" Height="20" />
+        <Label Content="Proposer un covoiturage" Foreground="White" FontSize="18" Margin="40,310,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
+        <Button Click="AddCoVehicle" Content="Choisir mon vehicule" Foreground="White" FontSize="24" Background="#42414d"  Margin="40,360,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250"></Button>
+    
     </Grid>
 </Window>

@@ -29,7 +29,7 @@
         <Button Content="S'inscrire dans une catégorie" HorizontalAlignment="Left" Height="55" Margin="300,345,0,0" VerticalAlignment="Top" Width="200" Click="AddCategory"/>
 
         <Label Content="Vos velos" HorizontalAlignment="Left" Margin="570,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
-        <DataGrid Name="BikesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="570,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165">
+        <DataGrid Name="BikesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="570,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
@@ -37,7 +37,7 @@
                 <DataGridTextColumn Header="Longueur" Binding="{Binding Length}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="55" Margin="570,345,0,0" VerticalAlignment="Top" Width="165" Click="GoToMemberBikePage"/>
+        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="55" Margin="570,345,0,0" VerticalAlignment="Top" Width="180" Click="GoToMemberBikePage"/>
 
 
     </Grid>

@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows"
         mc:Ignorable="d"
-        Title="AddBike" Height="300" Width="600">
-    <Grid Background="#2b2a33">
-        <Grid x:Name="AddBikeForm" Margin="9,11,0,4">
-            <Label Content="Ajout" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <Label Content="Type" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <ComboBox x:Name="AddType" Background="#42414d" Foreground="Black" FontSize="20" Width="188" Margin="209,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
-            <Label Content="Poids" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
-            <TextBox x:Name="AddWeight" Foreground="White" Background="#42414d" FontSize="20" Margin="209,108,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" />
-            <Label Content="Longueur" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
-            <TextBox x:Name="AddLength" Background="#42414d" FontSize="20" Foreground="White" Width="188" Margin="209,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
-            <Button Click="AddBikeValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
-            <!--<Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="475,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>-->
-        </Grid>
+        Title="Ajout de velo" Height="310" Width="600">
+    
+    
+    <Grid x:Name="AddBikeForm" Background="#2b2a33">
+
+        <Label Content="Ajout" Foreground="White" FontSize="24" Margin="20,10,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+
+        <Label Content="Type" Foreground="White" FontSize="20" Margin="60,60,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+        <ComboBox x:Name="AddType"  IsEditable="True" IsReadOnly="True" Text="--choisir un type--" Background="#42414d" Foreground="Black" FontSize="20" Width="200" Margin="180,60,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+
+        <Label Content="Poids" Foreground="White" FontSize="20" Margin="60,120,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+        <TextBox x:Name="AddWeight" Foreground="White" Background="#42414d" FontSize="20" Margin="180,120,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
+
+        <Label Content="Longueur" Foreground="White" FontSize="20" Margin="60,180,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top"/>
+        <TextBox x:Name="AddLength" Background="#42414d" FontSize="20" Foreground="White" Width="200" Margin="180,180,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+
+        <Button Click="AddBikeValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="460,210,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
     </Grid>
+    
 </Window>

@@ -36,7 +36,8 @@
 
         <Button Content="Ajouter un nouveau velo" HorizontalAlignment="Left" Height="65" Margin="523,120,0,0" VerticalAlignment="Top" Width="160" Click="AddBikeBtn"/>
 
-        <Button Content="retour" HorizontalAlignment="Left" Margin="745,388,0,0" VerticalAlignment="Top" Click="ReturnBtn"/>
+        <Button Click="ReturnBtn" Content="Retour" Foreground="White" FontSize="24" Background="#42414d"  Margin="650,350,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+        
 
     </Grid>
 </Page>

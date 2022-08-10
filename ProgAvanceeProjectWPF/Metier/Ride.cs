@@ -87,15 +87,15 @@ public class Ride
 
     }
 
-    public void getMemberPlacesNeed()
-    {
+    //public void getMemberPlacesNeed()
+    //{
 
-    }
+    //}
 
-    public void getBikePlacesNeed()
-    {
+    //public void getBikePlacesNeed()
+    //{
 
-    }
+    //}
 
     public void addVehicle()
     {

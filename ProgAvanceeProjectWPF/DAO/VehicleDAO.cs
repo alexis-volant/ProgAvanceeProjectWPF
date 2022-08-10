@@ -54,13 +54,13 @@ internal class VehicleDAO : DAO<Vehicle>
                         (
                             reader.GetGuid("idVehicle"),
                             reader.GetInt32("nbrPlacesMembers"),
-                            reader.GetInt32("nbrPlacesBikes"),
-                            member,
-                            memberDao.GetPassengers(reader.GetInt32("numRide"), reader.GetGuid("idVehicle")),
-                            bikeDao.GetBikeVehicles(reader.GetInt32("numRide"), reader.GetGuid("idVehicle"))
+                            reader.GetInt32("nbrPlacesBikes")
+                            
                         );
 
-                         
+                        vehicle.Driver = member;
+                        vehicle.Passengers = memberDao.GetPassengers(reader.GetInt32("numRide"), reader.GetGuid("idVehicle"));
+                        vehicle.Bikes = bikeDao.GetBikeVehicles(reader.GetInt32("numRide"), reader.GetGuid("idVehicle"));
                         vehicles.Add(vehicle);
                     }
                 }
@@ -73,4 +73,38 @@ internal class VehicleDAO : DAO<Vehicle>
         return vehicles;
     }
 
+    internal List<Vehicle> FindAllByMember(Member member)
+    {
+        List<Vehicle> vehicles = new List<Vehicle>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Vehicle where idDriver = @id", connection);
+                cmd.Parameters.AddWithValue("id", member.Id);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    MemberDAO memberDao = new MemberDAO();
+                    BikeDAO bikeDao = new BikeDAO();
+
+                    while (reader.Read())
+                    {
+                        Vehicle vehicle = new Vehicle
+                        (
+                            reader.GetGuid("idVehicle"),
+                            reader.GetInt32("nbrPlacesMembers"),
+                            reader.GetInt32("nbrPlacesBikes")     
+                        );
+                        vehicles.Add(vehicle);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return vehicles;
+    }
 }
