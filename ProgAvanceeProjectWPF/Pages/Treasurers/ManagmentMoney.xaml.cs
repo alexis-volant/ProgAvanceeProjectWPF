@@ -19,11 +19,16 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     public partial class ManagmentMoney : Page
     {
         Treasurer t = new Treasurer();
+        Member m = new Member();
         public ManagmentMoney(Treasurer t)
         {
             InitializeComponent();
             this.t = t;
+
+            ManagmentMemberGrid.ItemsSource = m.GetAllMembers();
         }
+        
+        //TODO message payer la cotisation, bouton payer la cotisation et créer la page pour payer les driver et prendre l'argent des passagers.
 
         private void BackButton(object sender, RoutedEventArgs e)
         {

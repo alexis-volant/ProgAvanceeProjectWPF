@@ -5,6 +5,8 @@ using System.Linq;
 public class Member : Person
 {
     private double balance = 0;
+    private DateTime datePayment;
+    private bool paymentCheck;
     private List<Category> categories = new List<Category>();
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
@@ -22,10 +24,29 @@ public class Member : Person
         this.balance = balance;
     }
 
+    public Member(Guid id, string name, string firstName, string tel, string login, string passWord, double balance, DateTime datePayment, bool paymentCheck) : base(id, name, firstName, tel, login, passWord)
+    {
+        this.balance = balance;
+        this.datePayment = datePayment;
+        this.paymentCheck = paymentCheck;
+    }
+
     public double Balance
     {
         get { return balance; }
         set { balance = value; }
+    }
+
+    public DateTime DatePayment
+    {
+        get { return datePayment; }
+        set { datePayment = value; }
+    }
+
+    public bool PaymentCheck
+    {
+        get { return paymentCheck; }
+        set { paymentCheck = value; }
     }
 
     public List<Category> Categories

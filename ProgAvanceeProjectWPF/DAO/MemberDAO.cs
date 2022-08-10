@@ -167,7 +167,9 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetDouble("balance")
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
@@ -205,7 +207,9 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetDouble("balance")
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
@@ -247,7 +251,9 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetDouble("balance")
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);

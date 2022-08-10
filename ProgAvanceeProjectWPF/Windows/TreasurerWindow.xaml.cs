@@ -26,7 +26,6 @@ namespace ProgAvanceeProjectWPF.Windows
             InitializeComponent();
             Main.Content = null;
             Main.Content = new TreasurerHub(t);
-            FirstName.Content = t.FirstName;
         }
 
         private void DisconnectButton(object sender, RoutedEventArgs e)
