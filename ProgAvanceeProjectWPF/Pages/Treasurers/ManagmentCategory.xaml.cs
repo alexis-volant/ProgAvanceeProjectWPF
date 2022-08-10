@@ -25,7 +25,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         public ManagmentCategory()
         {
             InitializeComponent();
-            categories = cat.GetAllCategory();
+            categories = cat.GetAllCategories();
             foreach(Category c in categories)
             {
                 CMBoxCat.Add(c.NameCategory);
@@ -35,7 +35,8 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
 
         private void CMCategory_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            List<Member> members = categories[CMCategory.SelectedIndex].Members;
+            cat = categories[CMCategory.SelectedIndex];
+            List<Member> members = cat.Members;
 
             CategoryMemberGrid.ItemsSource = members;
         }
@@ -43,6 +44,9 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         private void DeleteMember(object sender, RoutedEventArgs e)
         {
             Member member = (sender as FrameworkElement).DataContext as Member;
+            cat.RemoveMember(member, cat);
+            CategoryMemberGrid.ItemsSource = null;
+            CategoryMemberGrid.ItemsSource = cat.Members;
         }
 
         private void BackButton(object sender, RoutedEventArgs e)

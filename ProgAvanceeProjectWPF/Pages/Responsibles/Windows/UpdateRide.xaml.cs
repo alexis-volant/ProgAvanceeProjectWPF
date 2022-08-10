@@ -18,11 +18,12 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
     public partial class UpdateRide : Window
     {
         Ride ride = new Ride();
-        List<Ride> rides = new List<Ride>();
-        public UpdateRide(Ride ride)
+        Calender calender = new Calender();
+        public UpdateRide(Calender calender, Ride ride)
         {
             InitializeComponent();
             this.ride = ride;
+            this.calender = calender;
 
             UpdatePlaceDeparture.Text = ride.PlaceDeparture;
             UpdateDateDeparture.Text = ride.DateDeparture.ToString("dd/MM/yyyy");
@@ -51,7 +52,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
             UpdateDate = Convert.ToDateTime(UpdateDateDeparture.Text);
             UpdateFee = UpdatePackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(UpdatePackageFee.Text);
 
-            bool updateStatus = ride.UpdateRide(ride, UpdatePlace, UpdateDate, UpdateFee);
+            bool updateStatus = ride.UpdateRide(ride, UpdatePlace, UpdateDate, UpdateFee, calender);
 
             if (updateStatus)
             {

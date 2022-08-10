@@ -12,42 +12,44 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
     /// </summary>
     public partial class ManagmentRide : Page
     {
-        Responsible r = new Responsible();
-        List<Ride> rides = new List<Ride>();
-        Ride selectedRide = new Ride();
+        Calender calender = new Calender();
+        Responsible r = new Responsible();  
+        Ride ride = new Ride();
 
-        public ManagmentRide(Responsible r, List<Ride> rides)
+        public ManagmentRide(Calender calender, Responsible r)
         {
             InitializeComponent();
+            this.calender = calender;
             this.r = r;
-            this.rides = rides;
-
-            ManagmentRideGrid.ItemsSource = rides;
+            ManagmentRideGrid.ItemsSource = calender.Rides;
         }
+
+        //TODO Utiliser Classe CALENDER Bisous
+        //TODO Utiliser Classe CALENDER Bisous
 
         private void AddRideButton(object sender, RoutedEventArgs e)
         {
-            AddRide addRide = new AddRide(r);
+            AddRide addRide = new AddRide(calender);
             RefreshGrid(addRide);
         }
         private void UpdateRide(object sender, RoutedEventArgs e)
         {
-            selectedRide = (sender as FrameworkElement).DataContext as Ride;
-            UpdateRide updateRide = new UpdateRide(selectedRide);
+            ride = (sender as FrameworkElement).DataContext as Ride;
+            UpdateRide updateRide = new UpdateRide(calender, ride);
             RefreshGrid(updateRide);
         }
         private void DeleteRide(object sender, RoutedEventArgs e)
         {
-            selectedRide = (sender as FrameworkElement).DataContext as Ride;
-            DeleteRide deleteRide = new DeleteRide(selectedRide);
+            ride = (sender as FrameworkElement).DataContext as Ride;
+            DeleteRide deleteRide = new DeleteRide(calender, ride);
             RefreshGrid(deleteRide);
         }
         public void RefreshGrid(Window win)
         {
             win.Closed += (ss, ee) =>
             {
-                rides = selectedRide.GetRides(r.Category.Num);
-                ManagmentRideGrid.ItemsSource = rides;
+                ManagmentRideGrid.ItemsSource = null;
+                ManagmentRideGrid.ItemsSource = calender.Rides;
             };
             win.Show();
         }

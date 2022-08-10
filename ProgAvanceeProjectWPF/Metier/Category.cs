@@ -35,6 +35,12 @@ public class Category
         set { members = value; }
     }
 
+    public bool RemoveMember(Member m, Category cat)
+    {
+        this.Members.Remove(m);
+        return dao.RemoveMember(m, cat);
+    }
+
     public Category GetCategory(int numCategory)
     {
         return dao.Find(numCategory);
@@ -47,12 +53,6 @@ public class Category
 
     public List<Category> GetAllCategories()
     {
-
-        CategoryDAO dao = new CategoryDAO();
-
-        List<Category> categories = dao.FindAll();
-
-        return categories;
-        
+        return dao.FindAll();
     }
 }

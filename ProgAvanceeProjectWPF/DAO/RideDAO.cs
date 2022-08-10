@@ -65,15 +65,8 @@ internal class RideDAO : DAO<Ride>
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("DELETE from dbo.Ride WHERE numRide = @numRide ", connection);
                 cmd.Parameters.AddWithValue("numRide", r.Num);
-                if (r.Num == 0)
-                {
-                    throw new Exception("No ride deleted");
-                }
-                else
-                {
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                }
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
         }
         catch (SqlException e)

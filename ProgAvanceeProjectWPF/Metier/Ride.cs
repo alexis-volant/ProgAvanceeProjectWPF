@@ -12,6 +12,8 @@ public class Ride
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
 
+    RideDAO dao = new RideDAO();
+
     public Ride()
     {
 
@@ -102,15 +104,23 @@ public class Ride
 
     }
 
-    public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Category cat)
+    public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Calender calender)
     {
         DAO<Ride> rideDAO = adf.GetRideDAO();
-        Ride ride = new Ride(0, UpdatePlace, UpdateDate, UpdateFee, cat);
+        Ride ride = new Ride(0, UpdatePlace, UpdateDate, UpdateFee, calender.Category);
 
-        return rideDAO.Create(ride);
+        if (rideDAO.Create(ride))
+        {
+            calender.AddRide(ride);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public bool UpdateRide(Ride r, string UpdatePlace, DateTime UpdateDate, double UpdateFee)
+    public bool UpdateRide(Ride r, string UpdatePlace, DateTime UpdateDate, double UpdateFee, Calender calender)
     {
         DAO<Ride> rideDAO = adf.GetRideDAO();
 
@@ -118,23 +128,31 @@ public class Ride
         r.DateDeparture = UpdateDate;
         r.PackageFee = UpdateFee;
 
-        return rideDAO.Update(r);
+        if (rideDAO.Update(r))
+        {
+            int index = calender.Rides.IndexOf(r);
+            calender.Rides[index] = r;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public bool DeleteRide(Ride r)
+    public bool DeleteRide(Ride r, Calender calender)
     {
         DAO<Ride> rideDAO = adf.GetRideDAO();
 
-        return rideDAO.Delete(r);
-    }
-
-    public List<Ride> GetRides(int numCategory)
-    {
-        RideDAO dao = new RideDAO();
-
-        List<Ride> rides = dao.FindByCategory(numCategory);
-
-        return rides;
+        if (rideDAO.Delete(r))
+        {
+            calender.Rides.Remove(r);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //public List<Ride> GetRidesByMember(Member member)
@@ -148,8 +166,6 @@ public class Ride
     
     public List<Ride> GetRidesByCategory(int numCategory)
     {
-        RideDAO dao = new RideDAO();
-
         List<Ride> rides = dao.FindByCategory(numCategory);
 
         return rides;

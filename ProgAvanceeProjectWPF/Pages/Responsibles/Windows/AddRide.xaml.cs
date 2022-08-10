@@ -17,14 +17,13 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
     /// </summary>
     public partial class AddRide : Window
     {
-        Responsible r = new Responsible();
-        List<Ride> rides = new List<Ride>();
+        Calender calender = new Calender();
         Ride ride = new Ride();
 
-        public AddRide(Responsible r)
+        public AddRide(Calender calender)
         {
             InitializeComponent();
-            this.r = r;
+            this.calender = calender;
         }
 
         private void AddValidation(object sender, RoutedEventArgs e)
@@ -48,7 +47,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
             AddDate = Convert.ToDateTime(AddDateDeparture.Text);
             AddFee = AddPackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(AddPackageFee.Text);
 
-            bool addStatus = ride.AddRide(AddPlace, AddDate, AddFee, r.Category);
+            bool addStatus = ride.AddRide(AddPlace, AddDate, AddFee, calender);
 
             if (addStatus)
             {
