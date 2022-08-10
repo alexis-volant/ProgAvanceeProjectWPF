@@ -66,11 +66,18 @@ internal class MemberDAO : DAO<Member>
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
-                cmd.Parameters.AddWithValue("idMember", m.Id);
-                cmd.ExecuteNonQuery();
-                connection.Close();
+                if (RemoveMemberCategory(m)) 
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
+                    cmd.Parameters.AddWithValue("idMember", m.Id);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         catch (SqlException e)
@@ -272,10 +279,33 @@ internal class MemberDAO : DAO<Member>
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
+        return true;
+    }
+
+    public bool RemoveMemberCategory(Member member)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.CategoryMember WHERE idMember = @idMember ", connection);
+                cmd.Parameters.AddWithValue("idMember", member.Id);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+
         return true;
     }
 }

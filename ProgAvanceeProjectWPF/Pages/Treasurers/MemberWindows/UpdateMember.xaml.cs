@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,7 +72,13 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
             UpdateT = UpdateTelephone.Text;
             UpdateL = UpdateLogin.Text;
             UpdateP = UpdatePassWord.Text;
-            UpdateB = UpdateBalance.Text.Length == 0 ? 0 : Convert.ToDouble(UpdateBalance.Text);
+            var Solde = UpdateBalance.Text.Replace(',', '.');
+
+            if (!Double.TryParse(Solde, NumberStyles.Any, CultureInfo.InvariantCulture, out UpdateB))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
 
             bool updateStatus = m.UpdateMember(m, UpdateN, UpdateF, UpdateT, UpdateL, UpdateP, UpdateB);
 

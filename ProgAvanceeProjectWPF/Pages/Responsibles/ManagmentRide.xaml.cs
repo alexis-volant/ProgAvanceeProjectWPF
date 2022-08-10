@@ -24,9 +24,6 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
             ManagmentRideGrid.ItemsSource = calender.Rides;
         }
 
-        //TODO Utiliser Classe CALENDER Bisous
-        //TODO Utiliser Classe CALENDER Bisous
-
         private void AddRideButton(object sender, RoutedEventArgs e)
         {
             AddRide addRide = new AddRide(calender);

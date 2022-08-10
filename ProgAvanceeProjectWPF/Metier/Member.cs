@@ -10,6 +10,7 @@ public class Member : Person
     private List<Inscription> inscriptions = new List<Inscription>();
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+    MemberDAO dao = new MemberDAO();
 
     public Member()
     {
@@ -55,21 +56,30 @@ public class Member : Person
 
     }
 
+    //Récupère tous les membres
     public List<Member> GetAllMembers()
     {
         MemberDAO dao = new MemberDAO();
         return dao.GetAllMembers();
     }
 
-    public bool AddMember(string AddName, string AddFirstName, string AddTelephone, string AddLogin, string AddPassWord, double AddBalance)
+    //CRUD MEMBER
+    public bool AddMember(string AddName, string AddFirstName, string AddTelephone, string AddLogin, string AddPassWord, double AddBalance, Category cat)
     {
         DAO<Member> memberDAO = adf.GetMemberDAO();
 
         Member m = new Member(Guid.NewGuid(), AddName, AddFirstName, AddTelephone, AddLogin, AddPassWord, AddBalance);
 
-        return memberDAO.Create(m);
+        if (memberDAO.Create(m))
+        {
+            m.AddCategory(cat, m);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
     public bool UpdateMember(Member m, string UpdateName, string UpdateFirstName, string UpdateTelephone, string UpdateLogin, string UpdatePassWord, double UpdateBalance)
     {
         DAO<Member> memberDAO = adf.GetMemberDAO();
@@ -83,7 +93,6 @@ public class Member : Person
 
         return memberDAO.Update(m);
     }
-
     public bool DeleteMember(Member m)
     {
         DAO<Member> memberDAO = adf.GetMemberDAO();
@@ -91,12 +100,13 @@ public class Member : Person
         return memberDAO.Delete(m);
     }
 
+    //Vérifie si le Membre existe en Base de données
     public Member loginCheck(string login, string password)
     {
-        MemberDAO dao = new MemberDAO();
         return dao.loginCheck(login, password);
     }
 
+    //Ajout modification Suppression d'un vélo 
     public void AddBike(Bike bike)
     {
         this.bikes.Add(bike);
@@ -111,11 +121,17 @@ public class Member : Person
         this.bikes.Remove(bike);
     }
 
+    //Ajoute une catégorie dans la liste des catégorie de ce membre
     public bool AddCategory(Category category, Member member)
     {
-        MemberDAO dao = new MemberDAO();
-        dao.AddMemberCategory(category, member);
-        this.Categories.Add(category);
-        return true;
+        if(dao.AddMemberCategory(category, member))
+        {
+            this.Categories.Add(category);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

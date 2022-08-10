@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,7 +46,13 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
 
             AddPlace = AddPlaceDeparture.Text;
             AddDate = Convert.ToDateTime(AddDateDeparture.Text);
-            AddFee = AddPackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(AddPackageFee.Text);
+            var Fee = AddPackageFee.Text.Replace(',', '.');
+
+            if (!Double.TryParse(Fee, NumberStyles.Any, CultureInfo.InvariantCulture, out AddFee))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
 
             bool addStatus = ride.AddRide(AddPlace, AddDate, AddFee, calender);
 

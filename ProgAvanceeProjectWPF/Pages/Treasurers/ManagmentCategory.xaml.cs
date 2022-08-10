@@ -22,6 +22,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         Category cat = new Category();
         List<Category> categories = new List<Category>();
         List<string> CMBoxCat = new List<string>();
+        
         public ManagmentCategory()
         {
             InitializeComponent();
@@ -44,9 +45,17 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         private void DeleteMember(object sender, RoutedEventArgs e)
         {
             Member member = (sender as FrameworkElement).DataContext as Member;
-            cat.RemoveMember(member, cat);
-            CategoryMemberGrid.ItemsSource = null;
-            CategoryMemberGrid.ItemsSource = cat.Members;
+            if(member.Categories.Count == 1)
+            {
+                MessageBox.Show("Vous ne pouvez retirer ce membre de cette catégorie.");
+            }
+            else
+            {
+                cat.RemoveMember(member, cat);
+                CategoryMemberGrid.ItemsSource = null;
+                CategoryMemberGrid.ItemsSource = cat.Members;
+            }
+            
         }
 
         private void BackButton(object sender, RoutedEventArgs e)
