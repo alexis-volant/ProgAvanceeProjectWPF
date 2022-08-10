@@ -235,4 +235,42 @@ internal class MemberDAO : DAO<Member>
         }
         return true;
     }
+
+    public List<Member> GetPassengers(int numRide, Guid idVehicle)
+    {
+        List<Member> passengers = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * FROM dbo.Passenger P join dbo.Member M "+
+                    "on P.idMember = M.idMember WHERE P.idVehicle = @idVehicle and P.numRide = @numRide ", connection);
+                cmd.Parameters.AddWithValue("idVehicle", idVehicle);
+                cmd.Parameters.AddWithValue("numRide", numRide);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                        passengers.Add(member);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return passengers;
+
+    }
 }

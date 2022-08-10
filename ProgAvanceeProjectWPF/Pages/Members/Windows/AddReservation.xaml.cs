@@ -26,5 +26,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
             VehiculeGrid.ItemsSource = ride.Vehicles;
 
         }
+
+        public void VehiculeChoice(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

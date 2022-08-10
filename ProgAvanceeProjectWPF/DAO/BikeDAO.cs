@@ -160,4 +160,40 @@ internal class BikeDAO : DAO<Bike>
         }
         return bikes;
     }
+
+    public List<Bike> GetBikeVehicles(int numRide,Guid idVehicle)
+    {
+        List<Bike> bikes = new List<Bike>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * FROM dbo.BikeVehicle BV " +
+                    "join dbo.Bike B on BV.idBike = B.idBike WHERE BV.idVehicle =  @idVehicle and BV.numRide = @numRide ", connection);
+                cmd.Parameters.AddWithValue("idVehicle", idVehicle);
+                cmd.Parameters.AddWithValue("numRide", numRide);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Bike bike = new Bike
+                        (
+                            reader.GetGuid("idBike"),
+                            reader.GetDouble("weight"),
+                            reader.GetString("type"),
+                            reader.GetDouble("length")
+                            
+                        );
+                        bikes.Add(bike);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return bikes;
+    }
 }

@@ -21,6 +21,16 @@ public class Vehicle
         this.bikes = bikes;
         this.rides = rides;
     }
+    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member driver, List<Member> passengers, List<Bike> bikes)
+    {
+        this.idVehicle = idVehicle;
+        this.nbrPlacesMembers = nbrPlacesMembers;
+        this.nbrPlacesBikes = nbrPlacesBikes;
+        this.driver = driver;
+        this.passengers = passengers;
+        this.bikes = bikes;
+       
+    }
 
     public Guid IdVehicle
     {

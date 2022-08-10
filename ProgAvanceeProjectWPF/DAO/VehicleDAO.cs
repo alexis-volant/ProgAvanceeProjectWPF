@@ -29,23 +29,38 @@ internal class VehicleDAO : DAO<Vehicle>
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Vehicule V join dbo.VehicleRide VC "+
-                    "on V.idVehicule = VC.idVehicule join dbo.Ride R on VC.idRide = R.idRide WHERE idRide = @id", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Vehicle V join dbo.VehicleRide VC "+
+                    "on V.idVehicle = VC.idVehicle join dbo.Member M on V.idDriver = M.idMember join dbo.Ride R on VC.numRide = R.numRide WHERE VC.numRide = @id", connection);
                 cmd.Parameters.AddWithValue("id", ride.Num);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    MemberDAO memberDao = new MemberDAO();
+                    BikeDAO bikeDao = new BikeDAO();
 
                     while (reader.Read())
                     {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+
                         Vehicle vehicle = new Vehicle
                         (
-                            //TO DO
                             reader.GetGuid("idVehicle"),
                             reader.GetInt32("nbrPlacesMembers"),
                             reader.GetInt32("nbrPlacesBikes"),
-                            
+                            member,
+                            memberDao.GetPassengers(reader.GetInt32("numRide"), reader.GetGuid("idVehicle")),
+                            bikeDao.GetBikeVehicles(reader.GetInt32("numRide"), reader.GetGuid("idVehicle"))
                         );
+
+                         
                         vehicles.Add(vehicle);
                     }
                 }
@@ -55,7 +70,7 @@ internal class VehicleDAO : DAO<Vehicle>
         {
             throw new Exception(e.Message);
         }
-        return bikes;
+        return vehicles;
     }
 
 }
