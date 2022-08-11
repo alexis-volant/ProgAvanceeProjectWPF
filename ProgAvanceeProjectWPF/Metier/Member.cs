@@ -118,7 +118,15 @@ public class Member : Person
     {
         DAO<Member> memberDAO = adf.GetMemberDAO();
 
-        return memberDAO.Delete(m);
+        if (dao.RemoveMemberCategory(m))
+        {
+            memberDAO.Delete(m);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //Vérifie si le Membre existe en Base de données

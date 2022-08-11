@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -19,15 +20,25 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     public partial class ManagmentMoney : Page
     {
         Treasurer t = new Treasurer();
-        Member m = new Member();
+        Member member = new Member();
         public ManagmentMoney(Treasurer t)
         {
             InitializeComponent();
             this.t = t;
 
-            ManagmentMemberGrid.ItemsSource = m.GetAllMembers();
+            List<Member> members = member.GetAllMembers();
+
+            ManagmentMemberGrid.ItemsSource = members;
         }
-        
+
+        private void SendMessage(object sender, RoutedEventArgs e)
+        {
+            member = (sender as FrameworkElement).DataContext as Member;
+
+            MessageWindow MW = new MessageWindow(t,member);
+            MW.Show();
+        }
+
         //TODO message payer la cotisation, bouton payer la cotisation et créer la page pour payer les driver et prendre l'argent des passagers.
 
         private void BackButton(object sender, RoutedEventArgs e)

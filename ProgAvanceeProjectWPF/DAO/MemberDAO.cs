@@ -13,8 +13,8 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance) " +
-                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance)",connection);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance,DatePayment,PaymentCheck) " +
+                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance, @DatePayment, @PaymentCheck)", connection);
                 cmd.Parameters.AddWithValue("idMember", m.Id);
                 cmd.Parameters.AddWithValue("Name", m.Name);
                 cmd.Parameters.AddWithValue("FirstName", m.FirstName);
@@ -22,6 +22,8 @@ internal class MemberDAO : DAO<Member>
                 cmd.Parameters.AddWithValue("Login", m.Login);
                 cmd.Parameters.AddWithValue("PassWord", m.PassWord);
                 cmd.Parameters.AddWithValue("Balance", m.Balance);
+                cmd.Parameters.AddWithValue("DatePayment", DateTime.Now);
+                cmd.Parameters.AddWithValue("PaymentCheck", true);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -66,18 +68,11 @@ internal class MemberDAO : DAO<Member>
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                if (RemoveMemberCategory(m)) 
-                {
-                    connection.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
-                    cmd.Parameters.AddWithValue("idMember", m.Id);
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-                }
-                else
-                {
-                    return false;
-                }
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.Member WHERE idMember = @idMember ", connection);
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.ExecuteNonQuery();
+                connection.Close();
             }
         }
         catch (SqlException e)
