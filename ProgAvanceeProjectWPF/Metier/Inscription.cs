@@ -57,13 +57,30 @@ public class Inscription
     }
     
 
-    public bool AddInscription(Member member, Ride ride, Bike bike, bool passenger, bool bikeBool)
+    public bool AddInscription(Member member, Ride ride, Bike bike, bool passenger, bool hasBike, Vehicle vehicle)
     {
         DAO<Inscription> inscriptionDAO = adf.GetInscriptionDAO();
+        InscriptionDAO dao = new InscriptionDAO();
+        bool result;
 
-        Inscription inscription = new Inscription(Guid.NewGuid(), member, ride, bike, passenger, bikeBool);
+        Inscription inscription = new Inscription(Guid.NewGuid(), member, ride, bike, passenger, hasBike);
 
-        return inscriptionDAO.Create(inscription);
+        result = inscriptionDAO.Create(inscription);
+
+        if (!result) return false;
+
+        if (passenger)
+        {
+            if (!dao.AddPassenger(member, ride, vehicle)) return false;   
+        }
+
+        if (hasBike)
+        {
+            if (!dao.AddBikeVehicle(bike, ride, vehicle)) return false;
+        }
+
+        //A changer
+        return true;
     }
 
 }

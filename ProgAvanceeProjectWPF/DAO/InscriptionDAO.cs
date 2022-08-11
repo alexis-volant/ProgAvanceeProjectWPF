@@ -104,4 +104,53 @@ internal class InscriptionDAO : DAO<Inscription>
         }
         return inscriptions;
     }
+
+    public bool AddPassenger(Member m,Ride r,Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Passenger (idMember, idVehicle, numRide) " +
+                    "values(@idMember, @idVehicle, @numRide)", connection);
+
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
+    }
+    public bool AddBikeVehicle(Bike b,Ride r,Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.BikeVehicle (idBike, idVehicle, numRide) " +
+                    "values(@idBike, @idVehicle, @numRide)", connection);
+
+                cmd.Parameters.AddWithValue("idBike", b.IdBike);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
+    }
 }

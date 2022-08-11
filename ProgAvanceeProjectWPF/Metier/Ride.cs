@@ -128,29 +128,11 @@ public class Ride
         return rideDAO.Delete(r);
     }
 
-    public List<Ride> GetRides(int numCategory)
-    {
-        RideDAO dao = new RideDAO();
-
-        List<Ride> rides = dao.FindByCategory(numCategory);
-
-        return rides;
-    }
-
-    //public List<Ride> GetRidesByMember(Member member)
-    //{
-    //    RideDAO dao = new RideDAO();
-
-    //    List<Ride> rides = dao.FindByMember(member);
-
-    //    return rides;
-    //}
-    
     public List<Ride> GetRidesByCategory(int numCategory)
     {
         RideDAO dao = new RideDAO();
 
-        List<Ride> rides = dao.FindByCategory(numCategory);
+        List<Ride> rides = dao.FindByCategory(numCategory); 
 
         return rides;
     }

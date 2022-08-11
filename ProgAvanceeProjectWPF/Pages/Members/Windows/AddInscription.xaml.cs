@@ -61,7 +61,18 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
                 return;
             }
 
-            inscription.AddInscription(member,ride,bike,true,true);
+            bool addStatus = inscription.AddInscription(member, ride, bike, true, true, ChoosenVehicule);
+
+            if (addStatus)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Erreur dans l'inscription.");
+                this.Close();
+            }
+           
             
         }
 

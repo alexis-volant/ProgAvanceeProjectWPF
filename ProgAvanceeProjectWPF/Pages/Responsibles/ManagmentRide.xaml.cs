@@ -46,7 +46,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         {
             win.Closed += (ss, ee) =>
             {
-                rides = selectedRide.GetRides(r.Category.Num);
+                rides = selectedRide.GetRidesByCategory(r.Category.Num);
                 ManagmentRideGrid.ItemsSource = rides;
             };
             win.Show();

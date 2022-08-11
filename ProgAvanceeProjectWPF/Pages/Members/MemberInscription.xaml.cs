@@ -67,21 +67,12 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             foreach(Inscription insc in member.Inscriptions)
             {
-                if (insc.Ride.Equals(selectedRide))
+                if (insc.Ride.Num == selectedRide.Num)
                 {
                     MessageBox.Show("Vous ête déjà inscrit a cette balade");
-                    break;
+                    return;
                 }
             }
-
-            //AddInscription addInscription = new AddInscription(member, selectedRide);
-
-            //addInscription.Closed += (ss, ee) =>
-            //{
-            //   //refresh
-            //};
-
-            //addInscription.Show();
 
             ChooseBikeForRide bikeChoose = new ChooseBikeForRide(member, selectedRide);
 

@@ -26,7 +26,7 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
         {
             InitializeComponent();
             this.r = r;
-            rides = ride.GetRides(r.Category.Num);
+            rides = ride.GetRidesByCategory(r.Category.Num);
             RidesGrid.ItemsSource = rides;
         }
 
