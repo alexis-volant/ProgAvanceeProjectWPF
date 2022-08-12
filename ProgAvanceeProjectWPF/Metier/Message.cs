@@ -8,6 +8,10 @@ public class Message
     private Treasurer treasurer;
     private Member member;
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+
+    public Message() { }
+
     public Message(Guid idMessage, string obj, string content, Treasurer treasurer, Member member)
     {
         this.idMessage = idMessage;
@@ -46,6 +50,14 @@ public class Message
     {
         get { return member; }
         set { member = value; }
+    }
+
+    public bool AddMessage(string obj, string content,Treasurer tres, Member member)
+    {
+        DAO<Message> messageDAO = adf.GetMessageDAO();
+        Message message = new Message(Guid.NewGuid(),obj, content, tres, member);
+
+        return messageDAO.Create(message);
     }
 }
 

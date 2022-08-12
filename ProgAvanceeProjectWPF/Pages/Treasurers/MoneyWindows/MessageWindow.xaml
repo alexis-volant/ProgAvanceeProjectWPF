@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows"
         mc:Ignorable="d"
-        Title="MessageWindow" Height="376" Width="800">
+        Title="MessageWindow" Height="416" Width="827">
     <Grid Background="#2b2a33">
-        <TextBlock Text="Envoyer un message :D" Foreground="White" FontSize="24" Margin="34,28,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="258"></TextBlock>
-        <TextBlock Text="Objet" Foreground="White" FontSize="22" Margin="34,72,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
-        <TextBox Margin="34,104,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="366"></TextBox>
-        <TextBlock Text="Contenu" Foreground="White" FontSize="22" Margin="34,150,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
-        <TextBox Margin="34,196,0,0" Height="124" VerticalAlignment="Top" HorizontalAlignment="Left" Width="732"></TextBox>
+        <TextBlock Text="Message de rappel" Foreground="White" FontSize="24" Margin="34,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="212"></TextBlock>
+        <TextBlock Text="Objet" Foreground="White" FontSize="22" Margin="34,54,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
+        <TextBox x:Name="ObjetMessage" FontSize="22" Margin="34,86,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="366"></TextBox>
+        <TextBlock Text="Contenu" Foreground="White" FontSize="22" Margin="34,132,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
+        <TextBox x:Name="ContenuMessage" FontSize="22" Margin="34,169,0,0" Height="124" VerticalAlignment="Top" HorizontalAlignment="Left" Width="732"></TextBox>
+
+        <Button Click="SendMessage" Content="Envoyer" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,318,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+        <Button Click="CancelMessage" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
     </Grid>
 </Window>

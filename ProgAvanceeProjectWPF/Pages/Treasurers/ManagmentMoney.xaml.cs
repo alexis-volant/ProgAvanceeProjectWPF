@@ -39,7 +39,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             MW.Show();
         }
 
-        //TODO message payer la cotisation, bouton payer la cotisation et créer la page pour payer les driver et prendre l'argent des passagers.
+        //TODO Créer bouton pour payer la cotisation. Créer la page pour payer les driver et prendre l'argent des passagers.
 
         private void BackButton(object sender, RoutedEventArgs e)
         {
