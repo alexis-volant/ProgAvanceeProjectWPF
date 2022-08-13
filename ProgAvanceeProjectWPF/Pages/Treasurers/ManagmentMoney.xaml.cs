@@ -21,12 +21,13 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     {
         Treasurer t = new Treasurer();
         Member member = new Member();
+        List<Member> members = new List<Member>();
         public ManagmentMoney(Treasurer t)
         {
             InitializeComponent();
             this.t = t;
 
-            List<Member> members = member.GetAllMembers();
+            members = member.CheckDate(member.GetAllMembers());
 
             ManagmentMemberGrid.ItemsSource = members;
         }
@@ -34,12 +35,35 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         private void SendMessage(object sender, RoutedEventArgs e)
         {
             member = (sender as FrameworkElement).DataContext as Member;
-
-            MessageWindow MW = new MessageWindow(t,member);
+            MessageWindow MW = new MessageWindow(member, t);
             MW.Show();
         }
 
-        //TODO Créer bouton pour payer la cotisation. Créer la page pour payer les driver et prendre l'argent des passagers.
+        private void PayFee(object sender, RoutedEventArgs e)
+        {
+            member = (sender as FrameworkElement).DataContext as Member;
+            PayFeeWindow PFW = new PayFeeWindow(member);
+            RefreshGrid(PFW);
+        }
+
+        private void AddMoney(object sender, RoutedEventArgs e)
+        {
+            member = (sender as FrameworkElement).DataContext as Member;
+            AddMoneyWindow AMW = new AddMoneyWindow(member);
+            RefreshGrid(AMW);
+        }
+
+        //TODO Créer la page pour payer les driver et prendre l'argent des passagers.
+
+        public void RefreshGrid(Window win)
+        {
+            win.Closed += (ss, ee) =>
+            {
+                members = member.GetAllMembers();
+                ManagmentMemberGrid.ItemsSource = members;
+            };
+            win.Show();
+        }
 
         private void BackButton(object sender, RoutedEventArgs e)
         {

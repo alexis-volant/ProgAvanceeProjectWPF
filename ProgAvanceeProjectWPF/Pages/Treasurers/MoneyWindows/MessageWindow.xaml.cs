@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -18,22 +19,26 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
     /// </summary>
     public partial class MessageWindow : Window
     {
-        Treasurer tres = new Treasurer();
         Member member = new Member();
+        Treasurer tres = new Treasurer();
         Message message = new Message();
-        public MessageWindow(Treasurer t, Member m)
+        public MessageWindow(Member member, Treasurer t)
         {
             InitializeComponent();
+            this.member = member;
             this.tres = t;
-            this.member = m;
+
+            int total = (member.Categories.Count * 5) + 15;
 
             string objet = "Paiement de cotisation";
             string contenu = "Bonjour, \n\n" +
-                                "Je vous envoie ce message afin de régler la cotisation annuelle du club.\n" +
-                                "Bien à vous.";
-
+                             "Je vous envoie ce message afin de régler la cotisation annuelle du club.\n" +
+                             $"Votre cotisation s'élève à {total}€.\n" +
+                             "Veuillez vous adresser au trésorier afin de régler ce montant.\n\n" +
+                             "Bien à vous.";
             ObjetMessage.Text = objet;
             ContenuMessage.Text = contenu;
+            Person.Text = $"{member.Name} {member.FirstName}";
         }
 
         private void SendMessage(object sender, RoutedEventArgs e)
@@ -42,6 +47,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
 
             if (addStatus)
             {
+                MessageBox.Show("Message envoyé.");
                 this.Close();
             }
             else

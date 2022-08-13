@@ -34,11 +34,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
 
         private void UpdateValidation(object sender, RoutedEventArgs e)
         {
-            string UpdateN;
-            string UpdateF;
-            string UpdateT;
-            string UpdateL;
-            string UpdateP;
             double UpdateB;
 
             if (UpdateName.Text.Length == 0)
@@ -67,11 +62,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
                 return;
             }
 
-            UpdateN = UpdateName.Text;
-            UpdateF = UpdateFirstName.Text;
-            UpdateT = UpdateTelephone.Text;
-            UpdateL = UpdateLogin.Text;
-            UpdateP = UpdatePassWord.Text;
             var Solde = UpdateBalance.Text.Replace(',', '.');
 
             if (!Double.TryParse(Solde, NumberStyles.Any, CultureInfo.InvariantCulture, out UpdateB))
@@ -80,9 +70,14 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
                 return;
             }
 
-            bool updateStatus = m.UpdateMember(m, UpdateN, UpdateF, UpdateT, UpdateL, UpdateP, UpdateB);
+            m.Name = UpdateName.Text;
+            m.FirstName = UpdateFirstName.Text;
+            m.Tel = UpdateTelephone.Text;
+            m.Login = UpdateLogin.Text;
+            m.PassWord = UpdatePassWord.Text;
+            m.Balance = UpdateB;
 
-            if (updateStatus)
+            if (m.UpdateMember(m))
             {
                 this.Close();
             }

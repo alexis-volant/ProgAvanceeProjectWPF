@@ -19,7 +19,6 @@
                     <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}"/>
                     <DataGridTextColumn Header="N° téléphone" Binding="{Binding Tel}"/>
                     <DataGridTextColumn Header="Solde" Binding="{Binding Balance}"/>
-                    <DataGridTextColumn Header="Date dernier paiement" Binding="{Binding DatePayment}"/>
                     <DataGridTemplateColumn Header="Statut Paiement">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -46,7 +45,6 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Click="SendMessage" Content="Envoyer">
-                                    <!--TODO RETIRER LE BOUTON SI C'EST PAYE-->
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Visibility" Value="Visible"/>
@@ -58,6 +56,31 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Payer cotisation">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="PayFee" Content="Payer">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding PaymentCheck}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Ajouter des fonds">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="AddMoney" Content="Ajouter" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

@@ -14,13 +14,14 @@ internal class MessageDAO : DAO<Message>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Message (idMessage,object,contentText,idTreasurer,idMember) " +
-                    "values(@idMessage, @object, @contentText, @idTreasurer, @idMember)", connection);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Message (idMessage,object,contentText,idTreasurer,idMember,isRead) " +
+                    "values(@idMessage, @object, @contentText, @idTreasurer, @idMember, @isRead)", connection);
                 cmd.Parameters.AddWithValue("idMessage", message.IdMessage);
                 cmd.Parameters.AddWithValue("object", message.Obj);
                 cmd.Parameters.AddWithValue("contentText", message.Content);
                 cmd.Parameters.AddWithValue("idTreasurer", message.Treasurer.Id);
                 cmd.Parameters.AddWithValue("idMember", message.Member.Id);
+                cmd.Parameters.AddWithValue("isRead", message.IsRead);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }

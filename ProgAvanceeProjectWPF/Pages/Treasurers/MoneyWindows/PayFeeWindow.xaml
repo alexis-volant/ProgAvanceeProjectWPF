@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows.PayFeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows"
+        mc:Ignorable="d"
+        Title="PayFeeWindow" Height="230" Width="819">
+    <Grid Background="#2b2a33">
+        <TextBlock Text="Paiement de cotisation pour : " Foreground="White" FontSize="24" Margin="34,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="319"></TextBlock>
+        <TextBlock x:Name="Person" Foreground="White" FontSize="24" Margin="353,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="332"></TextBlock>
+        <TextBlock Text="Montant total de la cotisation : " Foreground="White" FontSize="24" Margin="34,146,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="338"></TextBlock>
+        <TextBlock x:Name="TotalFee" Foreground="White" FontSize="24" Margin="372,146,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="121"></TextBlock>
+        <Button Click="PayFee" Content="Payer" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,142,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+        <Button Click="CancelPayment" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+    </Grid>
+</Window>

@@ -42,7 +42,8 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, login = @Login, passWord = @PassWord, balance = @Balance WHERE idMember = @idMember",
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, " +
+                    "login = @Login, passWord = @PassWord, balance = @Balance, DatePayment = @DatePayment, PaymentCheck = @PaymentCheck WHERE idMember = @idMember",
                     connection);
                 cmd.Parameters.AddWithValue("idMember", m.Id);
                 cmd.Parameters.AddWithValue("Name", m.Name);
@@ -51,6 +52,8 @@ internal class MemberDAO : DAO<Member>
                 cmd.Parameters.AddWithValue("Login", m.Login);
                 cmd.Parameters.AddWithValue("PassWord", m.PassWord);
                 cmd.Parameters.AddWithValue("Balance", m.Balance);
+                cmd.Parameters.AddWithValue("DatePayment", m.DatePayment);
+                cmd.Parameters.AddWithValue("PaymentCheck", m.PaymentCheck);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }

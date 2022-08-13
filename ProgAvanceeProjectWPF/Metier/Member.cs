@@ -72,9 +72,9 @@ public class Member : Person
 
     }
 
-    public void verifyBalance()
+    public bool verifyBalance(double Balance, int total)
     {
-
+        return Balance >= total;
     }
 
     //Récupère tous les membres
@@ -101,17 +101,9 @@ public class Member : Person
             return false;
         }
     }
-    public bool UpdateMember(Member m, string UpdateName, string UpdateFirstName, string UpdateTelephone, string UpdateLogin, string UpdatePassWord, double UpdateBalance)
+    public bool UpdateMember(Member m)
     {
         DAO<Member> memberDAO = adf.GetMemberDAO();
-
-        m.Name = UpdateName;
-        m.FirstName = UpdateFirstName;
-        m.Tel = UpdateTelephone;
-        m.Login = UpdateLogin;
-        m.PassWord = UpdatePassWord;
-        m.Balance = UpdateBalance;
-
         return memberDAO.Update(m);
     }
     public bool DeleteMember(Member m)
@@ -162,5 +154,18 @@ public class Member : Person
         {
             return false;
         }
+    }
+
+    public List<Member> CheckDate(List<Member> members)
+    {
+        foreach (Member m in members)
+        {
+            if (m.DatePayment.AddYears(1) < DateTime.Now)
+            {
+                m.PaymentCheck = false;
+                m.UpdateMember(m);
+            }
+        }
+        return members;
     }
 }
