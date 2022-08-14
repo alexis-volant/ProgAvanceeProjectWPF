@@ -9,8 +9,6 @@ public class Message
     private Member member;
     private bool isRead;
 
-    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-
     public Message() { }
 
     public Message(Guid idMessage, string obj, string content, Treasurer treasurer, Member member, bool isRead)
@@ -22,7 +20,6 @@ public class Message
         this.member = member;
         this.isRead = isRead;
     }
-
 
     public Guid IdMessage
     {
@@ -58,14 +55,6 @@ public class Message
     {
         get { return isRead; }
         set { isRead = value; }
-    }
-
-    public bool AddMessage(string obj, string content,Treasurer tres, Member member)
-    {
-        DAO<Message> messageDAO = adf.GetMessageDAO();
-        Message message = new Message(Guid.NewGuid(),obj, content, tres, member, false);
-
-        return messageDAO.Create(message);
     }
 }
 

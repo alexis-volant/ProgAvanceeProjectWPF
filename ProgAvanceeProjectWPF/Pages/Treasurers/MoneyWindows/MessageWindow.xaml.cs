@@ -21,12 +21,11 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
     {
         Member member = new Member();
         Treasurer tres = new Treasurer();
-        Message message = new Message();
-        public MessageWindow(Member member, Treasurer t)
+        public MessageWindow(Member member, Treasurer tres)
         {
             InitializeComponent();
             this.member = member;
-            this.tres = t;
+            this.tres = tres;
 
             int total = (member.Categories.Count * 5) + 15;
 
@@ -43,7 +42,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
 
         private void SendMessage(object sender, RoutedEventArgs e)
         {
-            bool addStatus = message.AddMessage(ObjetMessage.Text, ContenuMessage.Text, tres, member);
+            bool addStatus = tres.envoiLettreRappel(ObjetMessage.Text, ContenuMessage.Text, tres, member);
 
             if (addStatus)
             {
