@@ -95,7 +95,8 @@ internal class RideDAO : DAO<Ride>
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    CategoryDAO categoryDAO = new CategoryDAO();
+                    
+                    VehicleDAO vehicleDAO = new VehicleDAO();
                     while (reader.Read())
                     {
                         Category category = new Category(
@@ -108,7 +109,9 @@ internal class RideDAO : DAO<Ride>
                             reader.GetDateTime("dateDeparture"),
                             reader.GetDouble("packageFee"),
                             category
+
                             );
+                        ride.Vehicles = vehicleDAO.FindByRide(ride);
                         rides.Add(ride);
                     }
                 }

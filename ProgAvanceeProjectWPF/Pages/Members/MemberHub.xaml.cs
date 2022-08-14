@@ -1,4 +1,5 @@
 ﻿using ProgAvanceeProjectWPF.Pages.Members.Windows;
+using ProgAvanceeProjectWPF.Pages.Members.Windows.Categories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,12 +30,20 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             InitializeComponent();
             this.member = m;
+
+            LblFirstName.Content = string.Concat(member.Name," ",member.FirstName);
+            LblBalance.Content = member.Balance;
+
             List<Ride> rides = new List<Ride>();
             foreach (Inscription insc in member.Inscriptions)
             {
                 rides.Add(insc.Ride);
             }
-            RidesGrid.ItemsSource = rides;
+            RidesGrid.ItemsSource = rides.OrderBy(x => x.Num);
+
+
+
+            BikesGrid.ItemsSource = member.Bikes;
 
             AddListCatContent(); 
         }
@@ -66,7 +75,11 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             addCategory.Closed += (ss, ee) =>
             {
                ListCat.Children.Clear ();
-                AddListCatContent();
+               AddListCatContent();
+
+               LblBalance.Content = string.Empty;
+               LblBalance.Content = member.Balance;
+
             };
         }
 
@@ -74,11 +87,12 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             NavigationService.Content = null;
             NavigationService.Navigate(new MemberBike(member));
+            
         }
         private void GoToMemberInscriptionPage(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new MemberInscription(member));
+            NavigationService.Navigate(new MemberInscription(member));    
         }
    
     }

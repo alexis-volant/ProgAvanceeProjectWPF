@@ -110,6 +110,7 @@ internal class MemberDAO : DAO<Member>
                         BikeDAO bikeDAO = new BikeDAO();
                         InscriptionDAO inscriptionDAO = new InscriptionDAO();
                         MessageDAO messageDAO = new MessageDAO();
+                        VehicleDAO vehicleDAO = new VehicleDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
                             reader.GetString("name"),
@@ -125,6 +126,7 @@ internal class MemberDAO : DAO<Member>
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
                         member.Messages = messageDAO.FindAllByMember(member);
+                        member.Vehicles = vehicleDAO.FindAllByMember(member);
                     }
                 }
             }
@@ -248,8 +250,47 @@ internal class MemberDAO : DAO<Member>
         return true;
     }
 
+    public List<Member> GetPassengers(int numRide, Guid idVehicle)
+    {
+        List<Member> passengers = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * FROM dbo.Passenger P join dbo.Member M "+
+                    "on P.idMember = M.idMember WHERE P.idVehicle = @idVehicle and P.numRide = @numRide ", connection);
+                cmd.Parameters.AddWithValue("idVehicle", idVehicle);
+                cmd.Parameters.AddWithValue("numRide", numRide);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                        passengers.Add(member);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return passengers;
+
+    }
+    
     public bool RemoveMemberCategory(Member member)
     {
+
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
@@ -259,6 +300,7 @@ internal class MemberDAO : DAO<Member>
                 cmd.Parameters.AddWithValue("idMember", member.Id);
                 cmd.ExecuteNonQuery();
                 connection.Close();
+
             }
         }
         catch (SqlException e)
@@ -269,4 +311,5 @@ internal class MemberDAO : DAO<Member>
 
         return true;
     }
+
 }

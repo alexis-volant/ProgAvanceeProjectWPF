@@ -89,19 +89,19 @@ public class Ride
 
     }
 
-    public void getMemberPlacesNeed()
+    //public void getMemberPlacesNeed()
+    //{
+
+    //}
+
+    //public void getBikePlacesNeed()
+    //{
+
+    //}
+
+    public void addVehicle(Vehicle vehicle)
     {
-
-    }
-
-    public void getBikePlacesNeed()
-    {
-
-    }
-
-    public void addVehicle()
-    {
-
+        this.vehicles.Add(vehicle);
     }
 
     public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Calender calender)

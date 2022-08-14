@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Members.Windows
+namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes
 {
     /// <summary>
     /// Interaction logic for AddBike.xaml
@@ -18,10 +19,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
     public partial class AddBike : Window
     {
         Bike bike = new Bike();
-
         Member member = new Member();
-
         Category category = new Category();
+
         public AddBike(Member m)
         {
             InitializeComponent();
@@ -45,18 +45,31 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
             double AddBikeWeight;
             double AddBikeLength;
 
-            if (AddType.Equals(""))
+            if (AddType.Text.Equals("") || AddType.Text.Equals("--choisir un type--"))
             {
-                MessageBox.Show("Le type ne peut-être vide.");
+                MessageBox.Show("Veuillez choisir un type");
                 return;
             }
+            else
+            {
+                AddBikeType = AddType.Text;
+            }
 
+            var weigth = AddWeight.Text.Replace(',', '.');
 
-            AddBikeType = AddType.Text;
-
-            AddBikeWeight = AddWeight.Text.Length == 0 ? 0 : Convert.ToDouble(AddWeight.Text);
-
-            AddBikeLength = AddLength.Text.Length == 0 ? 0 : Convert.ToDouble(AddLength.Text);
+            if (!Double.TryParse(weigth, NumberStyles.Any,CultureInfo.InvariantCulture, out AddBikeWeight))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+            
+            var length = AddLength.Text.Replace(',', '.');
+            if (!Double.TryParse(length, NumberStyles.Any, CultureInfo.InvariantCulture, out AddBikeLength))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+           
 
             bool addStatus = bike.CreateBike(AddBikeType, AddBikeWeight, AddBikeLength, member);
 
@@ -69,11 +82,6 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
                 MessageBox.Show("Erreur dans l'ajout du velo.");
                 this.Close();
             }
-
         }
-
-
-
-
     }
 }

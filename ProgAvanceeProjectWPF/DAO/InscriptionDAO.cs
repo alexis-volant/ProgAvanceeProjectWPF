@@ -9,7 +9,31 @@ internal class InscriptionDAO : DAO<Inscription>
 
     public override bool Create(Inscription i)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Inscription (idInscription, passenger, bike, numRide, idMember, idBike) " +
+                    "values(@idInscription, @passenger, @bike, @numRide, @idMember, @idBike)", connection);
+
+                cmd.Parameters.AddWithValue("idInscription", i.IdInscription);
+                cmd.Parameters.AddWithValue("passenger", i.Passenger);
+                cmd.Parameters.AddWithValue("bike", i.Hasbike);
+                cmd.Parameters.AddWithValue("numRide", i.Ride.Num);
+                cmd.Parameters.AddWithValue("idMember", i.Member.Id);
+                cmd.Parameters.AddWithValue("idBike", i.Bike.IdBike);
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
     public override bool Update(Inscription i)
     {
@@ -33,6 +57,7 @@ internal class InscriptionDAO : DAO<Inscription>
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member M " +
                     "join dbo.Inscription I on M.idMember = I.idMember " +
                     "join dbo.Ride R on I.numRide = R.numRide " +
+                    "join dbo.Bike B on I.IdBike = B.idBike "+
                     "join dbo.Category C on R.numCategory = C.numCategory " +
                     "WHERE M.idMember = @id", connection);
                 cmd.Parameters.AddWithValue("id", member.Id);
@@ -52,11 +77,19 @@ internal class InscriptionDAO : DAO<Inscription>
                             reader.GetDateTime("dateDeparture"),
                             reader.GetDouble("packageFee"),
                             category
-                            ); 
+                            );
+                        Bike bike = new Bike(
+                            reader.GetGuid("idBike"),
+                            reader.GetDouble("weight"),
+                            reader.GetString("type"),
+                            reader.GetDouble("length"),
+                            member
+                            );
                         Inscription inscription = new Inscription(
                             reader.GetGuid("idInscription"),
                             member,
                             ride,
+                            bike,
                             reader.GetBoolean("passenger"),
                             reader.GetBoolean("bike")
                             );
@@ -70,5 +103,77 @@ internal class InscriptionDAO : DAO<Inscription>
             throw new Exception(e.Message);
         }
         return inscriptions;
+    }
+
+    public bool AddPassenger(Member m,Ride r,Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Passenger (idMember, idVehicle, numRide) " +
+                    "values(@idMember, @idVehicle, @numRide)", connection);
+
+                cmd.Parameters.AddWithValue("idMember", m.Id);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
+    }
+    public bool AddBikeVehicle(Bike b,Ride r,Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.BikeVehicle (idBike, idVehicle, numRide) " +
+                    "values(@idBike, @idVehicle, @numRide)", connection);
+
+                cmd.Parameters.AddWithValue("idBike", b.IdBike);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
+    }
+
+    public bool AddVehicleRide(Ride r, Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.VehicleRide (idVehicle, numRide) " +
+                    "values(@idVehicle, @numRide)", connection);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
 }

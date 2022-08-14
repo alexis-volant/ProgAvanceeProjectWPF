@@ -10,6 +10,7 @@ public class Member : Person
     private List<Category> categories = new List<Category>();
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
+    private List<Vehicle> vehicles = new List<Vehicle>();
     private List<Message> messages = new List<Message>();
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
@@ -67,11 +68,17 @@ public class Member : Person
         get { return inscriptions; }
         set { inscriptions = value; }
     }
-
+    
     public List<Message> Messages
     {
         get { return messages; }
         set { messages = value; }
+    }
+
+    public List<Vehicle> Vehicles
+    {
+        get { return vehicles; }
+        set { vehicles = value; }   
     }
 
     public void calculBalance(double amount)
@@ -81,7 +88,7 @@ public class Member : Person
 
     public bool verifyBalance(double amount)
     {
-        return Balance >= amount;
+        return Balance >= total;
     }
 
     //Récupère tous les membres
@@ -149,7 +156,15 @@ public class Member : Person
         this.bikes.Remove(bike);
     }
 
-    //Ajoute une catégorie dans la liste des catégorie de ce membre
+    public void AddVehicle(Vehicle vehicle)
+    {
+        this.vehicles.Add(vehicle);
+    }
+
+    public void AddInscription(Inscription inscription)
+    {
+        this.inscriptions.Add(inscription);
+    }
     public bool AddCategory(Category category, Member member)
     {
         if(dao.AddMemberCategory(category, member))
@@ -175,4 +190,6 @@ public class Member : Person
         }
         return members;
     }
+
+
 }

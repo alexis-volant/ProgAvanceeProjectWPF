@@ -1,4 +1,5 @@
 ﻿using ProgAvanceeProjectWPF.Pages.Members.Windows;
+using ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -78,7 +79,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members
     private void ReturnBtn(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.GoBack();
+
+            NavigationService.Navigate(new MemberHub(member));
+
         }
     }
 }
