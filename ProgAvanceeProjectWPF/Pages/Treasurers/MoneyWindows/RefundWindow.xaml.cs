@@ -61,7 +61,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
             {
                 if (t.payerConducteur(receive, amount) && t.reclamerForfait(pay, amount))
                 {
-                    if (message.MessageIsRead(message, t))
+                    if (message.MessageIsRead(message))
                     {
                         MessageBox.Show("Remboursement effectué.");
                         this.Close();
@@ -80,7 +80,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
             {
                 string obj = "Alerte solde";
                 string content = "Bonjour, \n\n" +
-                    ""
+                    "";
                 t.envoiLettreRappel(obj,content, t, pay);
             }
         }

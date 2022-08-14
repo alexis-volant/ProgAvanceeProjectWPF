@@ -41,8 +41,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             Message newMessage = new Message();
             newMessage = (sender as FrameworkElement).DataContext as Message;
-            newMessage.IsRead=true;
-            message.UpdateMessage(newMessage);
+            
+            message.MessageIsRead(newMessage);
+            MessagesGrid.ItemsSource = null;
+            MessagesGrid.ItemsSource = member.Messages;
         }
     }
 }

@@ -59,15 +59,13 @@ public class Message
         set { isRead = value; }
     }
 
-    public bool MessageIsRead(Message message, Treasurer t)
+    public bool MessageIsRead(Message message)
     {
         DAO<Message> messageDAO = adf.GetMessageDAO();
-
         message.isRead = true;
-        t.updateMessage(message);
-
         return messageDAO.Update(message);
     }
+
     public bool AddMessage(string obj, string content)
     {
         DAO<Message> messageDAO = adf.GetMessageDAO();

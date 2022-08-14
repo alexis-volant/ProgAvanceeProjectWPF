@@ -42,6 +42,9 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             RidesGrid.ItemsSource = rides.OrderBy(x => x.Num);
             BikesGrid.ItemsSource = member.Bikes;
 
+            var TotalMessageNotRead = member.Messages.Where(x => x.IsRead == false).Count();
+            messagesCount.Content = string.Concat("Mes messages " + "(" + TotalMessageNotRead + ")");
+
             AddListCatContent(); 
         }
 
