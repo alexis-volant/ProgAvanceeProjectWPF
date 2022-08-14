@@ -1,9 +1,9 @@
-﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Members.Windows.AddInscription"
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions.AddInscription"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions"
         mc:Ignorable="d"
         Title="Inscription" Height="460" Width="550">
 
@@ -30,7 +30,7 @@
 
         <Separator Margin="0,160,0,0" Height="20" />
         <Label Content="Proposer un covoiturage" Foreground="White" FontSize="18" Margin="40,310,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
-        <Button Click="AddCoVehicle" Content="Choisir mon vehicule" Foreground="White" FontSize="24" Background="#42414d"  Margin="40,360,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250"></Button>
+        <Button Click="MyVehicle" Content="Choisir mon vehicule" Foreground="White" FontSize="24" Background="#42414d"  Margin="40,360,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250"></Button>
     
     </Grid>
 </Window>

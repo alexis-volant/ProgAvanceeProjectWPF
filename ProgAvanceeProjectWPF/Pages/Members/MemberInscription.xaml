@@ -9,7 +9,13 @@
       Title="MemberInscription">
 
     <Grid>
-        <ComboBox x:Name="CatChoice" IsEditable="True" IsReadOnly="True" Text="--choisir une catégorie--" FontSize="20" Foreground="Black" Width="250" Margin="53,32,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" SelectionChanged="CatChoice_SelectionChanged"/>
+        <ComboBox x:Name="CatChoice" FontSize="20" Foreground="Black" Width="250" Margin="53,32,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" SelectionChanged="CatChoice_SelectionChanged">
+        <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding NameCategory}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="MemberRideGrid" AutoGenerateColumns="false" Margin="52,79,0,0" Height="152" VerticalAlignment="Top" HorizontalAlignment="Left" Width="446">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>

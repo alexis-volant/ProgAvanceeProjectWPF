@@ -7,7 +7,29 @@ internal class VehicleDAO : DAO<Vehicle>
 {
     public override bool Create(Vehicle v)
     {
-        return false;
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Vehicle (idVehicle, nbrPlacesMembers, nbrPlacesBikes, idDriver) " +
+                    "values(@idVehicle, @nbrPlacesMembers, @nbrPlacesBikes, @idDriver)", connection);
+
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("nbrPlacesMembers", v.NbrPlacesMembers);
+                cmd.Parameters.AddWithValue("nbrPlacesBikes", v.NbrPlacesBikes);
+                cmd.Parameters.AddWithValue("idDriver", v.Driver.Id);
+
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
     }
     public override bool Update(Vehicle obj)
     {

@@ -52,14 +52,16 @@ public class Member : Person
         set { vehicles = value; }   
     }
 
-    public void calculBalance()
+    public void calculBalance(double amount)
     {
-        
+        balance += amount;
     }
 
-    public void verifyBalance()
+    public bool verifyBalance(double amount)
     {
-
+        if (balance < amount)
+            return false;
+        else return true;
     }
 
     public List<Member> GetAllMembers()
@@ -118,6 +120,15 @@ public class Member : Person
         this.bikes.Remove(bike);
     }
 
+    public void AddVehicle(Vehicle vehicle)
+    {
+        this.vehicles.Add(vehicle);
+    }
+
+    public void AddInscription(Inscription inscription)
+    {
+        this.inscriptions.Add(inscription);
+    }
     public bool AddCategory(Category category, Member member)
     {
         MemberDAO dao = new MemberDAO();
@@ -125,4 +136,6 @@ public class Member : Person
         this.Categories.Add(category);
         return true;
     }
+
+
 }

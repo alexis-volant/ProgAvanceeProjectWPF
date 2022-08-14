@@ -71,15 +71,27 @@ public class Inscription
 
         if (passenger)
         {
-            if (!dao.AddPassenger(member, ride, vehicle)) return false;   
+            if (!dao.AddPassenger(member, ride, vehicle)) return false;
+            vehicle.addPassenger(member);
         }
 
         if (hasBike)
         {
             if (!dao.AddBikeVehicle(bike, ride, vehicle)) return false;
+            vehicle.addBike(bike);
         }
 
-        //A changer
+        if (!passenger && !hasBike)
+        {
+            if (!dao.AddVehicleRide(ride, vehicle)) return false;
+            ride.addVehicle(vehicle);
+            vehicle.addRide(ride);
+        }
+
+        member.AddInscription(inscription);
+
+        
+       
         return true;
     }
 

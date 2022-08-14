@@ -153,4 +153,27 @@ internal class InscriptionDAO : DAO<Inscription>
         }
         return true;
     }
+
+    public bool AddVehicleRide(Ride r, Vehicle v)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.VehicleRide (idVehicle, numRide) " +
+                    "values(@idVehicle, @numRide)", connection);
+                cmd.Parameters.AddWithValue("idVehicle", v.IdVehicle);
+                cmd.Parameters.AddWithValue("numRide", r.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+        return true;
+    }
 }

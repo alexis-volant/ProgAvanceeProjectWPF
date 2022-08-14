@@ -97,9 +97,9 @@ public class Ride
 
     //}
 
-    public void addVehicle()
+    public void addVehicle(Vehicle vehicle)
     {
-
+        this.vehicles.Add(vehicle);
     }
 
     public bool AddRide(string UpdatePlace, DateTime UpdateDate, double UpdateFee, Category cat)

@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Members.Windows
+namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes
 {
     /// <summary>
     /// Interaction logic for DeleteBike.xaml

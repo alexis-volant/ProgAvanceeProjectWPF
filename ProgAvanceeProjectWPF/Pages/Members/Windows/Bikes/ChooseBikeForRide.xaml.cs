@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace ProgAvanceeProjectWPF.Pages.Members.Windows
+namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes
 {
     /// <summary>
     /// Interaction logic for ChooseBikeForRide.xaml
@@ -21,14 +22,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
     {
         Member member = new Member();
         Ride ride = new Ride(); 
-        public ChooseBikeForRide(Member m, Ride r )
+        public ChooseBikeForRide(Member m, Ride r)
         {
             InitializeComponent();
             this.member = m;
             this.ride = r;
 
-            BikesGrid.ItemsSource = member.Bikes.Where(x => x.Type.Equals(r.Category.NameCategory.ToString()));
-
+            BikesGrid.ItemsSource = member.Bikes.Where(x => x.Type == r.Category.NameCategory);
         }
         private void BikeChooseBtn(object sender, RoutedEventArgs e)
         {

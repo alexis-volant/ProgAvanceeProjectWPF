@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Members.Windows
+namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Categories
 {
     /// <summary>
     /// Interaction logic for AddCategory.xaml
@@ -30,7 +30,32 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
 
         private void AddMemberCategory(object sender, RoutedEventArgs e)
         {
-            Category newCategory = new Category(); ;
+            Category newCategory = new Category();
+            int nbrCat = member.Categories.Count;
+            double amount=0.00;
+            
+
+            if (nbrCat <= 0)
+            {
+                amount = 20.00;
+                if (!member.verifyBalance(amount))
+                {
+                    MessageBox.Show("Vous n'avez pas assez de fond");
+                    this.Close();
+                    return;
+                }
+            }
+            else if (nbrCat > 0)
+            {
+                amount = 5.00;
+                if (!member.verifyBalance(amount))
+                {
+                    MessageBox.Show("Vous n'avez pas assez de fond");
+                    this.Close();
+                    return;
+
+                }
+            }
 
             if (CatChoice.SelectedItem == null || CatChoice.SelectedItem.GetType() != typeof(Category))
             {
@@ -39,7 +64,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
             }
             else
             {
-                newCategory = (Category)CatChoice.SelectedItem;
+                newCategory = CatChoice.SelectedItem as Category;
                 
                 foreach(Category cat in member.Categories)
                 {
@@ -57,6 +82,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
 
                 if (addStatus)
                 {
+                    member.calculBalance(-amount);
                     this.Close();
                 }
                 else
@@ -66,6 +92,8 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
                 }
                 
             }
+
+           
         }
     }
 }

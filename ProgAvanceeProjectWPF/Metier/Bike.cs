@@ -114,17 +114,6 @@ public class Bike
         else
         {
             return false;
-        }
-       
+        } 
     }
-
-    //public List<Bike> GetBikesByMember(Member member)
-    //{
-    //    BikeDAO dao = new BikeDAO();
-
-    //    List<Bike> bikes = dao.FindBikesByMember(member);
-
-    //    return bikes;
-    //}
-
 }

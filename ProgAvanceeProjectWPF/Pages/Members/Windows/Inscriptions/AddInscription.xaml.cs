@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgAvanceeProjectWPF.Pages.Members.Windows.Vehicles;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -10,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProgAvanceeProjectWPF.Pages.Members.Windows
+namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions
 {
     /// <summary>
     /// Interaction logic for AddReservation.xaml
@@ -72,14 +73,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows
                 MessageBox.Show("Erreur dans l'inscription.");
                 this.Close();
             }
-           
-            
+  
         }
 
-        public void AddCoVehicle(object sender, RoutedEventArgs e)
+        public void MyVehicle(object sender, RoutedEventArgs e)
         {
             this.Close();
-            MyVehicle myVehicle = new MyVehicle(member);
+            MyVehicle myVehicle = new MyVehicle(member, ride, bike);
             myVehicle.Show();
         }
     }

@@ -1,9 +1,9 @@
-﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Members.Windows.DeleteBike"
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes.DeleteBike"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes"
         mc:Ignorable="d"
         Title="Supprimer velo" Height="250" Width="600">
     <Grid Background="#2b2a33" Height="234" VerticalAlignment="Center" HorizontalAlignment="Center" Width="600">

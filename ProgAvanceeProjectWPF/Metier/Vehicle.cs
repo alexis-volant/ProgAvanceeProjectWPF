@@ -7,10 +7,11 @@ public class Vehicle
     private int nbrPlacesMembers;
     private int nbrPlacesBikes;
     private Member driver;
-    private List<Member> passengers;
-    private List<Bike> bikes;
-    private List<Ride> rides;
+    private List<Member> passengers = new List<Member>();
+    private List<Bike> bikes = new List<Bike>();
+    private List<Ride> rides = new List<Ride>();
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
     public Vehicle()
     {
     }
@@ -19,6 +20,13 @@ public class Vehicle
         this.idVehicle = idVehicle;
         this.nbrPlacesMembers = nbrPlacesMembers;
         this.nbrPlacesBikes = nbrPlacesBikes;
+    } 
+    public Vehicle(Guid idVehicle, int nbrPlacesMembers, int nbrPlacesBikes, Member member)
+    {
+        this.idVehicle = idVehicle;
+        this.nbrPlacesMembers = nbrPlacesMembers;
+        this.nbrPlacesBikes = nbrPlacesBikes;
+        this.driver = member;
     }
     
     public Guid IdVehicle
@@ -63,6 +71,21 @@ public class Vehicle
         set { rides = value; }
     }
 
+    public bool CreateVehicle(Member member, int passengerPlaces, int bikePlaces)
+    {
+        DAO<Vehicle> vehicleDAO = adf.GetVehicleDAO();
+        Vehicle vehicle = new Vehicle(Guid.NewGuid(), passengerPlaces, bikePlaces, member);
+
+        if (vehicleDAO.Create(vehicle))
+        {
+            member.AddVehicle(vehicle);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void addPassenger(Member passenger)
     {
         this.passengers.Add(passenger);

@@ -1,4 +1,5 @@
 ﻿using ProgAvanceeProjectWPF.Pages.Members.Windows;
+using ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,26 +31,16 @@ namespace ProgAvanceeProjectWPF.Pages.Members
 
             this.member = m;
 
-            List<string> CatNamelist = new List<string>(); 
-            foreach (Category c in member.Categories)
-            {
-                CatNamelist.Add(c.NameCategory);
-            }
-            CatChoice.ItemsSource = CatNamelist;
+            
+            CatChoice.ItemsSource = member.Categories;
         }
 
         private void CatChoice_SelectionChanged(object sender, RoutedEventArgs e)
         {
            
-            int idCategory = CatChoice.SelectedIndex;
-            idCategory++;
-
-            //if (!String.IsNullOrEmpty(textBoxRide.Text))
-            //{
-            //    textBoxRide.Clear();
-            //}
-
-            List<Ride> rides = ride.GetRidesByCategory(idCategory);
+            Category cat = CatChoice.SelectedItem as Category;
+           
+            List<Ride> rides = ride.GetRidesByCategory(cat.Num);
 
             if (rides.Any())
             {
@@ -74,13 +65,13 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 }
             }
 
-            ChooseBikeForRide bikeChoose = new ChooseBikeForRide(member, selectedRide);
-
-            bikeChoose.Closed += (ss, ee) =>
+            if (!member.verifyBalance(selectedRide.PackageFee))
             {
-                //refresh
-            };
+                MessageBox.Show("Vous n'avez pas assez de fond");
+                return;
+            }
 
+            ChooseBikeForRide bikeChoose = new ChooseBikeForRide(member, selectedRide);
             bikeChoose.Show();
         }
 

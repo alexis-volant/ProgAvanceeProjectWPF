@@ -30,6 +30,7 @@ internal class BikeDAO : DAO<Bike>
         {
             return false;
             throw new Exception(e.Message);
+            
         }
         return true;
     }
