@@ -59,9 +59,7 @@ public class Member : Person
 
     public bool verifyBalance(double amount)
     {
-        if (balance < amount)
-            return false;
-        else return true;
+        return balance <= amount;
     }
 
     public List<Member> GetAllMembers()
