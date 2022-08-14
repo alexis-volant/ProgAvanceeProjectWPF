@@ -18,7 +18,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
     public partial class PayFeeWindow : Window
     {
         Member member = new Member();
-        int total = 0;
+        double total = 0;
         public PayFeeWindow(Member member)
         {
             InitializeComponent();
@@ -30,9 +30,9 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
 
         private void PayFee(object sender, RoutedEventArgs e)
         {
-            if(member.verifyBalance(member.Balance, total))
+            if(member.verifyBalance(total))
             {
-                member.Balance -= Convert.ToDouble(total);
+                member.Balance -= total;
                 member.DatePayment = DateTime.Now;
                 member.PaymentCheck = true;
                 if (member.UpdateMember(member))
