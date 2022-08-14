@@ -144,6 +144,7 @@ internal class TreasurerDAO : DAO<Treasurer>
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    MessageDAO messageDAO = new MessageDAO();
                     if (reader.Read())
                     {
                         treasurer = new Treasurer(
@@ -154,6 +155,7 @@ internal class TreasurerDAO : DAO<Treasurer>
                             reader.GetString("login"),
                             reader.GetString("password")
                             );
+                        treasurer.Messages = messageDAO.FindAll(treasurer);
                     }
                 }
             }

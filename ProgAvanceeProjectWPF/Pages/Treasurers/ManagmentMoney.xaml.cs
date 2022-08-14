@@ -53,7 +53,11 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
             RefreshGrid(AMW);
         }
 
-        //TODO Créer la page pour payer les driver et prendre l'argent des passagers. (Utiliser les fonctions dans trésorier).
+        private void SeeMessages(object sender, RoutedEventArgs e)
+        {
+            MessagesWindow MW = new MessagesWindow(t);
+            RefreshGrid(MW);
+        }
 
         public void RefreshGrid(Window win)
         {

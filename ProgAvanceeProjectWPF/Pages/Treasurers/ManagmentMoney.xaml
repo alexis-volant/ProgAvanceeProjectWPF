@@ -8,7 +8,7 @@
       d:DesignHeight="600" d:DesignWidth="1000"
       Title="Gestion de la trésorerie">
 
-    <Grid>
+    <Grid Background="#2b2a33">
         <Label Foreground="White" FontSize="24" Margin="0,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Width="260">
             <TextBlock TextDecorations="Underline">Gestion de la trésorerie</TextBlock>
         </Label>
@@ -87,6 +87,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <Button Click="SeeMessages" Content="Voir les messages" Foreground="White" FontSize="24" Background="#42414d"  Margin="35,506,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="201"></Button>
         <Button Click="BackButton" Content="Retour" Foreground="White" FontSize="24" Background="#42414d"  Margin="876,506,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
     </Grid>
 </Page>
