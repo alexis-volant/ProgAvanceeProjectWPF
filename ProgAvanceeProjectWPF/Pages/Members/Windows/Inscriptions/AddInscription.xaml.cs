@@ -23,6 +23,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions
         Vehicle vehicle = new Vehicle();
         Inscription inscription = new Inscription();
         Bike bike = new Bike();
+        Message message = new Message();
         public AddInscription(Member m, Ride r, Bike b)
         {
             InitializeComponent();
@@ -66,6 +67,14 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions
 
             if (addStatus)
             {
+                double amount = ride.PackageFee;
+                Member driver = ChoosenVehicule.Driver;
+                string obj = "Inscription balade";
+                string content = $"Le membre {string.Concat(member.Name + " " + member.FirstName)} doit {ride.PackageFee}€ au conducteur {string.Concat(driver.Name + " " + driver.FirstName)}";
+                message.AddMessage(obj, content);
+
+                member.calculBalance(-amount);
+
                 this.Close();
             }
             else

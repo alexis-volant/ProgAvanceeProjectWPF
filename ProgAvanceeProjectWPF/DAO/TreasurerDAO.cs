@@ -165,32 +165,29 @@ internal class TreasurerDAO : DAO<Treasurer>
         return treasurer;
     }
 
-    /*public List<Member> FindAll()
+    public List<Treasurer> FindAll()
     {
-        List<Member> listMember = new List<Member>();
+        List<Treasurer> treasurers = new List<Treasurer>();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Treasurer", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Member mem = new Member
-                        {
-                            Id = reader.GetInt32("idMember"),
-                            Name = reader.GetString("name"),
-                            FirstName = reader.GetString("firstName"),
-                            Tel = reader.GetInt32("tel"),
-                            Login = reader.GetString("login"),
-                            PassWord = reader.GetString("passWord"),
-                            Balance = reader.GetDouble("balance"),
-                            Categories = new List<Category>(),
-                            Bikes = new List<Bike>()
-                        };
-                        listMember.Add(mem);
+                        Treasurer tres = new Treasurer
+                        (
+                            reader.GetGuid("idTreasurer"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password")
+                        );
+                        treasurers.Add(tres);
                     }
                 }
             }
@@ -199,66 +196,7 @@ internal class TreasurerDAO : DAO<Treasurer>
         {
             throw new Exception("Une erreur sql s'est produite!");
         }
-        return listMember;
+        return treasurers;
     }
-    public bool Add(int idMember, int idCategory)
-    {
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.infoCatMember " +
-                    "(idMember,idCategory) " +
-                    "values('" + idMember + "' , '" + idCategory + "' )",
-                    connection);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-        }
-        catch (SqlException)
-        {
-            throw new Exception("Une erreur sql s'est produite!");
-        }
-        return false;
-    }
-    public Member LoginCheck(string login, string password)
-    {
-        Member member = null;
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-
-                SqlCommand cmd = new SqlCommand("Select *  from dbo.Member where passWord = @pw and login = @login",
-                    connection);
-                cmd.Parameters.AddWithValue("pw", password);
-                cmd.Parameters.AddWithValue("login", login);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        member = new Member
-                        {
-                            Id = reader.GetInt32("idMember"),
-                            Name = reader.GetString("name"),
-                            FirstName = reader.GetString("firstName"),
-                            Tel = reader.GetInt32("tel"),
-                            Login = reader.GetString("login"),
-                            PassWord = reader.GetString("passWord"),
-                            Balance = reader.GetDouble("balance"),
-                            Categories = new List<Category>(),
-                            Bikes = new List<Bike>()
-                        };
-                    }
-                }
-            }
-        }
-        catch (SqlException)
-        {
-            throw new Exception("Une erreur sql s'est produite!");
-        }
-        return member;
-    }*/
+    
 }

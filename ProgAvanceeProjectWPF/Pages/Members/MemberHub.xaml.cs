@@ -40,9 +40,6 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 rides.Add(insc.Ride);
             }
             RidesGrid.ItemsSource = rides.OrderBy(x => x.Num);
-
-
-
             BikesGrid.ItemsSource = member.Bikes;
 
             AddListCatContent(); 
@@ -93,6 +90,11 @@ namespace ProgAvanceeProjectWPF.Pages.Members
         {
             NavigationService.Content = null;
             NavigationService.Navigate(new MemberInscription(member));    
+        }
+        private void GoToMyMessages(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.Navigate(new MyMessages(member));    
         }
    
     }

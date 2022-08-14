@@ -76,7 +76,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
             deleteBike.Show();
         }
 
-    private void ReturnBtn(object sender, RoutedEventArgs e)
+        private void ReturnBtn(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
 

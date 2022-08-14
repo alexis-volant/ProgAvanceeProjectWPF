@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 public class Treasurer : Person
 {
@@ -27,7 +28,6 @@ public class Treasurer : Person
     {
         DAO<Message> messageDAO = adf.GetMessageDAO();
         Message message = new Message(Guid.NewGuid(), obj, content, tres, member, false);
-
         return messageDAO.Create(message);
     }
 
@@ -36,5 +36,11 @@ public class Treasurer : Person
         TreasurerDAO dao = new TreasurerDAO();
 
         return dao.loginCheck(login, password);
+    }
+
+    public Treasurer GetTreasurer()
+    {
+        TreasurerDAO dao = new TreasurerDAO();
+        return dao.FindAll().FirstOrDefault();
     }
 }

@@ -19,6 +19,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Categories
     {
         Member member = new Member();
         Category category = new Category();
+        Message message = new Message();    
         public AddCategory(Member m)
         {
             InitializeComponent();
@@ -83,6 +84,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Categories
                 if (addStatus)
                 {
                     member.calculBalance(-amount);
+
+                    string obj = "Inscription catégorie";
+                    string content = $"Le membre {string.Concat(member.Name + " " + member.FirstName)} s'est inscrit dans une nouvelle catégorie : { CatChoice.Name}";
+                    message.AddMessage(obj, content);
                     this.Close();
                 }
                 else

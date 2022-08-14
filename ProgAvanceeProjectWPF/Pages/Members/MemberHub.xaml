@@ -12,8 +12,8 @@
         <Label Content="Bienvenue" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" Width="130" Foreground="White" FontSize="24"/>
         <Label Content="{Binding FirstName}" x:Name="LblFirstName" HorizontalAlignment="Left" Margin="180,40,0,0" VerticalAlignment="Top" Width="200" Foreground="White" FontSize="24"/>
 
-        <Label Content="Votre solde:" HorizontalAlignment="Left" Margin="570,40,0,0" VerticalAlignment="Top" Width="110" Foreground="White" FontSize="18"/>
-        <Label Content="{Binding Balance}" x:Name="LblBalance" HorizontalAlignment="Left" Margin="680,40,0,0" VerticalAlignment="Top" Width="100" Foreground="White" FontSize="18"/>
+        <Label Content="Votre solde:" HorizontalAlignment="Left" Margin="560,40,0,0" VerticalAlignment="Top" Width="110" Foreground="White" FontSize="18"/>
+        <Label Content="{Binding Balance}" x:Name="LblBalance" HorizontalAlignment="Left" Margin="670,40,0,0" VerticalAlignment="Top" Width="100" Foreground="White" FontSize="18"/>
         
         <Label Content="Vos balades reservées" HorizontalAlignment="Left" Margin="35,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
         <DataGrid Name="RidesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="35,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="350">
@@ -42,6 +42,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="55" Margin="750,345,0,0" VerticalAlignment="Top" Width="180" Click="GoToMemberBikePage"/>
+        
+        <Button Content="Mes Messages" HorizontalAlignment="Left" Height="55" Margin="780,30,0,0" VerticalAlignment="Top" Width="130" Click="GoToMyMessages"/>
 
 
     </Grid>
