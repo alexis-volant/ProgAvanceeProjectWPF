@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,11 +34,6 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
 
         private void UpdateValidation(object sender, RoutedEventArgs e)
         {
-            string UpdateN;
-            string UpdateF;
-            string UpdateT;
-            string UpdateL;
-            string UpdateP;
             double UpdateB;
 
             if (UpdateName.Text.Length == 0)
@@ -66,16 +62,22 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
                 return;
             }
 
-            UpdateN = UpdateName.Text;
-            UpdateF = UpdateFirstName.Text;
-            UpdateT = UpdateTelephone.Text;
-            UpdateL = UpdateLogin.Text;
-            UpdateP = UpdatePassWord.Text;
-            UpdateB = UpdateBalance.Text.Length == 0 ? 0 : Convert.ToDouble(UpdateBalance.Text);
+            var Solde = UpdateBalance.Text.Replace(',', '.');
 
-            bool updateStatus = m.UpdateMember(m, UpdateN, UpdateF, UpdateT, UpdateL, UpdateP, UpdateB);
+            if (!Double.TryParse(Solde, NumberStyles.Any, CultureInfo.InvariantCulture, out UpdateB))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
 
-            if (updateStatus)
+            m.Name = UpdateName.Text;
+            m.FirstName = UpdateFirstName.Text;
+            m.Tel = UpdateTelephone.Text;
+            m.Login = UpdateLogin.Text;
+            m.PassWord = UpdatePassWord.Text;
+            m.Balance = UpdateB;
+
+            if (m.UpdateMember(m))
             {
                 this.Close();
             }

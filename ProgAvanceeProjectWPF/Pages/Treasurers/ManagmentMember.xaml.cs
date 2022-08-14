@@ -19,14 +19,12 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
     /// </summary>
     public partial class ManagmentMember : Page
     {
-        Treasurer t = new Treasurer();
         Member member = new Member();
         List<Member> members = new List<Member>();
 
-        public ManagmentMember(Treasurer t)
+        public ManagmentMember()
         {
             InitializeComponent();
-            this.t = t;
             members = member.GetAllMembers();
             ManagmentMemberGrid.ItemsSource = members;
         }

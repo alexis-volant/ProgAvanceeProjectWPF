@@ -7,16 +7,19 @@ public class Message
     private string content;
     private Treasurer treasurer;
     private Member member;
+    private bool isRead;
 
-    public Message(Guid idMessage, string obj, string content, Treasurer treasurer, Member member)
+    public Message() { }
+
+    public Message(Guid idMessage, string obj, string content, Treasurer treasurer, Member member, bool isRead)
     {
         this.idMessage = idMessage;
         this.obj = obj;
         this.content = content;
         this.treasurer = treasurer;
         this.member = member;
+        this.isRead = isRead;
     }
-
 
     public Guid IdMessage
     {
@@ -46,6 +49,12 @@ public class Message
     {
         get { return member; }
         set { member = value; }
+    }
+
+    public bool IsRead
+    {
+        get { return isRead; }
+        set { isRead = value; }
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +19,12 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
     public partial class UpdateRide : Window
     {
         Ride ride = new Ride();
-        List<Ride> rides = new List<Ride>();
-        public UpdateRide(Ride ride)
+        Calender calender = new Calender();
+        public UpdateRide(Calender calender, Ride ride)
         {
             InitializeComponent();
             this.ride = ride;
+            this.calender = calender;
 
             UpdatePlaceDeparture.Text = ride.PlaceDeparture;
             UpdateDateDeparture.Text = ride.DateDeparture.ToString("dd/MM/yyyy");
@@ -49,9 +51,15 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
 
             UpdatePlace = UpdatePlaceDeparture.Text;
             UpdateDate = Convert.ToDateTime(UpdateDateDeparture.Text);
-            UpdateFee = UpdatePackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(UpdatePackageFee.Text);
+            var Fee = UpdatePackageFee.Text.Replace(',', '.');
 
-            bool updateStatus = ride.UpdateRide(ride, UpdatePlace, UpdateDate, UpdateFee);
+            if (!Double.TryParse(Fee, NumberStyles.Any, CultureInfo.InvariantCulture, out UpdateFee))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+
+            bool updateStatus = ride.UpdateRide(ride, UpdatePlace, UpdateDate, UpdateFee, calender);
 
             if (updateStatus)
             {

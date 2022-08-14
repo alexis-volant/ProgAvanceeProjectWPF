@@ -66,20 +66,8 @@ internal class CategoryDAO : DAO<Category>
                         catWithResp.Add(Find(reader.GetInt32("numCategory")));
                     }
                 }
-                
-                cmd = new SqlCommand("SELECT * from dbo.Category", connection);
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Category cat = new Category(
-                            reader.GetInt32("numCategory"),
-                            reader.GetString("nameCategory")
-                            );
-                        categories.Add(cat);
-                    }
-                }
-                connection.Close();
+
+                categories = FindAll();
                 
                 foreach (Category cat in catWithResp)
                 {
@@ -98,31 +86,33 @@ internal class CategoryDAO : DAO<Category>
     public List<Category> FindAll()
     {
         List<Category> categories = new List<Category>();
+        Category cat = new Category();
         try
         {
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Category", connection);
-
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
+                    MemberDAO memberDAO = new MemberDAO();
                     while (reader.Read())
                     {
-                        Category cat = new Category
-                        (
+                        cat = new Category(
                             reader.GetInt32("numCategory"),
                             reader.GetString("nameCategory")
-                        );
+                            );
+                        cat.Members = memberDAO.FindByCategory(reader.GetInt32("numCategory"));
                         categories.Add(cat);
                     }
                 }
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            throw new Exception(e.Message);
         }
+
         return categories;
 
     }
@@ -148,7 +138,7 @@ internal class CategoryDAO : DAO<Category>
                             reader.GetInt32("numCategory"),
                             reader.GetString("nameCategory")
                         );
-                        categories.Add(cat); ;
+                        categories.Add(cat);
                     }   
                 }
             }
@@ -159,5 +149,28 @@ internal class CategoryDAO : DAO<Category>
         }
         return categories;
 
+    }
+
+    public bool RemoveMember(Member member, Category cat)
+    {
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.CategoryMember WHERE idMember = @idMember and numCategory = @numCategory ", connection);
+                cmd.Parameters.AddWithValue("idMember", member.Id);
+                cmd.Parameters.AddWithValue("numCategory", cat.Num);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+
+        return true;
     }
 }

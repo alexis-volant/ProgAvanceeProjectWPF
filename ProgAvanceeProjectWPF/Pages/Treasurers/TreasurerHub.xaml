@@ -8,8 +8,9 @@
       d:DesignHeight="526" d:DesignWidth="1000"
       Title="Gestion du trésorier">
     <Grid>
-        <Button Click="MemberManagmentButton" Content="Gestion des membres" Foreground="White" FontSize="24" Background="#42414d"  Margin="67,0,0,0" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left" Width="248"></Button>
-        <Button Click="ResponsibleManagmentButton" Content="Gestion des responsables" Foreground="White" FontSize="24" Background="#42414d" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center" Width="278"/>
-        <Button Click="MoneyManagmentButton" Content="Gestion de la trésorerie" Foreground="White" FontSize="24" Background="#42414d"  Margin="683,0,0,0" Height="60" VerticalAlignment="Center" HorizontalAlignment="Left" Width="259"></Button>
+        <Button Click="MemberManagmentButton" Content="Gestion des membres" Foreground="White" FontSize="24" Background="#42414d"  Margin="69,193,0,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="248"></Button>
+        <Button Click="ResponsibleManagmentButton" Content="Gestion des responsables" Foreground="White" FontSize="24" Background="#42414d" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center" Width="278" Margin="0,193,0,0"/>
+        <Button Click="CategoryManagmentButton" Content="Gestion des catégories" Foreground="White" FontSize="24" Background="#42414d" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="278" Margin="682,193,0,0"/>
+        <Button Click="MoneyManagmentButton" Content="Gestion de la trésorerie" Foreground="White" FontSize="24" Background="#42414d"  Margin="0,358,0,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center" Width="260"></Button>
     </Grid>
 </Page>

@@ -6,6 +6,8 @@ public class Category
     private string nameCategory = "";
     private List<Member> members = new List<Member>();
 
+    CategoryDAO dao = new CategoryDAO();
+
     public Category() { }
     
 
@@ -33,40 +35,24 @@ public class Category
         set { members = value; }
     }
 
+    public bool RemoveMember(Member m, Category cat)
+    {
+        this.Members.Remove(m);
+        return dao.RemoveMember(m, cat);
+    }
+
     public Category GetCategory(int numCategory)
     {
-        CategoryDAO dao = new CategoryDAO();
-
         return dao.Find(numCategory);
     }
 
     public List<Category> GetAllWOResponsible()
     {
-        CategoryDAO dao = new CategoryDAO();
-
         return dao.FindWOResponsible();
     }
 
     public List<Category> GetAllCategories()
     {
-
-        CategoryDAO dao = new CategoryDAO();
-
-        List<Category> categories = dao.FindAll();
-
-        return categories;
-        
+        return dao.FindAll();
     }
-    public List<Category> GetCategoriesByMember(Member m)
-    {
-
-        //CategoryDAO dao = new CategoryDAO();
-
-        //List<Category> categories = dao.FindByMember(m);
-
-        //return categories;
-        return null;
-    }
-
-
 }

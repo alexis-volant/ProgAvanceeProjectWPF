@@ -18,22 +18,21 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles
     /// </summary>
     public partial class ResponsibleHub : Page
     {
-        Responsible r = new Responsible();
-        Ride ride = new Ride();
-        List<Ride> rides = new List<Ride>();
+        Calender calender = new Calender();
+        Responsible r = new Responsible();  
 
         public ResponsibleHub(Responsible r)
         {
             InitializeComponent();
             this.r = r;
-            rides = ride.GetRidesByCategory(r.Category.Num);
-            RidesGrid.ItemsSource = rides;
+            calender = calender.GetCalender(r.Category);
+            RidesGrid.ItemsSource = calender.Rides;
         }
 
         private void RideManagmentButton(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;   
-            NavigationService.Navigate(new ManagmentRide(r, rides));
+            NavigationService.Navigate(new ManagmentRide(calender, r));
         }
     }
 }

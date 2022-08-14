@@ -34,4 +34,9 @@
     {
         return new VehicleDAO();
     }
+
+    public override DAO<Message> GetMessageDAO()
+    {
+        return new MessageDAO();
+    }
 }

@@ -1,0 +1,20 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows"
+        mc:Ignorable="d"
+        Title="MessageWindow" Height="482" Width="827">
+    <Grid Background="#2b2a33">
+        <TextBlock Text="Message de rappel pour : " Foreground="White" FontSize="24" Margin="34,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="277"></TextBlock>
+        <TextBlock x:Name="Person" Foreground="White" FontSize="24" Margin="316,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="332"></TextBlock>
+        <TextBlock Text="Objet" Foreground="White" FontSize="22" Margin="34,54,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
+        <TextBox x:Name="ObjetMessage" FontSize="20" Margin="34,86,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="366"></TextBox>
+        <TextBlock Text="Contenu" Foreground="White" FontSize="22" Margin="34,132,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87"></TextBlock>
+        <TextBox x:Name="ContenuMessage" FontSize="20" Margin="34,169,0,0" Height="196" VerticalAlignment="Top" HorizontalAlignment="Left" Width="756"></TextBox>
+
+        <Button Click="SendMessage" Content="Envoyer" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,390,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+        <Button Click="CancelMessage" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="696,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+    </Grid>
+</Window>

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows"
         mc:Ignorable="d"
-        Title="Ajout d'un membre" Height="249" Width="824">
+        Title="Ajout d'un membre" Height="320" Width="824">
     <Grid Background="#2b2a33">
-        <Grid x:Name="AddGrid" Margin="-7,0,0,0" Height="213" VerticalAlignment="Center" HorizontalAlignment="Left" Width="807">
+        <Grid x:Name="AddGrid" Height="284" VerticalAlignment="Center" HorizontalAlignment="Center" Width="808">
             <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <TextBox x:Name="AddName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
@@ -15,14 +15,15 @@
             <TextBox x:Name="AddFirstName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Téléphone" Foreground="White" FontSize="20" Margin="10,164,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
             <TextBox x:Name="AddTelephone" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+            <Label Content="Catégorie" Foreground="White" FontSize="20" Margin="10,223,0,0" HorizontalAlignment="Left" Width="153" Height="40" VerticalAlignment="Top"></Label>
+            <ComboBox x:Name="CMCategory" FontSize="24" Margin="151,225,0,0" Height="38" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188" SelectionChanged="CMCategory_SelectionChanged"></ComboBox>
             <Label Content="Login" Foreground="White" FontSize="20" Margin="356,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
             <TextBox x:Name="AddLogin" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Mot de passe" Foreground="White" FontSize="20" Margin="356,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"></Label>
             <TextBox x:Name="AddPassWord" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,109,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Solde" Foreground="White" FontSize="20" Margin="356,164,0,0" HorizontalAlignment="Left" Width="131" Height="40" VerticalAlignment="Top"></Label>
             <TextBox x:Name="AddBalance" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="492,164,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
-            <Label Content="Utilisez la virgule." Foreground="White" FontSize="10" Margin="492,184,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Label>
-            <Button Click="AddValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,164,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+            <Button Click="AddValidation" Content="Valider" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,223,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
             <Button Click="AddDiscard" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="703,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
         </Grid>
     </Grid>

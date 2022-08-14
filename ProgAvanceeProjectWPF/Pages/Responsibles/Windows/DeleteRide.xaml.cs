@@ -17,16 +17,18 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
     /// </summary>
     public partial class DeleteRide : Window
     {
+        Calender calender = new Calender();
         Ride r = new Ride();
-        public DeleteRide(Ride r)
+        public DeleteRide(Calender calender, Ride r)
         {
             InitializeComponent();
+            this.calender = calender;
             this.r = r;
         }
 
         private void DeleteValidation(object sender, RoutedEventArgs e)
         {
-            bool deleteStatus = r.DeleteRide(r);
+            bool deleteStatus = r.DeleteRide(r, calender);
 
             if (deleteStatus)
             {

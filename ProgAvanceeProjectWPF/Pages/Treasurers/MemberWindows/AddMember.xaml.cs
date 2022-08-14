@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +19,25 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
     public partial class AddMember : Window
     {
         Member member = new Member();
+        Category cat = new Category();
+        List<Category> categories = new List<Category>();
+        List<string> CMBoxCat = new List<string>();
         List<Member> members = new List<Member>();
         public AddMember()
         {
             InitializeComponent();
+
+            categories = cat.GetAllCategories();
+            foreach (Category c in categories)
+            {
+                CMBoxCat.Add(c.NameCategory);
+            }
+            CMCategory.ItemsSource = CMBoxCat;
+        }
+
+        private void CMCategory_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            cat = categories[CMCategory.SelectedIndex];
         }
 
         private void AddValidation(object sender, RoutedEventArgs e)
@@ -64,9 +80,15 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MemberWindows
             Tel = AddTelephone.Text;
             Login = AddLogin.Text;
             Password = AddPassWord.Text;
-            Balance = AddBalance.Text.Length == 0 ? 0 : Convert.ToDouble(AddBalance.Text);
+            var Solde = AddBalance.Text.Replace(',', '.');
 
-            bool addStatus = member.AddMember(Name, FirstName, Tel, Login, Password, Balance);
+            if (!Double.TryParse(Solde, NumberStyles.Any, CultureInfo.InvariantCulture, out Balance))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+
+            bool addStatus = member.AddMember(Name, FirstName, Tel, Login, Password, Balance, cat);
 
             if (addStatus)
             {

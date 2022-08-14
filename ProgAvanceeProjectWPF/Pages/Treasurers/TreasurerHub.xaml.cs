@@ -28,13 +28,19 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers
         private void MemberManagmentButton(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new ManagmentMember(t));
+            NavigationService.Navigate(new ManagmentMember());
         }
 
         private void ResponsibleManagmentButton(object sender, RoutedEventArgs e)
         {
             NavigationService.Content = null;
-            NavigationService.Navigate(new ManagmentResponsible(t));
+            NavigationService.Navigate(new ManagmentResponsible());
+        }
+
+        private void CategoryManagmentButton(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Content = null;
+            NavigationService.Navigate(new ManagmentCategory());
         }
 
         private void MoneyManagmentButton(object sender, RoutedEventArgs e)

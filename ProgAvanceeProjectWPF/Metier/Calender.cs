@@ -5,6 +5,8 @@ public class Calender
     private Category category;
     private List<Ride> rides = new List<Ride>();
 
+    public Calender() { }
+
     public Calender(Category category)
     {
         this.category = category;
@@ -22,8 +24,17 @@ public class Calender
         set { rides = value; }
     }
 
-    public void ajouterBalade(Ride ride)
+    public void AddRide(Ride ride)
     {
         this.rides.Add(ride);
+    }
+
+    public Calender GetCalender(Category cat)
+    {
+        Ride ride = new Ride();
+        Calender calender = new Calender(cat);
+        calender.Rides = ride.GetRidesByCategory(cat.Num);
+
+        return calender;
     }
 }

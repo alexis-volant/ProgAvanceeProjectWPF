@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows.AddMoneyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows"
+        mc:Ignorable="d"
+        Title="AddMoneyWindow" Height="229" Width="672">
+    <Grid Background="#2b2a33">
+        <TextBlock Text="Ajout de fonds pour : " Foreground="White" FontSize="24" Margin="34,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236"></TextBlock>
+        <TextBlock x:Name="Person" Foreground="White" FontSize="24" Margin="275,10,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="246"></TextBlock>
+        <TextBlock Text="Montant à ajouter : " Foreground="White" FontSize="24" Margin="34,143,0,0" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="236"></TextBlock>
+        <TextBox x:Name="AddedMoney" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="304,142,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
+        <Button Click="AddMoney" Content="Payer" Foreground="White" FontSize="24" Background="#42414d"  Margin="547,142,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+        <Button Click="CancelAdd" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="547,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
+    </Grid>
+</Window>

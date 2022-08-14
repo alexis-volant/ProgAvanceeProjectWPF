@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,14 +18,13 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
     /// </summary>
     public partial class AddRide : Window
     {
-        Responsible r = new Responsible();
-        List<Ride> rides = new List<Ride>();
+        Calender calender = new Calender();
         Ride ride = new Ride();
 
-        public AddRide(Responsible r)
+        public AddRide(Calender calender)
         {
             InitializeComponent();
-            this.r = r;
+            this.calender = calender;
         }
 
         private void AddValidation(object sender, RoutedEventArgs e)
@@ -46,9 +46,15 @@ namespace ProgAvanceeProjectWPF.Pages.Responsibles.Windows
 
             AddPlace = AddPlaceDeparture.Text;
             AddDate = Convert.ToDateTime(AddDateDeparture.Text);
-            AddFee = AddPackageFee.Text.Length == 0 ? 0 : Convert.ToDouble(AddPackageFee.Text);
+            var Fee = AddPackageFee.Text.Replace(',', '.');
 
-            bool addStatus = ride.AddRide(AddPlace, AddDate, AddFee, r.Category);
+            if (!Double.TryParse(Fee, NumberStyles.Any, CultureInfo.InvariantCulture, out AddFee))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+
+            bool addStatus = ride.AddRide(AddPlace, AddDate, AddFee, calender);
 
             if (addStatus)
             {

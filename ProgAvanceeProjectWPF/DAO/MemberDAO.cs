@@ -13,8 +13,8 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance) " +
-                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance)",connection);
+                SqlCommand cmd = new SqlCommand("INSERT into dbo.Member (idMember,name,firstName,telephone,login,password,balance,DatePayment,PaymentCheck) " +
+                    "values(@idMember, @Name, @FirstName, @Tel, @Login, @PassWord, @Balance, @DatePayment, @PaymentCheck)", connection);
                 cmd.Parameters.AddWithValue("idMember", m.Id);
                 cmd.Parameters.AddWithValue("Name", m.Name);
                 cmd.Parameters.AddWithValue("FirstName", m.FirstName);
@@ -22,6 +22,8 @@ internal class MemberDAO : DAO<Member>
                 cmd.Parameters.AddWithValue("Login", m.Login);
                 cmd.Parameters.AddWithValue("PassWord", m.PassWord);
                 cmd.Parameters.AddWithValue("Balance", m.Balance);
+                cmd.Parameters.AddWithValue("DatePayment", DateTime.Now);
+                cmd.Parameters.AddWithValue("PaymentCheck", true);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -40,7 +42,8 @@ internal class MemberDAO : DAO<Member>
             using (SqlConnection connection = new SqlConnection(this.connectionString))
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, login = @Login, passWord = @PassWord, balance = @Balance WHERE idMember = @idMember",
+                SqlCommand cmd = new SqlCommand("UPDATE dbo.Member set name = @Name, firstName = @FirstName, telephone = @Tel, " +
+                    "login = @Login, passWord = @PassWord, balance = @Balance, DatePayment = @DatePayment, PaymentCheck = @PaymentCheck WHERE idMember = @idMember",
                     connection);
                 cmd.Parameters.AddWithValue("idMember", m.Id);
                 cmd.Parameters.AddWithValue("Name", m.Name);
@@ -49,6 +52,8 @@ internal class MemberDAO : DAO<Member>
                 cmd.Parameters.AddWithValue("Login", m.Login);
                 cmd.Parameters.AddWithValue("PassWord", m.PassWord);
                 cmd.Parameters.AddWithValue("Balance", m.Balance);
+                cmd.Parameters.AddWithValue("DatePayment", m.DatePayment);
+                cmd.Parameters.AddWithValue("PaymentCheck", m.PaymentCheck);
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -153,6 +158,7 @@ internal class MemberDAO : DAO<Member>
                         CategoryDAO categoryDAO = new CategoryDAO();
                         BikeDAO bikeDAO = new BikeDAO();
                         InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                        MessageDAO messageDAO = new MessageDAO();
                         VehicleDAO vehicleDAO = new VehicleDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
@@ -161,11 +167,14 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetDouble("balance")
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
                         member.Vehicles = vehicleDAO.FindAllByMember(member);
                     }
                 }
@@ -190,6 +199,8 @@ internal class MemberDAO : DAO<Member>
                 {
                     CategoryDAO categoryDAO = new CategoryDAO();
                     BikeDAO bikeDAO = new BikeDAO();
+                    InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                    MessageDAO messageDAO = new MessageDAO();
                     while (reader.Read())
                     {
                         Member member = new Member(
@@ -199,11 +210,60 @@ internal class MemberDAO : DAO<Member>
                             reader.GetString("telephone"),
                             reader.GetString("login"),
                             reader.GetString("password"),
-                            reader.GetDouble("balance")
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
                             );
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
-                        /*member.Inscriptions = InscriptionsDAO.FindAllByMember(member);*/
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
+                        members.Add(member);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return members;
+    }
+    public List<Member> FindByCategory(int numCategory)
+    {
+        List<Member> members = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member M " +
+                    "join dbo.CategoryMember CM on M.idMember = CM.idMember " +
+                    "WHERE CM.numCategory = @numCategory", connection);
+                cmd.Parameters.AddWithValue("numCategory", numCategory);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    CategoryDAO categoryDAO = new CategoryDAO();
+                    BikeDAO bikeDAO = new BikeDAO();
+                    InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                    MessageDAO messageDAO = new MessageDAO();
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance"),
+                            reader.GetDateTime("DatePayment"),
+                            reader.GetBoolean("PaymentCheck")
+                            );
+                        member.Categories = categoryDAO.FindAllByMember(member);
+                        member.Bikes = bikeDAO.FindAllByMember(member);
+                        member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
                         members.Add(member);
                     }
                 }
@@ -231,9 +291,10 @@ internal class MemberDAO : DAO<Member>
                 connection.Close();
             }
         }
-        catch (SqlException)
+        catch (SqlException e)
         {
-            throw new Exception("Une erreur sql s'est produite!");
+            return false;
+            throw new Exception(e.Message);
         }
         return true;
     }
@@ -275,4 +336,29 @@ internal class MemberDAO : DAO<Member>
         return passengers;
 
     }
+    
+    public bool RemoveMemberCategory(Member member)
+    {
+
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("DELETE from dbo.CategoryMember WHERE idMember = @idMember ", connection);
+                cmd.Parameters.AddWithValue("idMember", member.Id);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+            }
+        }
+        catch (SqlException e)
+        {
+            return false;
+            throw new Exception(e.Message);
+        }
+
+        return true;
+    }
+
 }
