@@ -10,6 +10,7 @@ public class Member : Person
     private List<Category> categories = new List<Category>();
     private List<Bike> bikes = new List<Bike>();
     private List<Inscription> inscriptions = new List<Inscription>();
+    private List<Message> messages = new List<Message>();
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
     MemberDAO dao = new MemberDAO();
@@ -65,6 +66,12 @@ public class Member : Person
     {
         get { return inscriptions; }
         set { inscriptions = value; }
+    }
+
+    public List<Message> Messages
+    {
+        get { return messages; }
+        set { messages = value; }
     }
 
     public void calculBalance()

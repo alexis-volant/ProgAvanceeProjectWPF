@@ -158,6 +158,7 @@ internal class MemberDAO : DAO<Member>
                         CategoryDAO categoryDAO = new CategoryDAO();
                         BikeDAO bikeDAO = new BikeDAO();
                         InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                        MessageDAO messageDAO = new MessageDAO();
                         member = new Member(
                             reader.GetGuid("idMember"),
                             reader.GetString("name"),
@@ -172,6 +173,7 @@ internal class MemberDAO : DAO<Member>
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
                     }
                 }
             }
@@ -196,6 +198,7 @@ internal class MemberDAO : DAO<Member>
                     CategoryDAO categoryDAO = new CategoryDAO();
                     BikeDAO bikeDAO = new BikeDAO();
                     InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                    MessageDAO messageDAO = new MessageDAO();
                     while (reader.Read())
                     {
                         Member member = new Member(
@@ -212,6 +215,7 @@ internal class MemberDAO : DAO<Member>
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
                         members.Add(member);
                     }
                 }
@@ -240,6 +244,7 @@ internal class MemberDAO : DAO<Member>
                     CategoryDAO categoryDAO = new CategoryDAO();
                     BikeDAO bikeDAO = new BikeDAO();
                     InscriptionDAO inscriptionDAO = new InscriptionDAO();
+                    MessageDAO messageDAO = new MessageDAO();
                     while (reader.Read())
                     {
                         Member member = new Member(
@@ -256,6 +261,7 @@ internal class MemberDAO : DAO<Member>
                         member.Categories = categoryDAO.FindAllByMember(member);
                         member.Bikes = bikeDAO.FindAllByMember(member);
                         member.Inscriptions = inscriptionDAO.FindAllByMember(member);
+                        member.Messages = messageDAO.FindAllByMember(member);
                         members.Add(member);
                     }
                 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 internal class MessageDAO : DAO<Message>
 {
@@ -44,5 +44,50 @@ internal class MessageDAO : DAO<Message>
     public override Message Find(int id)
     {
         return null;
+    }
+
+    public List<Message> FindAllByMember(Member member)
+    {
+        List<Message> messages = new List<Message>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Message Msg " +
+                    "join dbo.Treasurer T on Msg.idTreasurer = T.idTreasurer WHERE Msg.idMember = @id", connection);
+                cmd.Parameters.AddWithValue("id", member.Id);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Treasurer treasurer = new Treasurer(
+                            reader.GetGuid("idTreasurer"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password")
+                            );
+                        Message message = new Message
+                        (
+                            reader.GetGuid("idMessage"),
+                            reader.GetString("object"),
+                            reader.GetString("contentText"),
+                            treasurer,
+                            member,
+                            reader.GetBoolean("isRead")
+                        );
+                        messages.Add(message);
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return messages;
+
     }
 }
