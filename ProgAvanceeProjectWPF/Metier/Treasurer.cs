@@ -35,12 +35,6 @@ public class Treasurer : Person
         return member.UpdateMember(member);
     }
 
-    public void updateMessage(Message message)
-    {
-        int index = this.messages.IndexOf(message);
-        this.messages[index] = message;
-    }
-
     public bool envoiLettreRappel(string obj, string content, Treasurer tres, Member member)
     {
         DAO<Message> messageDAO = adf.GetMessageDAO();
