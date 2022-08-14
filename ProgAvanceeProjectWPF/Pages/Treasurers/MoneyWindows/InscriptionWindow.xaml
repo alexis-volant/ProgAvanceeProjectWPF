@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows"
         mc:Ignorable="d"
-        Title="InscriptionWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="InscriptionWindow" Height="192" Width="561">
+    <Grid Background="#2b2a33">
+        <TextBlock Text="Membre " Foreground="White" FontSize="24" Margin="34,25,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"></TextBlock>
+        <ComboBox x:Name="CMMemberPay" Background="#42414d" Foreground="Black" FontSize="20" Width="188" Margin="151,25,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock x:Name="Montant" Foreground="White" FontSize="24" Margin="34,105,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="305"></TextBlock>
+
+        <Button Click="Pay" Content="Payer" Foreground="White" FontSize="24" Background="#42414d"  Margin="439,105,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"></Button>
+        <Button Click="CancelPayment" Content="Annuler" Foreground="White" FontSize="24" Background="#42414d"  Margin="439,25,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94"/>
     </Grid>
 </Window>

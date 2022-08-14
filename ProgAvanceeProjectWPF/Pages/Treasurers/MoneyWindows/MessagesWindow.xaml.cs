@@ -39,8 +39,8 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
 
             if (message.Obj.Equals("Inscription catégorie"))
             {
-                RefundWindow RW = new RefundWindow(t,message);
-                RefreshGrid(RW);
+                InscriptionWindow IW = new InscriptionWindow(message);
+                RefreshGrid(IW);
             }
         }
 

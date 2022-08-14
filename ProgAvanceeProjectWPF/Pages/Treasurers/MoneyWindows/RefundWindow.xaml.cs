@@ -41,12 +41,7 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
 
             var fee = Amount.Text.Replace(',', '.');
 
-            if (!Double.TryParse(fee, NumberStyles.Any, CultureInfo.InvariantCulture, out amount))
-            {
-                MessageBox.Show("Veuillez encoder un nombre correct");
-                return;
-            }
-            if(pay == null)
+            if (pay == null)
             {
                 MessageBox.Show("Veuillez choisir le payeur.");
                 return;
@@ -56,12 +51,17 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
                 MessageBox.Show("Veuillez choisir le receveur.");
                 return;
             }
-
+            if (!Double.TryParse(fee, NumberStyles.Any, CultureInfo.InvariantCulture, out amount))
+            {
+                MessageBox.Show("Veuillez encoder un nombre correct");
+                return;
+            }
+            
             if (pay.verifyBalance(amount))
             {
                 if (t.payerConducteur(receive, amount) && t.reclamerForfait(pay, amount))
                 {
-                    if (message.MessageIsRead(message, t))
+                    if (message.MessageIsRead(message))
                     {
                         MessageBox.Show("Remboursement effectué.");
                         this.Close();
@@ -80,8 +80,14 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
             {
                 string obj = "Alerte solde";
                 string content = "Bonjour, \n\n" +
-                    ""
+                    $"Je vous aie ajouté à la balade, vous devez au trésorier un montant de {amount}\n\n" +
+                    "Bien à vous.";
+                t.payerConducteur(receive, amount);
+                t.reclamerForfait(pay, amount);
+                message.MessageIsRead(message);
                 t.envoiLettreRappel(obj,content, t, pay);
+                MessageBox.Show("Remboursement effectué, avec envoie de message.");
+                this.Close();
             }
         }
 
@@ -89,6 +95,5 @@ namespace ProgAvanceeProjectWPF.Pages.Treasurers.MoneyWindows
         {
             this.Close();
         }
-
     }
 }

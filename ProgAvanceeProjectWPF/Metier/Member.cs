@@ -88,7 +88,7 @@ public class Member : Person
 
     public bool verifyBalance(double amount)
     {
-        return Balance >= total;
+        return Balance >= amount;
     }
 
     //Récupère tous les membres
