@@ -9,6 +9,7 @@ public class Message
     private Member member;
     private bool isRead;
 
+    AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
     public Message() { }
 
     public Message(Guid idMessage, string obj, string content, Treasurer treasurer, Member member, bool isRead)
@@ -55,6 +56,16 @@ public class Message
     {
         get { return isRead; }
         set { isRead = value; }
+    }
+
+    public bool MessageIsRead(Message message, Treasurer t)
+    {
+        DAO<Message> messageDAO = adf.GetMessageDAO();
+
+        message.isRead = true;
+        t.updateMessage(message);
+
+        return messageDAO.Update(message);
     }
 }
 

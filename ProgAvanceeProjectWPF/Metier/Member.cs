@@ -74,14 +74,14 @@ public class Member : Person
         set { messages = value; }
     }
 
-    public void calculBalance()
+    public void calculBalance(double amount)
     {
-
+        balance += amount;
     }
 
-    public bool verifyBalance(double Balance, int total)
+    public bool verifyBalance(double amount)
     {
-        return Balance >= total;
+        return Balance >= amount;
     }
 
     //Récupère tous les membres

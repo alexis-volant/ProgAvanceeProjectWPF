@@ -88,55 +88,6 @@ internal class MemberDAO : DAO<Member>
     }
     public override Member Find(int id)
     {
-        /*Member member = null;
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(this.connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Member WHERE idMember = @id", connection);
-                cmd.Parameters.AddWithValue("id", id);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        member = new Member
-                        {
-                            Id = reader.GetInt32("idMember"),
-                            Name = reader.GetString("name"),
-                            FirstName = reader.GetString("firstName"),
-                            Tel = reader.GetInt32("tel"),
-                            Login = reader.GetString("login"),
-                            PassWord = reader.GetString("passWord"),
-                            Balance = reader.GetDouble("balance"),
-                            Categories = new List<Category>(),
-                            Bikes = new List<Bike>(),
-                            Inscriptions = new List<Inscription>()
-                        };
-                    }
-                }
-            }
-            if (member != null)
-            {
-                CategoryDAO categoryDAO = new CategoryDAO();
-                List<Category> categoryMember = categoryDAO.FindAll(member);
-                foreach (Category cat in categoryMember)
-                    member.Categories.Add(cat);
-                BikeDAO bikeDAO = new BikeDAO();
-                List<Bike> bikeMember = bikeDAO.FindAll(member);
-                foreach (Bike bike in bikeMember)
-                    member.Bikes.Add(bike);
-                InscriptionDAO inscriptionDAO = new InscriptionDAO();
-                List<Inscription> inscriptionMember = inscriptionDAO.FindAll(member);
-                foreach (Inscription inscription in inscriptionMember)
-                    member.Inscriptions.Add(inscription);
-            }
-        }
-        catch (SqlException)
-        {
-            throw new Exception("Une erreur sql s'est produite!");
-        }
-        Member member = new Member(GUID, "Martens", "Rémi", "0492821292", "Member", "Password", 0);*/
         Member member = null;
         return member;
     }
