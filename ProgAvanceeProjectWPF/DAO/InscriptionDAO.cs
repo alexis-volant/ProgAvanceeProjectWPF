@@ -176,4 +176,43 @@ internal class InscriptionDAO : DAO<Inscription>
         }
         return true;
     }
+
+    public List<Member> GetAllParticipants(Ride ride)
+    {
+        List<Member> members = new List<Member>();
+        try
+        {
+            using (SqlConnection connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("Select * from dbo.Member M " +
+                    "join dbo.Inscription I on M.idMember = I.idMember " +
+                    "join dbo.Ride R on I.numRide = R.numRide " +
+                    "WHERE I.numRide = @numRide", connection);
+
+                cmd.Parameters.AddWithValue("numRide", ride.Num);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Member member = new Member(
+                            reader.GetGuid("idMember"),
+                            reader.GetString("name"),
+                            reader.GetString("firstName"),
+                            reader.GetString("telephone"),
+                            reader.GetString("login"),
+                            reader.GetString("password"),
+                            reader.GetDouble("balance")
+                            );
+                        members.Add(member);   
+                    }
+                }
+            }
+        }
+        catch (SqlException e)
+        {
+            throw new Exception(e.Message);
+        }
+        return members;
+    }
 }

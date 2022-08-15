@@ -66,6 +66,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes
 
             if (updateStatus)
             {
+                MessageBox.Show("Modification du vélo réussi");
                 this.Close();
             }
             else

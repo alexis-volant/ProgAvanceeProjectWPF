@@ -34,7 +34,7 @@ internal class MessageDAO : DAO<Message>
                     cmd.Parameters.AddWithValue("object", message.Obj);
                     cmd.Parameters.AddWithValue("contentText", message.Content);
                     cmd.Parameters.AddWithValue("idTreasurer", message.Treasurer.Id);
-                    cmd.Parameters.AddWithValue("idMember", message.Member);
+                    cmd.Parameters.AddWithValue("idMember", message.Member.Id);
                     cmd.Parameters.AddWithValue("isRead", message.IsRead);
                     cmd.ExecuteNonQuery();
                     connection.Close();

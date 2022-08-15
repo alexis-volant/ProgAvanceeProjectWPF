@@ -11,9 +11,13 @@
         <Label Content="Récapitulatif des balades pour cette catégorie" Margin="78,48,0,0" Foreground="White" FontSize="24" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496"></Label>
         <DataGrid Background="#42414d" FontSize="22" IsReadOnly="True" Name="RidesGrid" AutoGenerateColumns="false" Margin="80,0,0,0" Height="300" VerticalAlignment="Center" HorizontalAlignment="Left" Width="492">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Lieu de départ" Binding="{Binding PlaceDeparture}"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding DateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>
-                <DataGridTextColumn Header="Prix" Binding="{Binding PackageFee, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Lieu de départ" Binding="{Binding placeDeparture}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding dateDeparture, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Header="Prix" Binding="{Binding packageFee, StringFormat={}{0:n2}}"/>
+                <DataGridTextColumn Header="Total places" Binding="{Binding totalMemberPlaces}"/>
+                <DataGridTextColumn Header="Total vélos" Binding="{Binding totalBikesPlaces}"/>
+                <DataGridTextColumn Header="Places restantes" Binding="{Binding totalPlacesLeft}"/>
+                <DataGridTextColumn Header="Vélos restants" Binding="{Binding totalBikesLeft}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Click="RideManagmentButton" Content="Gestion des balades" Foreground="White" FontSize="24" Background="#42414d"  Margin="694,180,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226"></Button>

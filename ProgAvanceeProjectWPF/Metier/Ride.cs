@@ -9,6 +9,7 @@ public class Ride
     private double packageFee;
     private Category category;
     private List<Vehicle> vehicles;
+    private List<Member> members;
 
     AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
 
@@ -64,40 +65,56 @@ public class Ride
         set { vehicles = value; }
     }
 
-    public void addParticipant()
+    public List<Member> Members
     {
-
+        get { return members; }
+        set { members = value; }
+    }
+    public void addParticipant(Member member)
+    {
+        this.members.Add(member);
     }
 
-    public void getTotalMemberPlaces()
+    public int getTotalMemberPlaces(Ride ride)
     {
-
+        int total=0;
+        foreach(Vehicle v in ride.vehicles)
+        {
+            total += v.NbrPlacesMembers;
+        }
+        return total;
     }
 
-    public void getRestMemberPlaces()
+    public int getRestMemberPlaces(Ride ride)
     {
-
+        int total = 0;
+        foreach (Vehicle v in ride.vehicles)
+        {
+            total += v.CalculPassengersLeft(v);
+        }
+        return total;
     }
 
-    public void getTotalBikePlaces()
+    public int getTotalBikePlaces(Ride ride)
     {
-
+        int total = 0;
+        foreach (Vehicle v in ride.vehicles)
+        {
+            total += v.NbrPlacesBikes;
+        }
+        return total;
     }
 
-    public void getRestBikePlaces()
+    public int getRestBikePlaces(Ride ride)
     {
-
+        int total = 0;
+        foreach (Vehicle v in ride.vehicles)
+        {
+            total += v.CalculBikeLeft(v);
+        }
+        return total;
     }
 
-    //public void getMemberPlacesNeed()
-    //{
-
-    //}
-
-    //public void getBikePlacesNeed()
-    //{
-
-    //}
 
     public void addVehicle(Vehicle vehicle)
     {
@@ -155,15 +172,6 @@ public class Ride
         }
     }
 
-    //public List<Ride> GetRidesByMember(Member member)
-    //{
-    //    RideDAO dao = new RideDAO();
-
-    //    List<Ride> rides = dao.FindByMember(member);
-
-    //    return rides;
-    //}
-    
     public List<Ride> GetRidesByCategory(int numCategory)
     {
         List<Ride> rides = dao.FindByCategory(numCategory);

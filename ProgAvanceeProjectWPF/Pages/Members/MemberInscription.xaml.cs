@@ -65,11 +65,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members
                 }
             }
 
-            if (!member.verifyBalance(selectedRide.PackageFee))
-            {
-                MessageBox.Show("Vous n'avez pas assez de fond");
-                return;
-            }
+           
 
             ChooseBikeForRide bikeChoose = new ChooseBikeForRide(member, selectedRide);
             bikeChoose.Show();

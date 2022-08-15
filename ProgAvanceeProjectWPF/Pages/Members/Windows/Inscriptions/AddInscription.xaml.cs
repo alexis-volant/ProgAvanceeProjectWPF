@@ -75,6 +75,8 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions
 
                 member.calculBalance(-amount);
 
+
+                MessageBox.Show("Inscription à la balade réussie");
                 this.Close();
             }
             else

@@ -116,7 +116,8 @@ internal class VehicleDAO : DAO<Vehicle>
                         (
                             reader.GetGuid("idVehicle"),
                             reader.GetInt32("nbrPlacesMembers"),
-                            reader.GetInt32("nbrPlacesBikes")     
+                            reader.GetInt32("nbrPlacesBikes"),
+                            member
                         );
                         vehicles.Add(vehicle);
                     }

@@ -86,7 +86,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Categories
                     member.calculBalance(-amount);
 
                     string obj = "Inscription catégorie";
-                    string content = $"Le membre {string.Concat(member.Name + " " + member.FirstName)} s'est inscrit dans une nouvelle catégorie : { CatChoice.Name}";
+                    string content = $"Le membre {string.Concat(member.Name + " " + member.FirstName)} s'est inscrit dans une nouvelle catégorie : {newCategory.NameCategory}";
                     message.AddMessage(obj, content);
                     this.Close();
                 }
@@ -97,8 +97,6 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Categories
                 }
                 
             }
-
-           
         }
     }
 }

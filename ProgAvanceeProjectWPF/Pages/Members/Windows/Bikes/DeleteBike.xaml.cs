@@ -30,6 +30,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Bikes
 
             if (deleteStatus)
             {
+                MessageBox.Show("Suppression vélo réussi");
                 this.Close();
             }
             else

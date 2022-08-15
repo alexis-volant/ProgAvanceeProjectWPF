@@ -56,6 +56,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Vehicles
             {
                MyVehicleGrid.ItemsSource = null;
                MyVehicleGrid.ItemsSource = member.Vehicles;
+               MessageBox.Show("Ajout véhicule réussi");
             }
             else
             {
@@ -72,6 +73,7 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Vehicles
 
             if (addStatus)
             {
+                MessageBox.Show("Inscription à la balade réussie");
                 this.Close();
             }
             else

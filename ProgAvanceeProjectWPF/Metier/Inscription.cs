@@ -69,6 +69,8 @@ public class Inscription
 
         if (!result) return false;
 
+        ride.addParticipant(member);
+
         if (passenger)
         {
             if (!dao.AddPassenger(member, ride, vehicle)) return false;
@@ -90,8 +92,6 @@ public class Inscription
 
         member.AddInscription(inscription);
 
-        
-       
         return true;
     }
 

@@ -40,7 +40,7 @@
                <DataGridTemplateColumn Header="Marquer Lu">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Click="IsReadBtn" Content="Modifier"/>
+                        <Button Click="IsReadBtn" Content="Marquer Lu"/>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
