@@ -8,7 +8,7 @@
         Title="Ajout d'un membre" Height="320" Width="824">
     <Grid Background="#2b2a33">
         <Grid x:Name="AddGrid" Height="284" VerticalAlignment="Center" HorizontalAlignment="Center" Width="808">
-            <Label Content="Modification" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
+            <Label Content="Ajout" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <Label Content="Nom" Foreground="White" FontSize="20" Margin="10,55,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>
             <TextBox x:Name="AddName" Background="#42414d" FontSize="24" Foreground="White" Width="188" Margin="151,55,0,0" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top"/>
             <Label Content="Prénom" Foreground="White" FontSize="20" Margin="10,109,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153"></Label>

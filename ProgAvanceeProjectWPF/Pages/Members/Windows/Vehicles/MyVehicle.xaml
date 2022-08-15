@@ -10,7 +10,7 @@
     <Grid x:Name="VehicleChoice" Background="#2b2a33">
         <Label Content="Mes vehicules" Foreground="White" FontSize="24" Margin="10,10,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165"/>
         <Label Content="Choisissez une de vos voitures" Foreground="White" FontSize="18" Margin="10,45,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
-        <DataGrid Name="MyVehicleGrid" AutoGenerateColumns="false" IsReadOnly="True"  Margin="10,80,0,0" Height="104" VerticalAlignment="Top" HorizontalAlignment="Left" Width="430">
+        <DataGrid Name="MyVehicleGrid" FontSize="20" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True"  Margin="10,80,0,0" Height="104" VerticalAlignment="Top" HorizontalAlignment="Left" Width="430">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Conducteur" Binding="{Binding Driver.Name}"/>
                 <DataGridTextColumn Header="Place passager" Binding="{Binding NbrPlacesMembers}"/>

@@ -13,7 +13,7 @@
 
         <Label Content="Choisissez un covoiturage" Foreground="White" FontSize="18" Margin="40,70,0,0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300"/>
 
-        <DataGrid Name="VehicleGrid" AutoGenerateColumns="false" IsReadOnly="True"  Margin="40,110,0,0" Height="160" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450">
+        <DataGrid Name="VehicleGrid" FontSize="20" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True"  Margin="40,110,0,0" Height="160" VerticalAlignment="Top" HorizontalAlignment="Left" Width="450">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Conducteur" Binding="{Binding Driver.Name}"/>
                 <DataGridTextColumn Header="Place passager restante" Binding="{Binding NbrPlacesMembers}"/>

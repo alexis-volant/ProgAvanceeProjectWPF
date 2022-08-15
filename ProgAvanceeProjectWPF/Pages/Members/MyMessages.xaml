@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Mes messages" HorizontalAlignment="Left" Height="29" Margin="56,34,0,0" VerticalAlignment="Top" Width="128" Foreground="White"/>
-        <DataGrid Name="MessagesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="54,69,0,0" Height="305" VerticalAlignment="Top" HorizontalAlignment="Left" Width="702">
+        <DataGrid Name="MessagesGrid" FontSize="20" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True" Margin="54,69,0,0" Height="305" VerticalAlignment="Top" HorizontalAlignment="Left" Width="702">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Envoyeur" Binding="{Binding Treasurer.Name}"/>
                 <DataGridTextColumn Header="Objet" Binding="{Binding Obj}"/>

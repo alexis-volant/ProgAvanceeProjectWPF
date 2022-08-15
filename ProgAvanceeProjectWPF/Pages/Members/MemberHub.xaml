@@ -9,14 +9,14 @@
       Title="Page1">
 
     <Grid>
-        <Label Content="Bienvenue" HorizontalAlignment="Left" Margin="60,40,0,0" VerticalAlignment="Top" Width="130" Foreground="White" FontSize="24"/>
-        <Label Content="{Binding FirstName}" x:Name="LblFirstName" HorizontalAlignment="Left" Margin="180,40,0,0" VerticalAlignment="Top" Width="200" Foreground="White" FontSize="24"/>
+        <Label Content="Bienvenue" HorizontalAlignment="Left" Margin="58,22,0,0" VerticalAlignment="Top" Width="130" Foreground="White" FontSize="24"/>
+        <Label Content="{Binding FirstName}" x:Name="LblFirstName" HorizontalAlignment="Left" Margin="188,22,0,0" VerticalAlignment="Top" Width="263" Foreground="White" FontSize="24" Height="37"/>
 
-        <Label Content="Votre solde:" HorizontalAlignment="Left" Margin="560,40,0,0" VerticalAlignment="Top" Width="110" Foreground="White" FontSize="18"/>
-        <Label Content="{Binding Balance}" x:Name="LblBalance" HorizontalAlignment="Left" Margin="670,40,0,0" VerticalAlignment="Top" Width="100" Foreground="White" FontSize="18"/>
+        <Label Content="Votre solde:" HorizontalAlignment="Left" Margin="562,26,0,0" VerticalAlignment="Top" Width="116" Foreground="White" FontSize="20" Height="37"/>
+        <Label Content="{Binding Balance}" x:Name="LblBalance" HorizontalAlignment="Left" Margin="678,22,0,0" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="18" Height="37"/>
 
-        <Label Content="Vos balades reservées" HorizontalAlignment="Left" Margin="35,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
-        <DataGrid Name="RidesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="35,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230">
+        <Label Content="Vos balades reservées" FontSize="24" HorizontalAlignment="Left" Margin="35,98,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <DataGrid Name="RidesGrid" FontSize="20" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True" Margin="35,145,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="245">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="N°" Binding="{Binding Num}"/>
                 <DataGridTextColumn Header="Endroit" Binding="{Binding PlaceDeparture}"/>
@@ -25,14 +25,16 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="S'inscrire a une balade" HorizontalAlignment="Left" Height="55" Margin="35,345,0,0" VerticalAlignment="Top" Width="230" Click="GoToMemberInscriptionPage"/>
+        <Button Content="S'inscrire a une balade" Foreground="White" FontSize="24" Background="#42414d" HorizontalAlignment="Left" Height="55" Margin="35,345,0,0" VerticalAlignment="Top" Width="245" Click="GoToMemberInscriptionPage"/>
 
-        <Label Content="Vos catégories" HorizontalAlignment="Left" Margin="460,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
-        <StackPanel x:Name="ListCat" HorizontalAlignment="Left" Margin="460,150,0,0" VerticalAlignment="Top" Width="126" Height="118"/>
-        <Button Content="S'inscrire dans une catégorie" HorizontalAlignment="Left" Height="55" Margin="460,345,0,0" VerticalAlignment="Top" Width="200" Click="AddCategory"/>
+        <Label Content="Vos catégories" FontSize="24" HorizontalAlignment="Center" Margin="0,98,0,0" VerticalAlignment="Top" Width="168" Foreground="White"/>
+        <StackPanel x:Name="ListCat" HorizontalAlignment="Center" Margin="0,145,0,0" VerticalAlignment="Top" Width="168" Height="127"/>
+        <Button Foreground="White" FontSize="24" Background="#42414d" HorizontalAlignment="Center" Height="77" Margin="0,336,0,0" VerticalAlignment="Top" Width="169" Click="AddCategory">
+            <TextBlock TextAlignment="center">Ajouter un <LineBreak />nouveau vélo</TextBlock>
+        </Button>
 
-        <Label Content="Vos velos" HorizontalAlignment="Left" Margin="750,120,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
-        <DataGrid Name="BikesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="750,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
+        <Label Content="Vos velos" FontSize="24" HorizontalAlignment="Left" Margin="750,98,0,0" VerticalAlignment="Top" Width="126" Foreground="White"/>
+        <DataGrid Name="BikesGrid" FontSize="18" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True" Margin="750,150,0,0" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
@@ -40,9 +42,9 @@
                 <DataGridTextColumn Header="Longueur" Binding="{Binding Length}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Gestion des velos" HorizontalAlignment="Left" Height="55" Margin="750,345,0,0" VerticalAlignment="Top" Width="180" Click="GoToMemberBikePage"/>
+        <Button Content="Gestion des vélos" Foreground="White" FontSize="24" Background="#42414d" HorizontalAlignment="Left" Height="55" Margin="750,345,0,0" VerticalAlignment="Top" Width="200" Click="GoToMemberBikePage"/>
 
-        <Button x:Name="messagesCount"  HorizontalAlignment="Left" Height="55" Margin="780,30,0,0" VerticalAlignment="Top" Width="130" Click="GoToMyMessages"/>
+        <Button x:Name="messagesCount" Foreground="White" FontSize="20" Background="#42414d"  HorizontalAlignment="Left" Height="55" Margin="780,18,0,0" VerticalAlignment="Top" Width="170" Click="GoToMyMessages"/>
 
 
     </Grid>

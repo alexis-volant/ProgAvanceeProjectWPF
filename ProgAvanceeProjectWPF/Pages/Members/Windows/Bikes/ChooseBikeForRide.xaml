@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ChooseBikeForRide" Height="450" Width="800">
     <Grid x:Name="BikeChoose" Background="#2b2a33">
-        <DataGrid Name="BikesGrid" AutoGenerateColumns="false" IsReadOnly="True" Margin="54,69,0,0" Height="253" VerticalAlignment="Top" HorizontalAlignment="Left" Width="441">
+        <DataGrid Name="BikesGrid" FontSize="22" Background="#42414d" AutoGenerateColumns="false" IsReadOnly="True" Margin="54,69,0,0" Height="253" VerticalAlignment="Top" HorizontalAlignment="Left" Width="432">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
@@ -21,7 +21,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

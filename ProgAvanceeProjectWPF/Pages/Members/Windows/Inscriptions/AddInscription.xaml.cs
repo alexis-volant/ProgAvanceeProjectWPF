@@ -93,5 +93,10 @@ namespace ProgAvanceeProjectWPF.Pages.Members.Windows.Inscriptions
             MyVehicle myVehicle = new MyVehicle(member, ride, bike);
             myVehicle.Show();
         }
+
+        private void VehicleGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
